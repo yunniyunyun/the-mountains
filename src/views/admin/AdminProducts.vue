@@ -1,9 +1,11 @@
 <template>
     <div class="container">
-        <div class="text-end mt-4">
+        <div class="mt-4 d-flex justify-content-between align-items-end">
+            <h2 class="mt-4">產品列表</h2>
+            <div>
           <button class="btn btn-primary" @click="openModal('new', product)">
             建立新的產品
-          </button>
+          </button></div>
         </div>
         <table class="table mt-4">
           <thead>
