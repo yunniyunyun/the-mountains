@@ -25,6 +25,6 @@ git commit -m 'deploy'
 
 # if you are deploying to https://yunniyunyun.github.io/vite-deploy-sample
 # git push -f git@github.com:yunniyunyun/vite-deploy-sample.git main:gh-pages
-git push -f https://github.com/yunniyunyun/vue-hw-6.git main:gh-pages
+git push -f https://github.com/yunniyunyun/vue-hw-7.git main:gh-pages
 
 cd -
