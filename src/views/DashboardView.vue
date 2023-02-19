@@ -1,4 +1,5 @@
 <template>
+  <div v-if="isLogin">
     後台頁面
     <router-link to="/admin/products">後台產品列表</router-link> |
     <router-link to="/admin/orders">後台訂單列表</router-link> |
@@ -6,6 +7,7 @@
     <a href="#" @click.prevent="logout">登出</a>
     <hr>
     <RouterView></RouterView>
+  </div>
 </template>
 
 <script>
@@ -13,12 +15,18 @@ import { RouterView } from 'vue-router'
 const { VITE_APP_URL } = import.meta.env
 
 export default {
+  data () {
+    return {
+      isLogin: false
+    }
+  },
   components: {
     RouterView
   },
   methods: {
     logout () {
       document.cookie = `hexToken=; expires=${new Date()};`
+      this.isLogin = false
       this.$router.push('/login')
     },
     checkLogin () {
@@ -27,6 +35,8 @@ export default {
 
       this.$http.post(`${VITE_APP_URL}/api/user/check`)
         .then((res) => {
+          // 打開後台畫面
+          this.isLogin = true
           if (!res.data.success) {
             this.$router.push('/login')
           }
