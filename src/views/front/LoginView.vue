@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-          <h1 class="h3 mb-3 font-weight-normal">
+        <div class="row justify-content-center text-center">
+          <h1 class="h3 my-3 font-weight-normal">
             請先登入
           </h1>
-          <div class="col-8">
+          <div class="col-4">
             <form id="form" class="form-signin">
               <div class="form-floating mb-3">
                 <input type="email" class="form-control" v-model="user.username" id="username"
