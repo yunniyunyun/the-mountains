@@ -1,4 +1,5 @@
 <template>
+    <loadingVue v-model:active="isLoading"/>
     這是購物車
     <div class="text-end">
         <button class="btn btn-outline-danger" type="button"
@@ -71,6 +72,7 @@ const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 export default {
   data () {
     return {
+      isLoading: false,
       products: [],
       cart: {},
       loadingItem: ''
@@ -80,6 +82,7 @@ export default {
     getCarts () {
       this.$http.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/cart`)
         .then(res => {
+          this.isLoading = false
           this.cart = res.data.data
         })
     },
@@ -112,6 +115,7 @@ export default {
     }
   },
   mounted () {
+    this.isLoading = true
     this.getCarts()
   }
 }
