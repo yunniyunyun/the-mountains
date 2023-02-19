@@ -1,4 +1,5 @@
 <template>
+  <loading v-model:active="isLoading"/>
   <div v-if="isLogin">
     後台頁面
     <router-link to="/admin/products">後台產品列表</router-link> |
@@ -11,17 +12,21 @@
 </template>
 
 <script>
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
 import { RouterView } from 'vue-router'
 const { VITE_APP_URL } = import.meta.env
 
 export default {
   data () {
     return {
-      isLogin: false
+      isLogin: false,
+      isLoading: false
     }
   },
   components: {
-    RouterView
+    RouterView,
+    Loading
   },
   methods: {
     logout () {
@@ -36,17 +41,20 @@ export default {
       this.$http.post(`${VITE_APP_URL}/api/user/check`)
         .then((res) => {
           // 打開後台畫面
+          this.isLoading = false
           this.isLogin = true
           if (!res.data.success) {
             this.$router.push('/login')
           }
         })
         .catch(() => {
+          this.isLoading = false
           this.$router.push('/login')
         })
     }
   },
   mounted () {
+    this.isLoading = true
     this.checkLogin()
   }
 }
