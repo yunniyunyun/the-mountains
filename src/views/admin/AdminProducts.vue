@@ -1,4 +1,5 @@
 <template>
+    <loadingVue v-model:active="isLoading"/>
     <div class="container">
         <div class="mt-4 d-flex justify-content-between align-items-end">
             <h2 class="mt-4">產品列表</h2>
@@ -206,13 +207,12 @@
 <script>
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
-const { VITE_APP_URL } = import.meta.env
+const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {
   data () {
     return {
-      apiUrl: 'https://vue3-course-api.hexschool.io/v2',
-      apiPath: 'winter_',
+      isLoading: false,
       isNew: false,
       products: [],
       tempProduct: {},
@@ -234,18 +234,20 @@ export default {
         })
     },
     getData (page = 1) {
-      const url = `${this.apiUrl}/api/${this.apiPath}/admin/products/?page=${page}`
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/products/?page=${page}`
       this.$http.get(url)
         .then((response) => {
+          this.isLoading = false
           this.products = response.data.products
           this.page = response.data.pagination
         })
         .catch((error) => {
+          this.isLoading = false
           alert(error.response.data.message)
         })
     },
     updateItem () {
-      let url = `${this.apiUrl}/api/${this.apiPath}/admin/product`
+      let url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product`
       if (this.isNew) {
         this.$http.post(url, { data: this.tempProduct })
           .then((response) => {
@@ -257,7 +259,7 @@ export default {
             alert(error.data.message)
           })
       } else {
-        url = `${this.apiUrl}/api/${this.apiPath}/admin/product/${this.tempProduct.id}`
+        url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product/${this.tempProduct.id}`
         this.$http.put(url, { data: this.tempProduct })
           .then((response) => {
             alert(response.data.message)
@@ -270,7 +272,7 @@ export default {
       }
     },
     deleteItem () {
-      const url = `${this.apiUrl}/api/${this.apiPath}/admin/product/${this.tempProduct.id}`
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product/${this.tempProduct.id}`
       this.$http.delete(url)
         .then((response) => {
           alert(response.data.message)
@@ -305,6 +307,7 @@ export default {
     pagination
   },
   mounted () {
+    this.isLoading = true
     this.productModal = new Modal(document.getElementById('productModal'), {
       keyboard: false
     })
