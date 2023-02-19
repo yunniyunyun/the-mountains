@@ -1,5 +1,5 @@
 <template>
-  <loading v-model:active="isLoading"/>
+  <loadingVue v-model:active="isLoading"/>
   <div v-if="isLogin">
     後台頁面
     <router-link to="/admin/products">後台產品列表</router-link> |
@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import Loading from 'vue-loading-overlay'
-import 'vue-loading-overlay/dist/css/index.css'
 import { RouterView } from 'vue-router'
 const { VITE_APP_URL } = import.meta.env
 
@@ -25,8 +23,7 @@ export default {
     }
   },
   components: {
-    RouterView,
-    Loading
+    RouterView
   },
   methods: {
     logout () {

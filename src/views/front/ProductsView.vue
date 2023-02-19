@@ -1,5 +1,6 @@
 <template>
     這是產品列表
+    <loadingVue v-model:active="isLoading"/>
     <table class="table">
       <tbody>
         <tr v-for="product in products" :key="product.id">
@@ -22,6 +23,7 @@ const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 export default {
   data () {
     return {
+      isLoading: true,
       products: []
     }
   },
@@ -32,9 +34,11 @@ export default {
     getProducts () {
       this.$http.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/all`)
         .then((res) => {
+          this.isLoading = false
           this.products = res.data.products
         })
         .catch((error) => {
+          this.isLoading = false
           console.dir(error)
         })
     },
@@ -50,6 +54,7 @@ export default {
     }
   },
   mounted () {
+    this.isLoading = true
     this.getProducts()
   }
 }
