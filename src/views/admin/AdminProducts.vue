@@ -50,8 +50,6 @@
           </tbody>
         </table>
     </div>
-    <!-- pagination -->
-    <pagination :pages="page" :get-products="getData" @change-page="getData"></pagination>
     <!-- Modal -->
     <!-- create / update product -->
     <div id="productModal" ref="productModal" class="modal fade" tabindex="-1" aria-labelledby="productModalLabel"
@@ -203,7 +201,6 @@
 
 <script>
 import { Modal } from 'bootstrap'
-import pagination from '../../components/PaginationVue.vue'
 const { VITE_APP_URL } = import.meta.env
 
 export default {
@@ -216,7 +213,8 @@ export default {
       tempProduct: {},
       productModal: '',
       delProductModal: '',
-      page: {}
+      test: true,
+      checked: true
     }
   },
   methods: {
@@ -231,12 +229,11 @@ export default {
           window.location = 'login.html'
         })
     },
-    getData (page = 1) {
-      const url = `${this.apiUrl}/api/${this.apiPath}/admin/products/?page=${page}`
+    getData () {
+      const url = `${this.apiUrl}/api/${this.apiPath}/admin/products/all`
       this.$http.get(url)
         .then((response) => {
           this.products = response.data.products
-          this.page = response.data.pagination
         })
         .catch((error) => {
           alert(error.response.data.message)
@@ -298,9 +295,6 @@ export default {
         this.delProductModal.show()
       }
     }
-  },
-  components: {
-    pagination
   },
   mounted () {
     this.productModal = new Modal(document.getElementById('productModal'), {
