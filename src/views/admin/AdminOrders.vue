@@ -21,7 +21,7 @@
               <th width="100">
                 訂單金額
               </th>
-              <th width="100">
+              <th width="120">
                 訂單狀態
               </th>
               <th width="120">
@@ -41,8 +41,19 @@
                 </td>
                 <td> {{ order.total }}</td>
                 <td>
-                    <span class="text-success" v-if="order.is_paid">已付款</span>
-                    <span v-else>未付款</span>
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        :id="`paidSwitch${order.id}`"
+                        v-model="order.is_paid"
+                        @change="updatePaid(order)"
+                      />
+                      <label class="form-check-label" :for="`paidSwitch${order.id}`">
+                        <span class="text-success" v-if="order.is_paid">已付款</span>
+                        <span v-else>未付款</span>
+                      </label>
+                    </div>
                 </td>
                 <td>
                     <div class="btn-group">
@@ -242,6 +253,23 @@ export default {
         .catch((error) => {
           this.isLoading = false
           alert(error.response.data.message)
+        })
+    },
+    updatePaid (order) {
+      this.isLoading = true
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/order/${order.id}`
+      const paid = {
+        is_paid: order.is_paid
+      }
+      this.$http.put(url, { data: paid })
+        .then((response) => {
+          alert(response.data.message)
+          this.getOrder()
+          this.isLoading = false
+        })
+        .catch((error) => {
+          this.isLoading = false
+          alert(error.data.message)
         })
     },
     updateOrder () {
