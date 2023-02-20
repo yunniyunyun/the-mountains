@@ -62,6 +62,137 @@
     <!-- pagination -->
     <pagination :pages="page" :get-products="getOrder" @change-page="getOrder"></pagination>
 
+    <!-- update order -->
+    <div id="orderModal" ref="orderModal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content border-0">
+            <div class="modal-header bg-dark text-white">
+                <h5 id="orderModalLabel" class="modal-title">
+                <span >編輯訂單</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-4">
+                      <div class="mb-3">
+                        <h4>訂購人資訊</h4>
+                        <table class="table">
+                          <tbody v-if="tempOrder.user">
+                            <tr>
+                              <th style="width: 100px">姓名</th>
+                              <td>{{ tempOrder.user.name }}</td>
+                            </tr>
+                            <tr>
+                              <th>Email</th>
+                              <td>{{ tempOrder.user.email }}</td>
+                            </tr>
+                            <tr>
+                              <th>電話</th>
+                              <td>{{ tempOrder.user.tel }}</td>
+                            </tr>
+                            <tr>
+                              <th>地址</th>
+                              <td>{{ tempOrder.user.address }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <h4>訂單資訊</h4>
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <th style="width: 100px">訂單編號</th>
+                          <td>{{ tempOrder.id }}</td>
+                        </tr>
+                        <tr>
+                          <th>下單時間</th>
+                          <td>{{ tempOrder.create_at }}</td>
+                        </tr>
+                        <tr>
+                          <th>付款時間</th>
+                          <td>
+                            <span v-if="tempOrder.paid_date">
+                              {{ tempOrder.paid_date }}
+                            </span>
+                            <span v-else></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>付款狀態</th>
+                          <td>
+                            <strong v-if="tempOrder.is_paid" class="text-success"
+                              >已付款</strong
+                            >
+                            <span v-else class="text-muted">尚未付款</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>總金額</th>
+                          <td>
+                            {{ tempOrder.total }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h4>訂單內容</h4>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>名稱</th>
+                          <th>數量</th>
+                          <th>小計</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="item in tempOrder.products" :key="item.id">
+                          <th>
+                            <img :src="item.product.imageUrl" class="img-fluid" alt="" style="height: 120px;">
+                          </th>
+                          <th>
+                            {{ item.product.title }}
+                          </th>
+                          <td>{{ item.qty }}  {{ item.product.unit }}</td>
+                          <td class="text-end">
+                            {{ item.final_total }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="d-flex justify-content-end">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                          v-model="tempOrder.is_paid"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          <span v-if="tempOrder.is_paid">已付款</span>
+                          <span v-else>未付款</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                取消
+                </button>
+                <button type="button" class="btn btn-primary" @click="updateItem">
+                  修改付款狀態
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <!-- delete order -->
     <DeleteOrderModal :temp-order="tempOrder" :delete-order="deleteOrder"></DeleteOrderModal>
 </template>
@@ -79,7 +210,7 @@ export default {
       orders: [],
       page: {},
       tempOrder: '',
-      OrderModal: '',
+      orderModal: '',
       delOrderModal: ''
     }
   },
@@ -123,7 +254,7 @@ export default {
     openModal (state, item) {
       if (state === 'edit') {
         this.tempOrder = { ...item }
-        this.OrderModal.show()
+        this.orderModal.show()
       } else if (state === 'delete') {
         this.tempOrder = { ...item }
         this.delOrderModal.show()
@@ -136,6 +267,10 @@ export default {
   },
   mounted () {
     this.isLoading = true
+
+    this.orderModal = new Modal(document.getElementById('orderModal'), {
+      keyboard: false
+    })
 
     this.delOrderModal = new Modal(document.getElementById('delOrderModal'), {
       keyboard: false

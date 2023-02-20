@@ -59,7 +59,7 @@
     <!-- create / update product -->
     <div id="productModal" ref="productModal" class="modal fade" tabindex="-1" aria-labelledby="productModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content border-0">
             <div class="modal-header bg-dark text-white">
                 <h5 id="productModalLabel" class="modal-title">
