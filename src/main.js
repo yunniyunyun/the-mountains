@@ -10,8 +10,12 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
 
 import './assets/all.scss'
+import { date } from './methods/filters'
 
 const app = createApp(App)
+app.config.globalProperties.$filters = {
+  date
+}
 
 app.component('loadingVue', Loading)
 

@@ -7,7 +7,7 @@
         <thead>
             <tr>
               <th width="150">
-                下定時間
+                訂單時間
               </th>
               <th width="220">
                 Email
@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             <tr v-for="order in orders" :key="order.id">
-                <td> {{ order.create_at }} </td>
+                <td> {{ $filters.date(order.create_at) }} </td>
                 <td> {{ order.user.email }} </td>
                 <td> {{ order.user.tel }}</td>
                 <td>
@@ -109,14 +109,14 @@
                           <td>{{ tempOrder.id }}</td>
                         </tr>
                         <tr>
-                          <th>下單時間</th>
-                          <td>{{ tempOrder.create_at }}</td>
+                          <th>訂購時間</th>
+                          <td>{{ $filters.date(tempOrder.create_at) }}</td>
                         </tr>
                         <tr>
                           <th>付款時間</th>
                           <td>
                             <span v-if="tempOrder.paid_date">
-                              {{ tempOrder.paid_date }}
+                              {{ $filters.date(tempOrder.paid_date) }}
                             </span>
                             <span v-else></span>
                           </td>
