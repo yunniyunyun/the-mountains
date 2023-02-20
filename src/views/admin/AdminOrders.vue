@@ -63,36 +63,13 @@
     <pagination :pages="page" :get-products="getOrder" @change-page="getOrder"></pagination>
 
     <!-- delete order -->
-    <div id="delOrderModal" ref="delOrderModal" class="modal fade" tabindex="-1"
-        aria-labelledby="delOrderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content border-0">
-            <div class="modal-header bg-danger text-white">
-                <h5 id="delOrderModalLabel" class="modal-title">
-                <span>刪除訂單</span>
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                是否刪除 <span class="fw-bold">{{ tempOrder.create_at }}</span>
-                <strong class="text-danger"></strong> 訂單(刪除後將無法恢復)。
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                取消
-                </button>
-                <button type="button" class="btn btn-danger" @click="deleteOrder">
-                確認刪除
-                </button>
-            </div>
-            </div>
-        </div>
-    </div>
+    <DeleteOrderModal :temp-order="tempOrder" :delete-order="deleteOrder"></DeleteOrderModal>
 </template>
 
 <script>
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
+import DeleteOrderModal from '../../components/DeleteOrderModal.vue'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {
@@ -154,7 +131,8 @@ export default {
     }
   },
   components: {
-    pagination
+    pagination,
+    DeleteOrderModal
   },
   mounted () {
     this.isLoading = true
