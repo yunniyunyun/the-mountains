@@ -163,7 +163,11 @@
                         </tr>
                       </tbody>
                     </table>
-                    <div class="d-flex justify-content-end">
+                    <h4>留言</h4>
+                    <div>
+                      <textarea id="message" class="form-control" cols="30" rows="5" v-model="tempOrder.message"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
                       <div class="form-check">
                         <input
                           class="form-check-input"
@@ -185,8 +189,8 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                 取消
                 </button>
-                <button type="button" class="btn btn-primary" @click="updateItem">
-                  修改付款狀態
+                <button type="button" class="btn btn-primary" @click="updateOrder">
+                  修改訂單
                 </button>
             </div>
             </div>
@@ -227,6 +231,7 @@ export default {
         })
     },
     getOrder (page = 1) {
+      this.isLoading = true
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/orders/?page=${page}`
       this.$http.get(url)
         .then((response) => {
@@ -239,15 +244,33 @@ export default {
           alert(error.response.data.message)
         })
     },
+    updateOrder () {
+      this.isLoading = true
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/order/${this.tempOrder.id}`
+      this.$http.put(url, { data: this.tempOrder })
+        .then((response) => {
+          alert(response.data.message)
+          this.orderModal.hide()
+          this.getOrder()
+          this.isLoading = false
+        })
+        .catch((error) => {
+          this.isLoading = false
+          alert(error.data.message)
+        })
+    },
     deleteOrder () {
+      this.isLoading = true
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/order/${this.tempOrder.id}`
       this.$http.delete(url)
         .then((response) => {
           this.delOrderModal.hide()
           alert(response.data.message)
           this.getOrder()
+          this.isLoading = false
         })
         .catch((error) => {
+          this.isLoading = false
           alert(error.data.message)
         })
     },
