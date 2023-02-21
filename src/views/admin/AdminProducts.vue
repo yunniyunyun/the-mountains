@@ -4,7 +4,7 @@
         <div class="mt-4 d-flex justify-content-between align-items-end">
             <h2 class="mt-4">產品列表</h2>
             <div>
-          <button class="btn btn-primary" @click="openModal('new', product)">
+          <button class="btn btn-primary" @click="openModal('new', tempProduct)">
             建立新的產品
           </button></div>
         </div>
@@ -183,7 +183,7 @@
 <script>
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
-import DeleteProductModal from '../../components/DeleteProductModal.vue'
+import DeleteProductModal from '../../components/DeleteModal.vue'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {

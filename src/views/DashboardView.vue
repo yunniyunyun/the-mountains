@@ -15,6 +15,9 @@
             <router-link to="/admin/orders"
             class="p-2 me-2 text-decoration-none link-light">
               訂單列表</router-link>
+              <router-link to="/admin/coupons"
+            class="p-2 me-2 text-decoration-none link-light">
+              優惠券</router-link>
             <router-link to="/"
             class="p-2 me-2 text-decoration-none link-light">
               回前台首頁</router-link>
