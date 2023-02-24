@@ -211,12 +211,13 @@ export default {
         })
     },
     getData (page = 1) {
+      this.isLoading = true
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/products/?page=${page}`
       this.$http.get(url)
         .then((response) => {
-          this.isLoading = false
           this.products = response.data.products
           this.page = response.data.pagination
+          this.isLoading = false
         })
         .catch((error) => {
           this.isLoading = false
@@ -224,6 +225,7 @@ export default {
         })
     },
     updateItem () {
+      this.isLoading = true
       let url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product`
       if (this.isNew) {
         this.$http.post(url, { data: this.tempProduct })
@@ -231,8 +233,10 @@ export default {
             alert(response.data.message)
             this.productModal.hide()
             this.getData()
+            this.isLoading = false
           })
           .catch((error) => {
+            this.isLoading = false
             alert(error.data.message)
           })
       } else {
@@ -242,21 +246,26 @@ export default {
             alert(response.data.message)
             this.productModal.hide()
             this.getData()
+            this.isLoading = false
           })
           .catch((error) => {
+            this.isLoading = false
             alert(error.data.message)
           })
       }
     },
     deleteItem () {
+      this.isLoading = true
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product/${this.tempProduct.id}`
       this.$http.delete(url)
         .then((response) => {
           alert(response.data.message)
           this.delProductModal.hide()
           this.getData()
+          this.isLoading = false
         })
         .catch((error) => {
+          this.isLoading = false
           alert(error.data.message)
         })
     },
