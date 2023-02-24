@@ -26,7 +26,7 @@
           <td>{{ $filters.date(article.create_at) }}</td>
           <td>{{ article.title }}</td>
           <td>
-            <b-badge class="bg-info text-light px-2 py-1 me-2 rounded-pill"
+            <b-badge class="badge bg-info me-1"
             v-for="(label, key) in article.tag"
                         :key="key+'tag'">
                         {{ label }}
