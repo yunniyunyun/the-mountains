@@ -1,7 +1,14 @@
 <template>
     <loadingVue v-model:active="isLoading"/>
     <div class="container">
-        <h2 class="mt-4">產品列表</h2>
+      <div class="mt-4 d-flex justify-content-between align-items-end">
+        <h2 class="mt-4">訂單列表</h2>
+        <div>
+          <button class="btn btn-outline-danger" @click="openModal('deleteAll', {})">
+              刪除全部訂單
+          </button>
+        </div>
+      </div>
     </div>
     <table class="table mt-4">
         <thead>
@@ -210,6 +217,8 @@
 
     <!-- delete order -->
     <DeleteOrderModal :temp-order="tempOrder" :delete-order="deleteOrder"></DeleteOrderModal>
+    <!-- delete all -->
+    <DeleteAllModal :delete-item="deleteOrders"></DeleteAllModal>
 </template>
 
 <script>
@@ -217,6 +226,7 @@ import Swal from 'sweetalert2'
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
 import DeleteOrderModal from '../../components/DeleteOrderModal.vue'
+import DeleteAllModal from '../../components/DeleteAllModal.vue'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {
@@ -227,7 +237,8 @@ export default {
       page: {},
       tempOrder: '',
       orderModal: '',
-      delOrderModal: ''
+      delOrderModal: '',
+      delAllModal: ''
     }
   },
   methods: {
@@ -310,6 +321,29 @@ export default {
           })
         })
     },
+    deleteOrders () {
+      this.isLoading = true
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/orders/all`
+      this.$http.delete(url)
+        .then((response) => {
+          this.delAllModal.hide()
+          Swal.fire({
+            icon: 'success',
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.getOrder()
+          this.isLoading = false
+        })
+        .catch((error) => {
+          this.isLoading = false
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
+        })
+    },
     deleteOrder () {
       this.isLoading = true
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/order/${this.tempOrder.id}`
@@ -340,12 +374,15 @@ export default {
       } else if (state === 'delete') {
         this.tempOrder = { ...item }
         this.delOrderModal.show()
+      } else if (state === 'deleteAll') {
+        this.delAllModal.show()
       }
     }
   },
   components: {
     pagination,
-    DeleteOrderModal
+    DeleteOrderModal,
+    DeleteAllModal
   },
   mounted () {
     this.isLoading = true
@@ -355,6 +392,10 @@ export default {
     })
 
     this.delOrderModal = new Modal(document.getElementById('delOrderModal'), {
+      keyboard: false
+    })
+
+    this.delAllModal = new Modal(document.getElementById('delAllModal'), {
       keyboard: false
     })
     // Token
