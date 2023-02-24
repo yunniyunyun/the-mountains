@@ -4,21 +4,24 @@
         <div class="mt-4 d-flex justify-content-between align-items-end">
             <h2 class="mt-4">產品列表</h2>
             <div>
-          <button class="btn btn-primary" @click="openModal('new', tempProduct)">
+          <button class="btn btn-primary" @click="openModal('new', {})">
             建立新的產品
           </button></div>
         </div>
         <table class="table mt-4">
           <thead>
             <tr>
-              <th width="120">
+              <th width="100">
                 分類
               </th>
+              <th width="100">
+                等級
+              </th>
               <th>產品名稱</th>
-              <th width="120">
+              <th width="100">
                 原價
               </th>
-              <th width="120">
+              <th width="100">
                 售價
               </th>
               <th width="100">
@@ -32,6 +35,7 @@
           <tbody>
             <tr v-for="product in products" :key="product.id">
               <td><div class="badge bg-primary">{{product.category}}</div></td>
+              <td>{{product.level}}</td>
               <td>{{product.title}}</td>
               <td class="text-end">{{product.origin_price}}</td>
               <td class="text-end">{{product.price}}</td>
@@ -71,6 +75,11 @@
             <div class="modal-body">
                 <div class="row">
                 <div class="col-sm-4">
+                    <div class="mb-3">
+                      <label for="create_at" class="form-label">建立日期</label>
+                      <input type="date" class="form-control" id="create_at"
+                          v-model="create_at">
+                    </div>
                     <div class="mb-3">
                     <div class="mb-3">
                         <label for="imageUrl" class="form-label">主要圖片</label>
@@ -114,28 +123,97 @@
                     <label for="title" class="form-label">標題</label>
                     <input id="title" v-model="tempProduct.title" type="text" class="form-control" placeholder="請輸入標題">
                     </div>
+                    <!-- 標籤 -->
+                    <div class="mb-3">
+                      <label for="tag" class="form-label">標籤</label>
+                      <div class="row gx-1 mb-3" v-if="tempProduct.tag">
+                        <div
+                          class="col-md-2 mb-1"
+                          v-for="(label, key) in tempProduct.tag"
+                          :key="key"
+                        >
+                          <div class="input-group input-group-sm">
+                            <input
+                              type="text"
+                              class="form-control form-control"
+                              id="tag"
+                              v-model="tempProduct.tag[key]"
+                              placeholder="請輸入標籤"
+                            />
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger"
+                              @click="tempProduct.tag.splice(key, 1)"
+                            >
+                              <!-- <i class="bi bi-x-square-fill"></i> -->
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          class="col-md-2 mb-1"
+                          v-if="
+                            tempProduct.tag[tempProduct.tag.length - 1] ||
+                            !tempProduct.tag.length
+                          "
+                        >
+                          <button
+                            class="btn btn-outline-primary btn-sm d-block w-100"
+                            type="button"
+                            @click="tempProduct.tag.push('')"
+                          >
+                            新增標籤
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 標籤結束 -->
 
                     <div class="row">
-                    <div class="mb-3 col-md-6">
+                    <div class="mb-3 col-md-4">
                         <label for="category" class="form-label">分類</label>
                         <input id="category" v-model="tempProduct.category" type="text" class="form-control"
                                 placeholder="請輸入分類">
                     </div>
-                    <div class="mb-3 col-md-6">
+                    <div class="mb-3 col-md-4">
+                        <label for="level" class="form-label">等級</label>
+                        <input id="level" v-model="tempProduct.level" type="text" class="form-control"
+                                placeholder="請輸入等級">
+                    </div>
+                    <div class="mb-3 col-md-4">
                         <label for="price" class="form-label">單位</label>
                         <input id="unit" v-model="tempProduct.unit" type="text" class="form-control" placeholder="請輸入單位">
                     </div>
                     </div>
 
                     <div class="row">
-                    <div class="mb-3 col-md-6">
+                    <div class="mb-3 col-md-4">
                         <label for="origin_price" class="form-label">原價</label>
                         <input id="origin_price" v-model="tempProduct.origin_price" type="number" min="0" class="form-control" placeholder="請輸入原價">
                     </div>
-                    <div class="mb-3 col-md-6">
+                    <div class="mb-3 col-md-4">
                         <label for="price" class="form-label">售價</label>
                         <input id="price" v-model="tempProduct.price" type="number" min="0" class="form-control"
                                 placeholder="請輸入售價">
+                    </div>
+                    <div class="mb-3 col-md-4">
+                      <label class="form-label"></label>
+                      <div class="form-check">
+                          <input id="is_enabled"
+                          v-model="tempProduct.is_enabled" class="form-check-input" type="checkbox"
+                                  :true-value="1" :false-value="0">
+                          <label class="form-check-label"
+                          for="is_enabled">是否啟用</label>
+                      </div>
+                      <div class="form-check">
+                          <input id="is_hot"
+                          v-model="tempProduct.is_hot" class="form-check-input" type="checkbox"
+                                  :true-value="1" :false-value="0">
+                          <label class="form-check-label"
+                          for="is_hot">熱門活動</label>
+                      </div>
                     </div>
                     </div>
                     <hr>
@@ -143,23 +221,16 @@
                     <div class="mb-3">
                     <label for="description" class="form-label">產品描述</label>
                     <textarea id="description" v-model="tempProduct.description"  type="text" class="form-control"
-                                placeholder="請輸入產品描述">
+                                placeholder="請輸入產品描述" rows="5">
                     </textarea>
                     </div>
                     <div class="mb-3">
                     <label for="content" class="form-label">說明內容</label>
-                    <textarea id="content" v-model="tempProduct.content" type="text" class="form-control"
-                                placeholder="請輸入說明內容">
-                    </textarea>
-                    </div>
-                    <div class="mb-3">
-                    <div class="form-check">
-                        <input id="is_enabled"
-                        v-model="tempProduct.is_enabled" class="form-check-input" type="checkbox"
-                                :true-value="1" :false-value="0">
-                        <label class="form-check-label"
-                        for="is_enabled">是否啟用</label>
-                    </div>
+                    <ckeditor
+                      :editor="editor"
+                      :config="editorConfig"
+                      v-model="tempProduct.content"
+                    ></ckeditor>
                     </div>
                 </div>
                 </div>
@@ -185,6 +256,7 @@ import Swal from 'sweetalert2'
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
 import DeleteProductModal from '../../components/DeleteModal.vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {
@@ -193,10 +265,26 @@ export default {
       isLoading: false,
       isNew: false,
       products: [],
-      tempProduct: {},
+      tempProduct: {
+        create_at: new Date().getTime() / 1000,
+        unit: '人',
+        tag: []
+      },
       productModal: '',
       delProductModal: '',
-      page: {}
+      page: {},
+      // editor
+      editor: ClassicEditor,
+      editorData: '<p>Hello world!!</p>',
+      editorConfig: {
+        dataProcessor: {
+          writer: {
+            enter: '<br>'
+          }
+        }
+      },
+      // custom
+      create_at: new Date().getTime() / 1000
     }
   },
   methods: {
@@ -305,19 +393,36 @@ export default {
       this.tempProduct.imagesUrl.push('')
     },
     openModal (state, item) {
+      this.tempProduct = { ...item }
       if (state === 'new') {
-        this.tempProduct = {}
+        this.tempProduct = {
+          create_at: new Date().getTime() / 1000,
+          unit: '人',
+          tag: []
+        }
         this.isNew = true
         this.productModal.show()
       } else if (state === 'edit') {
-        this.tempProduct = { ...item }
         this.isNew = false
         this.productModal.show()
       } else if (state === 'delete') {
-        this.tempProduct = { ...item }
         this.isNew = false
         this.delProductModal.show()
       }
+    }
+  },
+  watch: {
+    tempProduct () {
+      // 將時間格式改為 YYYY-MM-DD
+      const dateAndTime = new Date(this.tempProduct.create_at * 1000)
+        .toISOString().split('T');
+      [this.create_at] = dateAndTime
+      if (!this.tempProduct.tag) {
+        this.tempProduct.tag = []
+      }
+    },
+    create_at () {
+      this.tempProduct.create_at = Math.floor(new Date(this.create_at) / 1000)
     }
   },
   components: {
@@ -340,3 +445,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.ck-editor__editable_inline {
+  min-height: 300px;
+}
+</style>
