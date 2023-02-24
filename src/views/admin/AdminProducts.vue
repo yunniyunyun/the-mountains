@@ -176,7 +176,7 @@
         </div>
     </div>
     <!-- delete product -->
-    <DeleteProductModal :temp-product="tempProduct" :delete-item="deleteItem"></DeleteProductModal>
+    <DeleteProductModal :item="tempProduct" :delete-item="deleteItem"></DeleteProductModal>
     <!-- Modal -->
 </template>
 
@@ -330,7 +330,7 @@ export default {
       keyboard: false
     })
 
-    this.delProductModal = new Modal(document.getElementById('delProductModal'), {
+    this.delProductModal = new Modal(document.getElementById('delModal'), {
       keyboard: false
     })
     // Token

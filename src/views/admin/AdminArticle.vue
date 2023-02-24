@@ -26,11 +26,11 @@
           <td>{{ $filters.date(article.create_at) }}</td>
           <td>{{ article.title }}</td>
           <td>
-            <b-badge class="badge bg-info me-1"
+            <span class="badge bg-info me-1"
             v-for="(label, key) in article.tag"
                         :key="key+'tag'">
                         {{ label }}
-            </b-badge>
+            </span>
           </td>
           <td>{{ article.description }}</td>
           <td>
@@ -79,6 +79,17 @@
                           placeholder="請輸入標題">
                   </div>
                   <div class="mb-3">
+                    <label for="image" class="form-label">輸入圖片網址</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="image"
+                      v-model="tempArticle.imageUrl"
+                      placeholder="請輸入圖片連結"
+                    />
+                    <img class="img-fluid" :src="tempArticle.imageUrl" alt="">
+                  </div>
+                  <div class="mb-3">
                     <label for="author">作者</label>
                     <input type="text" class="form-control" id="author" v-model="tempArticle.author"
                           placeholder="請輸入作者">
@@ -101,7 +112,7 @@
                 <div class="col-sm-8">
                   <div class="mb-3">
                     <label for="tag" class="form-label">標籤</label>
-                    <div class="row gx-1 mb-3">
+                    <div class="row gx-1 mb-3" v-if="tempArticle.tag">
                       <div
                         class="col-md-2 mb-1"
                         v-for="(label, key) in tempArticle.tag"
@@ -179,7 +190,7 @@
         </div>
     </div>
 <!-- delete article -->
-<DeleteModal :temp-product="tempArticle" :delete-item="deleteArticle"></DeleteModal>
+<DeleteModal :item="tempArticle" :delete-item="deleteArticle"></DeleteModal>
 
 <pagination :pages="page" :get-products="getArticles" @change-page="getArticles"></pagination>
 
@@ -341,10 +352,10 @@ export default {
     openModal (state, item) {
       this.tempArticle = { ...item }
       if (state === 'new') {
-        console.log('new', this.tempArticle)
         this.tempArticle = {
           create_at: new Date().getTime() / 1000,
-          tag: []
+          tag: [],
+          isPublic: false
         }
         this.isNew = true
         this.articleModal.show()
@@ -378,7 +389,7 @@ export default {
       keyboard: false
     })
 
-    this.delArticleModal = new Modal(document.getElementById('delProductModal'), {
+    this.delArticleModal = new Modal(document.getElementById('delModal'), {
       keyboard: false
     })
 

@@ -116,7 +116,7 @@
         </div>
     </div>
     <!-- delete coupon -->
-    <DeleteModal :temp-product="tempCoupon" :delete-item="deleteCoupon"></DeleteModal>
+    <DeleteModal :item="tempCoupon" :delete-item="deleteCoupon"></DeleteModal>
 
     <pagination :pages="page" :get-products="getCoupons" @change-page="getCoupons"></pagination>
 </template>
@@ -286,7 +286,7 @@ export default {
       keyboard: false
     })
 
-    this.delCouponModal = new Modal(document.getElementById('delProductModal'), {
+    this.delCouponModal = new Modal(document.getElementById('delModal'), {
       keyboard: false
     })
 
