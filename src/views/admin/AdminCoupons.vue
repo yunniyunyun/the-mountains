@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
 import DeleteModal from '../../components/DeleteModal.vue'
@@ -151,7 +152,10 @@ export default {
           this.getCoupons()
         })
         .catch((error) => {
-          alert(error.response.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
           window.location = 'login.html'
         })
     },
@@ -166,7 +170,10 @@ export default {
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error.response.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     updateCoupon () {
@@ -175,27 +182,43 @@ export default {
       if (this.isNew) {
         this.$http.post(url, { data: this.tempCoupon })
           .then((response) => {
-            alert(response.data.message)
+            Swal.fire({
+              icon: 'success',
+              title: response.data.message,
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.couponModal.hide()
             this.getCoupons()
             this.isLoading = false
           })
           .catch((error) => {
             this.isLoading = false
-            alert(error)
+            Swal.fire({
+              icon: 'error',
+              title: error.response.data.message
+            })
           })
       } else {
         url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
         this.$http.put(url, { data: this.tempCoupon })
           .then((response) => {
-            alert(response.data.message)
+            Swal.fire({
+              icon: 'success',
+              title: response.data.message,
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.couponModal.hide()
             this.getCoupons()
             this.isLoading = false
           })
           .catch((error) => {
             this.isLoading = false
-            alert(error)
+            Swal.fire({
+              icon: 'error',
+              title: error.response.data.message
+            })
           })
       }
     },
@@ -204,14 +227,22 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
       this.$http.delete(url)
         .then((response) => {
-          alert(response.data.message)
+          Swal.fire({
+            icon: 'success',
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.delCouponModal.hide()
           this.getCoupons()
           this.isLoading = false
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     openModal (state, item) {

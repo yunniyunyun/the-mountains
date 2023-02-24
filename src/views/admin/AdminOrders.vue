@@ -213,6 +213,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
 import DeleteOrderModal from '../../components/DeleteOrderModal.vue'
@@ -237,7 +238,10 @@ export default {
           this.getOrder()
         })
         .catch((error) => {
-          alert(error.response.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
           window.location = 'login.html'
         })
     },
@@ -252,7 +256,10 @@ export default {
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error.response.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     updatePaid (order) {
@@ -263,13 +270,21 @@ export default {
       }
       this.$http.put(url, { data: paid })
         .then((response) => {
-          alert(response.data.message)
+          Swal.fire({
+            icon: 'success',
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.getOrder()
           this.isLoading = false
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     updateOrder () {
@@ -277,14 +292,22 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/order/${this.tempOrder.id}`
       this.$http.put(url, { data: this.tempOrder })
         .then((response) => {
-          alert(response.data.message)
+          Swal.fire({
+            icon: 'success',
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.orderModal.hide()
           this.getOrder()
           this.isLoading = false
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     deleteOrder () {
@@ -293,13 +316,21 @@ export default {
       this.$http.delete(url)
         .then((response) => {
           this.delOrderModal.hide()
-          alert(response.data.message)
+          Swal.fire({
+            icon: 'success',
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.getOrder()
           this.isLoading = false
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     openModal (state, item) {

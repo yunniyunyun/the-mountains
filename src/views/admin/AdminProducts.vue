@@ -181,6 +181,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import { Modal } from 'bootstrap'
 import pagination from '../../components/PaginationVue.vue'
 import DeleteProductModal from '../../components/DeleteModal.vue'
@@ -206,7 +207,10 @@ export default {
           this.getData()
         })
         .catch((error) => {
-          alert(error.response.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
           window.location = 'login.html'
         })
     },
@@ -221,7 +225,10 @@ export default {
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error.response.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     updateItem () {
@@ -230,27 +237,43 @@ export default {
       if (this.isNew) {
         this.$http.post(url, { data: this.tempProduct })
           .then((response) => {
-            alert(response.data.message)
+            Swal.fire({
+              icon: 'success',
+              title: response.data.message,
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.productModal.hide()
             this.getData()
             this.isLoading = false
           })
           .catch((error) => {
             this.isLoading = false
-            alert(error.data.message)
+            Swal.fire({
+              icon: 'error',
+              title: error.response.data.message
+            })
           })
       } else {
         url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product/${this.tempProduct.id}`
         this.$http.put(url, { data: this.tempProduct })
           .then((response) => {
-            alert(response.data.message)
+            Swal.fire({
+              icon: 'success',
+              title: response.data.message,
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.productModal.hide()
             this.getData()
             this.isLoading = false
           })
           .catch((error) => {
             this.isLoading = false
-            alert(error.data.message)
+            Swal.fire({
+              icon: 'error',
+              title: error.response.data.message
+            })
           })
       }
     },
@@ -259,14 +282,22 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product/${this.tempProduct.id}`
       this.$http.delete(url)
         .then((response) => {
-          alert(response.data.message)
+          Swal.fire({
+            icon: 'success',
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.delProductModal.hide()
           this.getData()
           this.isLoading = false
         })
         .catch((error) => {
           this.isLoading = false
-          alert(error.data.message)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     },
     createImages () {

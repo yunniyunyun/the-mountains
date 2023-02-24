@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import { RouterLink } from 'vue-router'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
@@ -49,7 +50,12 @@ export default {
       }
       this.$http.post(`${VITE_APP_URL}/api/${VITE_APP_PATH}/cart`, { data })
         .then((res) => {
-          alert('加入購物車', res.data.message)
+          Swal.fire({
+            icon: 'success',
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
     }
   },

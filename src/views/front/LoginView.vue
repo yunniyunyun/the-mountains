@@ -1,4 +1,5 @@
 <template>
+  <loadingVue v-model:active="isLoading"/>
     <div class="container">
         <div class="row justify-content-center text-center">
           <h1 class="h3 my-3 font-weight-normal">
@@ -26,11 +27,13 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 const { VITE_APP_URL } = import.meta.env
 
 export default {
   data () {
     return {
+      isLoading: false,
       user: {
         username: '',
         password: ''
@@ -39,16 +42,25 @@ export default {
   },
   methods: {
     login () {
+      this.isLoading = true
       this.$http.post(`${VITE_APP_URL}/admin/signin`, this.user)
         .then((res) => {
           const { token, expired } = res.data
           document.cookie = `hexToken=${token}; expires=${new Date(expired)};`
           this.$http.defaults.headers.common.Authorization = token
-          alert('登入成功')
+          Swal.fire({
+            icon: 'success',
+            title: res.data.message
+          })
           this.$router.push('/admin/products')
+          this.isLoading = false
         })
         .catch((error) => {
-          alert(error.response.data.error.message)
+          this.isLoading = false
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.error.message
+          })
         })
     }
   }
