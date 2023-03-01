@@ -9,21 +9,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <router-link to="/admin/products"
+            <RouterLink to="/admin/products"
             class="p-2 me-2 text-decoration-none link-light">
-              產品列表</router-link>
-            <router-link to="/admin/orders"
+              產品列表</RouterLink>
+            <RouterLink to="/admin/orders"
             class="p-2 me-2 text-decoration-none link-light">
-              訂單列表</router-link>
-            <router-link to="/admin/coupons"
+              訂單列表</RouterLink>
+            <RouterLink to="/admin/coupons"
             class="p-2 me-2 text-decoration-none link-light">
-              優惠券</router-link>
-            <router-link to="/admin/article"
+              優惠券</RouterLink>
+            <RouterLink to="/admin/article"
             class="p-2 me-2 text-decoration-none link-light">
-              文章</router-link>
-            <router-link to="/"
+              文章</RouterLink>
+            <RouterLink to="/"
             class="p-2 me-2 text-decoration-none link-light">
-              回前台首頁</router-link>
+              回前台首頁</RouterLink>
             <a href="#" @click.prevent="logout"
             class="p-2 me-2 text-decoration-none link-light">登出</a>
           </div>

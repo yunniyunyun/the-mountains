@@ -325,13 +325,13 @@ export default {
       if (this.isNew) {
         this.$http.post(url, { data: this.tempProduct })
           .then((response) => {
+            this.productModal.hide()
             Swal.fire({
               icon: 'success',
               title: response.data.message,
               showConfirmButton: false,
               timer: 1500
             })
-            this.productModal.hide()
             this.getData()
             this.isLoading = false
           })
@@ -346,13 +346,13 @@ export default {
         url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product/${this.tempProduct.id}`
         this.$http.put(url, { data: this.tempProduct })
           .then((response) => {
+            this.productModal.hide()
             Swal.fire({
               icon: 'success',
               title: response.data.message,
               showConfirmButton: false,
               timer: 1500
             })
-            this.productModal.hide()
             this.getData()
             this.isLoading = false
           })
@@ -370,13 +370,13 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/product/${this.tempProduct.id}`
       this.$http.delete(url)
         .then((response) => {
+          this.delProductModal.hide()
           Swal.fire({
             icon: 'success',
             title: response.data.message,
             showConfirmButton: false,
             timer: 1500
           })
-          this.delProductModal.hide()
           this.getData()
           this.isLoading = false
         })

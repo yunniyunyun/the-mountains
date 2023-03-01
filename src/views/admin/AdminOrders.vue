@@ -303,13 +303,13 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/order/${this.tempOrder.id}`
       this.$http.put(url, { data: this.tempOrder })
         .then((response) => {
+          this.orderModal.hide()
           Swal.fire({
             icon: 'success',
             title: response.data.message,
             showConfirmButton: false,
             timer: 1500
           })
-          this.orderModal.hide()
           this.getOrder()
           this.isLoading = false
         })

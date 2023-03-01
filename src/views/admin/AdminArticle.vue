@@ -286,13 +286,13 @@ export default {
       if (this.isNew) {
         this.$http.post(url, { data: this.tempArticle })
           .then((response) => {
+            this.articleModal.hide()
             Swal.fire({
               icon: 'success',
               title: response.data.message,
               showConfirmButton: false,
               timer: 1500
             })
-            this.articleModal.hide()
             this.getArticles()
             this.isLoading = false
           })
@@ -307,13 +307,13 @@ export default {
         url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/article/${this.tempArticle.id}`
         this.$http.put(url, { data: this.tempArticle })
           .then((response) => {
+            this.articleModal.hide()
             Swal.fire({
               icon: 'success',
               title: response.data.message,
               showConfirmButton: false,
               timer: 1500
             })
-            this.articleModal.hide()
             this.getArticles()
             this.isLoading = false
           })
@@ -331,13 +331,13 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/article/${this.tempArticle.id}`
       this.$http.delete(url)
         .then((response) => {
+          this.delArticleModal.hide()
           Swal.fire({
             icon: 'success',
             title: response.data.message,
             showConfirmButton: false,
             timer: 1500
           })
-          this.delArticleModal.hide()
           this.getArticles()
           this.isLoading = false
         })

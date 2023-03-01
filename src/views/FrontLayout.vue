@@ -1,10 +1,10 @@
 <template>
     這是前台頁面
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/products">產品列表</router-link> |
-    <router-link to="/cart">購物車</router-link> |
-    <router-link to="/admin/products">後台</router-link> |
+    <RouterLink to="/">Home</RouterLink> |
+    <RouterLink to="/about">About</RouterLink> |
+    <RouterLink to="/products">產品列表</RouterLink> |
+    <RouterLink to="/cart">購物車</RouterLink> |
+    <RouterLink to="/admin/products">後台</RouterLink> |
     <hr>
     <RouterView></RouterView>
 </template>

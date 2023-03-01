@@ -182,13 +182,13 @@ export default {
       if (this.isNew) {
         this.$http.post(url, { data: this.tempCoupon })
           .then((response) => {
+            this.couponModal.hide()
             Swal.fire({
               icon: 'success',
               title: response.data.message,
               showConfirmButton: false,
               timer: 1500
             })
-            this.couponModal.hide()
             this.getCoupons()
             this.isLoading = false
           })
@@ -203,13 +203,13 @@ export default {
         url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
         this.$http.put(url, { data: this.tempCoupon })
           .then((response) => {
+            this.couponModal.hide()
             Swal.fire({
               icon: 'success',
               title: response.data.message,
               showConfirmButton: false,
               timer: 1500
             })
-            this.couponModal.hide()
             this.getCoupons()
             this.isLoading = false
           })
@@ -227,13 +227,13 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
       this.$http.delete(url)
         .then((response) => {
+          this.delCouponModal.hide()
           Swal.fire({
             icon: 'success',
             title: response.data.message,
             showConfirmButton: false,
             timer: 1500
           })
-          this.delCouponModal.hide()
           this.getCoupons()
           this.isLoading = false
         })
