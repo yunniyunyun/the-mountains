@@ -58,6 +58,7 @@
      <!-- update coupon -->
      <div id="couponModal" ref="couponModal" class="modal fade" tabindex="-1" aria-labelledby="couponModalLabel"
         aria-hidden="true">
+      <VForm v-slot="{ errors }" @submit="updateCoupon">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content border-0">
             <div class="modal-header bg-dark text-white">
@@ -70,24 +71,32 @@
             <div class="modal-body">
               <div class="mb-3">
                 <label for="title">標題</label>
-                <input type="text" class="form-control" id="title" v-model="tempCoupon.title"
-                      placeholder="請輸入標題">
+                <VField name="title" type="text" class="form-control" id="title" v-model="tempCoupon.title"
+                        rules="required" :class="{ 'is-invalid': errors['title'] }"
+                        placeholder="請輸入標題"></VField>
+                <ErrorMessage name="title" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
                 <label for="coupon_code">優惠碼</label>
-                <input type="text" class="form-control" id="coupon_code" v-model="tempCoupon.code"
-                      placeholder="請輸入優惠碼">
+                <VField name="coupon_code" type="text" class="form-control" id="coupon_code"
+                        rules="required" :class="{ 'is-invalid': errors['coupon_code'] }"
+                        v-model="tempCoupon.code"
+                        placeholder="請輸入優惠碼"></VField>
+                <ErrorMessage name="coupon_code" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
                 <label for="due_date">到期日</label>
-                <input type="date" class="form-control" id="due_date"
-                      v-model="due_date">
+                <VField name="due_date" type="date" class="form-control" id="due_date"
+                        :rules="isDate" :class="{ 'is-invalid': errors['due_date'] }"
+                        v-model="due_date"></VField>
+                <ErrorMessage name="due_date" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
                 <label for="price">折扣百分比</label>
-                <input type="number" class="form-control" id="price"
-                min="0"
-                      v-model.number="tempCoupon.percent" placeholder="請輸入折扣百分比">
+                <VField name="price" type="number" class="form-control" id="price"
+                        :rules="isPercentage"  :class="{ 'is-invalid': errors['price'] }"
+                        v-model.number="tempCoupon.percent" placeholder="請輸入折扣百分比"></VField>
+                <ErrorMessage name="price" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="mb-3">
                 <div class="form-check">
@@ -114,6 +123,7 @@
             </div>
             </div>
         </div>
+      </VForm>
     </div>
     <!-- delete coupon -->
     <DeleteModal :item="tempCoupon" :delete-item="deleteCoupon"></DeleteModal>
@@ -141,7 +151,8 @@ export default {
       },
       due_date: '',
       couponModal: '',
-      delCouponModal: ''
+      delCouponModal: '',
+      state: ''
     }
   },
   methods: {
@@ -261,6 +272,27 @@ export default {
       } else if (state === 'delete') {
         this.tempCoupon = { ...item }
         this.delCouponModal.show()
+      }
+    },
+    isPercentage (value) {
+      if (!value) {
+        return '此為必填'
+      } else if (value > 100) {
+        return '折扣不可大於100%'
+      } else if (value < 0) {
+        return '折扣不可為負值'
+      } else {
+        return true
+      }
+    },
+    isDate (value) {
+      const toDay = new Date().getTime() / 1000
+      const dateAndTime = new Date(toDay * 1000)
+        .toISOString().split('T')
+      if (value < dateAndTime[0]) {
+        return '無效時間'
+      } else {
+        return true
       }
     }
   },

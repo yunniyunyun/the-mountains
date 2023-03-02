@@ -14,10 +14,35 @@ import { date } from './methods/filters'
 
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
+// VeeValidate
+import {
+  Form, Field, ErrorMessage, defineRule, configure
+} from 'vee-validate'
+import {
+  required, email, min, numeric
+} from '@vee-validate/rules'
+import { localize, setLocale } from '@vee-validate/i18n'
+import zhTW from '../zh_TW.json'
+
 const app = createApp(App)
 app.config.globalProperties.$filters = {
   date
 }
+
+defineRule('required', required)
+defineRule('email', email)
+defineRule('min', min)
+defineRule('numeric', numeric)
+configure({
+  // Generates an English message locale generator
+  generateMessage: localize({ zh_TW: zhTW }),
+  validateOnInput: true
+})
+setLocale('zh_TW')
+
+app.component('VForm', Form)
+app.component('VField', Field)
+app.component('ErrorMessage', ErrorMessage)
 
 app.component('loadingVue', Loading)
 
