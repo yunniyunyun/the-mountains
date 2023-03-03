@@ -1,8 +1,8 @@
 <template>
   <header>
-    <div class="container fixed-top">
+    <div class="container fixed-top" style="z-index: 5;">
         <!-- FIXME: 移動出現底色 -->
-        <nav class="navbar navbar-expand-lg navbar-dark p-4 ">
+        <nav class="navbar navbar-expand-lg navbar-dark p-3 ">
             <div class="container-fluid">
                 <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" alt="logo" style="height: 44px;"></RouterLink>
                 <!-- .navbar-toggler 漢堡式選單按鈕 -->

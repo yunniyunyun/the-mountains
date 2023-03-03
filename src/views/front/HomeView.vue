@@ -1,8 +1,5 @@
 <template>
-  <div class="home">
-    <h1>Hello, This is Home Page.</h1>
-    <hr>
-  </div>
+  <div class="header" style="background-image: url(../../images/home/banner1@3x.png); background-size: cover; height: 100vh;"></div>
 </template>
 
 <script>
