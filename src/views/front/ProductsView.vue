@@ -1,9 +1,6 @@
 <template>
     這是產品列表
     <loadingVue v-model:active="isLoading"/>
-    <div class="bg-gray2 fixed-top" style="height: 80px; z-index: 4;"
-         data-aos="fade" data-aos-anchor="#triggerAnchor" data-aos-offset="200"
-         data-aos-duration="800" data-aos-mirror="true"></div>
     <table class="table" id="triggerAnchor">
       <tbody>
         <tr v-for="product in products" :key="product.id">
