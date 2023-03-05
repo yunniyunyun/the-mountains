@@ -7,8 +7,25 @@
     <title>Vue第七周作業</title>
   </head>
   <body style="background: #1C1E1D;">
+    <div class="bg-gray2 fixed-top d-none" style="height: 80px; z-index:4;" id="navbarBg"></div>
     <div id="app"></div>
     <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script type="module" src="/src/main.js"></script>
+    <script>
+      const navbarBg = document.querySelector("#navbarBg")
+      window.addEventListener('scroll', (event) => {
+        const scrollY = window.scrollY
+        console.log(scrollY)
+        if (scrollY < 100) {
+          $("#navbarBg").fadeOut('slow')
+        } else {
+          navbarBg.classList.remove('d-none')
+          $("#navbarBg").fadeIn('slow')
+        }
+      })
+    </script>
   </body>
 </html>

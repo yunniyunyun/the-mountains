@@ -2,11 +2,12 @@
   <header>
     <div class="container fixed-top" style="z-index: 5;">
         <!-- FIXME: 移動出現底色 -->
-        <nav class="navbar navbar-expand-lg navbar-dark p-3 ">
+        <nav class="navbar navbar-expand-lg navbar-dark p-3">
             <div class="container-fluid">
                 <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" alt="logo" style="height: 44px;"></RouterLink>
                 <!-- .navbar-toggler 漢堡式選單按鈕 -->
                 <div>
+                    <RouterLink to="/cart" class="d-lg-none p-3"><img src="./../images/icon/icon-carts.svg"></RouterLink>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -23,6 +24,12 @@
                             <a class="nav-link link-white" href="#">文章分享</a>
                         </div>
                     </div>
+                </div>
+                <div class="d-none d-lg-inline">
+                    <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-search.svg"></a>
+                    <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-hearts.svg"></a>
+                    <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-orders.svg"></a>
+                    <RouterLink to="/cart" class="p-2 d-inline-block"><img src="./../images/icon/icon-carts.svg"></RouterLink>
                 </div>
             </div>
         </nav>
