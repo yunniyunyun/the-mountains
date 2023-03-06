@@ -29,7 +29,7 @@
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-search.svg"></a>
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-hearts.svg"></a>
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-orders.svg"></a>
-                    <RouterLink to="/cart" class="p-2 d-inline-block"><img src="./../images/icon/icon-carts.svg"></RouterLink>
+                    <RouterLink to="/cart" class="p-2 d-inline-block"><img src="./../images/icon/icon-carts.svg"><span class="badge rounded-pill bg-danger text-white">{{cart.length}}</span></RouterLink>
                 </div>
             </div>
         </nav>
@@ -61,10 +61,15 @@
 
 <script>
 import { RouterView } from 'vue-router'
+import { mapState } from 'pinia'
+import cartStore from '../stores/cartStore.js'
 
 export default {
   components: {
     RouterView
+  },
+  computed: {
+    ...mapState(cartStore, ['cart'])
   }
 }
 </script>

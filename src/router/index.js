@@ -17,7 +17,7 @@ const routes = [
       },
       {
         path: 'products',
-        component: () => import('../views/front/ProductsView.vue')
+        component: () => import('../views/front/ProductsComponent.vue')
       },
       {
         path: 'product/:id',
@@ -25,7 +25,7 @@ const routes = [
       },
       {
         path: 'cart',
-        component: () => import('../views/front/CartView.vue')
+        component: () => import('../views/front/CartComponent.vue')
       },
       {
         path: 'login',

@@ -24,10 +24,14 @@ import {
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '../zh_TW.json'
 
+// pinia
+import { createPinia } from 'pinia'
+
 const app = createApp(App)
 app.config.globalProperties.$filters = {
   date
 }
+const pinia = createPinia()
 
 defineRule('required', required)
 defineRule('email', email)
@@ -49,6 +53,6 @@ app.component('loadingVue', Loading)
 app.use(VueAxios, axios)
 // CKEditor
 app.use(CKEditor)
-
+app.use(pinia)
 app.use(router)
 app.mount('#app')
