@@ -24,7 +24,6 @@
         </div>
       </div>
     </div>
-    <div class="text-light">{{ pages }}</div>
     <pagination :pages="pages" :get-products="getProducts" @change-page="getProducts"></pagination>
   </div>
 </template>
@@ -45,7 +44,8 @@ export default {
     ...mapState(productsStore, ['products', 'pages'])
   },
   methods: {
-    ...mapActions(cartStore, ['addToCart', 'getProducts'])
+    ...mapActions(cartStore, ['addToCart']),
+    ...mapActions(productsStore, ['getProducts'])
   },
   mounted () {
     ProductsStore.getProducts()
