@@ -20,18 +20,6 @@ export default defineStore('productsStore', {
     }
   },
   getters: {
-    productsList: ({ products }) => {
-      let product = []
-      axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/all`)
-        .then((res) => {
-          products = res.data.products
-          product = res.data.products
-        })
-        .catch((error) => {
-          console.dir(error)
-        })
-      return { product }
-    },
     sortProducts: ({ products }) => {
       return products.sort((a, b) => a.price - b.price)
     }

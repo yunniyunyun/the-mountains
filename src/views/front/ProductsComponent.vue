@@ -1,25 +1,28 @@
 <template>
+  <div class="container">
     <hr>
-    <div class="text-light mt-5">products, {{ products }}</div>
-    <div class="text-light mt-5">productsList, {{ productsList }}</div>
-    <!-- <div class="row row-cols-3 my-3 g-4">
-    <div class="col" v-for="product in productsList" :key="product.id">
-      <div class="card">
-        <img
-          :src="product.imageUrl"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h6 class="card-title">
-            {{product.title}}
-            <span class="float-end">$ {{product.price}}</span>
-          </h6>
-          <a href="#" class="btn btn-outline-primary w-100" @click.prevent="addToCart(product.id)">加入購物車</a>
+    <div class="mt-5"></div>
+    <div class="row row-cols-5 my-3 g-4">
+      <div class="col card-group" v-for="product in products" :key="product.id">
+        <div class="card">
+          <RouterLink :to="`/product/${product.id}`">
+          <img
+            :src="product.imageUrl"
+            class="card-img-top"
+            alt="..."
+            style="height: 150px;"
+          /></RouterLink>
+          <div class="card-body d-flex flex-column">
+            <h6 class="card-title mb-auto">
+              {{product.title}}
+            </h6>
+            <span class="float-end text-end">$ {{product.price}}</span>
+            <a href="#" class="btn btn-outline-primary w-100 mt-2" @click.prevent="addToCart(product.id)">加入購物車</a>
+          </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -27,12 +30,17 @@ import cartStore from '../../stores/cartStore'
 import productsStore from '../../stores/productsStore'
 import { mapState, mapActions } from 'pinia'
 
+const ProductsStore = productsStore()
+
 export default {
   computed: {
-    ...mapState(productsStore, ['productsList', 'products'])
+    ...mapState(productsStore, ['products'])
   },
   methods: {
     ...mapActions(cartStore, ['addToCart', 'getProducts'])
+  },
+  mounted () {
+    ProductsStore.getProducts()
   }
 }
 </script>
