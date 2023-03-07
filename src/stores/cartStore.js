@@ -1,14 +1,17 @@
 import { defineStore } from 'pinia'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import loadingStore from './loadingStore.js'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
+const { loadingTrue, loadingFalse } = loadingStore()
 
-export default defineStore('cart', {
+export default defineStore('cartStore', {
   state: () => ({
     cart: []
   }),
   actions: {
     addToCart (id, qty = 1) {
+      loadingTrue()
       const data = {
         product_id: id,
         qty
@@ -25,16 +28,20 @@ export default defineStore('cart', {
             timer: 1000,
             title: '加入購物車'
           })
+          loadingFalse()
         })
     },
     getCarts () {
+      loadingTrue()
       axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/cart`)
         .then(res => {
           this.isLoading = false
           this.cart = res.data.data
+          loadingFalse()
         })
     },
     updateCart (item) {
+      loadingTrue()
       const data = {
         product_id: item.id,
         qty: item.qty
@@ -53,9 +60,11 @@ export default defineStore('cart', {
             timer: 1000,
             title: '購物車已更新'
           })
+          loadingFalse()
         })
     },
     deleteCart (item) {
+      loadingTrue()
       this.loadingItem = item.id
       axios.delete(`${VITE_APP_URL}/api/${VITE_APP_PATH}/cart/${item.id}`)
         .then(res => {
@@ -70,13 +79,16 @@ export default defineStore('cart', {
             timer: 1000,
             title: '已刪除'
           })
+          loadingFalse()
         })
     },
     deleteCarts () {
+      loadingTrue()
       axios.delete(`${VITE_APP_URL}/api/${VITE_APP_PATH}/carts`)
         .then(res => {
           this.getCarts()
           this.loadingItem = ''
+          loadingFalse()
         })
     }
   }

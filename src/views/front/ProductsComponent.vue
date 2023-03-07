@@ -1,4 +1,5 @@
 <template>
+  <loadingVue v-model:active="isLoading"/>
   <div class="header"
   style="background-image: url(./src/images/home/products.avif);background-position: 50% 65% ;background-size: cover; height: 30vh;"></div>
   <div class="container">
@@ -31,6 +32,7 @@
 import cartStore from '../../stores/cartStore'
 import pagination from '../../components/PaginationVue.vue'
 import productsStore from '../../stores/productsStore'
+import loadingStore from '../../stores/loadingStore'
 import { mapState, mapActions } from 'pinia'
 
 const ProductsStore = productsStore()
@@ -40,7 +42,8 @@ export default {
     pagination
   },
   computed: {
-    ...mapState(productsStore, ['products', 'pages'])
+    ...mapState(productsStore, ['products', 'pages']),
+    ...mapState(loadingStore, ['isLoading'])
   },
   methods: {
     ...mapActions(cartStore, ['addToCart']),

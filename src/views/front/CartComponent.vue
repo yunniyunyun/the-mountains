@@ -74,25 +74,28 @@
 
 <script>
 import cartStore from '../../stores/cartStore'
+import loadingStore from '../../stores/loadingStore'
 import { mapState, mapActions } from 'pinia'
 
 const CartStore = cartStore()
+const LoadingStore = loadingStore()
 
 export default {
   data () {
     return {
-      isLoading: false,
       products: [],
       loadingItem: ''
     }
   },
   computed: {
-    ...mapState(cartStore, ['cart'])
+    ...mapState(cartStore, ['cart']),
+    ...mapState(loadingStore, ['isLoading'])
   },
   methods: {
     ...mapActions(cartStore, ['deleteCart', 'updateCart', 'getCarts'])
   },
   mounted () {
+    LoadingStore.loadingTrue()
     CartStore.getCarts()
   }
 }
