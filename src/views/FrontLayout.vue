@@ -29,7 +29,12 @@
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-search.svg"></a>
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-hearts.svg"></a>
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-orders.svg"></a>
-                    <RouterLink to="/cart" class="p-2 d-inline-block"><img src="./../images/icon/icon-carts.svg"><span class="badge rounded-pill bg-danger text-white">{{cart.length}}</span></RouterLink>
+                    <RouterLink to="/cart" class="p-2 d-inline-block">
+                        <span class="position-relative">
+                            <img  src="./../images/icon/icon-carts.svg">
+                            <span v-if="cart.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.length}}</span>
+                        </span>
+                    </RouterLink>
                 </div>
             </div>
         </nav>
