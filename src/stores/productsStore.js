@@ -12,7 +12,6 @@ export default defineStore('productsStore', {
   }),
   actions: {
     getProducts (page = 1) {
-      console.log('page', page)
       axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/?page=${page}`)
         .then((res) => {
           this.products = res.data.products

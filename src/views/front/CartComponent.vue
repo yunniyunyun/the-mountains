@@ -1,7 +1,6 @@
 <template>
     <loadingVue v-model:active="isLoading"/>
-    <div class="header" style="background-image: url(./src/images/home/carts2.avif);
-    background-position: 50% 23% ;background-size: cover; height: 30vh;"></div>
+    <div class="header" style="background-image: url(./src/images/home/carts2.avif); background-position: 50% 23% ;background-size: cover; height: 30vh;"></div>
     <div class="container">
       <h2 class="mt-5 text-light text-center">購物車</h2>
       <div class="text-end">
@@ -19,12 +18,12 @@
               </tr>
           </thead>
           <tbody>
-              <template v-if="cartList.carts">
-              <tr v-for="item in cartList.carts" :key="item.id">
+              <template v-if="cart.carts">
+              <tr v-for="item in cart.carts" :key="item.id">
                   <td>
                     <button type="button" class="btn btn-outline-danger btn-sm"
                         :disabled="item.id === loadingItem"
-                        @click="removeCartItem(item.id)">
+                        @click="deleteCart(item)">
                         <i class="fas fa-spinner fa-pulse"></i>
                         x
                     </button>
@@ -45,14 +44,14 @@
                     <div class="input-group input-group-sm">
                         <select name="" id="" class="form-select" v-model="item.qty"
                         :disabled="item.id === loadingItem"
-                        @change="(e) => setCartQty(item.id, e.target.value)">
+                        @change="(e) => updateCart(item)">
                         <option :value="i" v-for="i in 10" :key="`${i}qty`">{{ i }}</option>
                         </select>
                     </div>
                   </td>
                   <td class="text-end">
                     <small class="text-success">小計：</small>
-                    {{ item.subtotal }}
+                    {{ item.final_total }}
                   </td>
               </tr>
               </template>
@@ -61,12 +60,12 @@
               <tr>
               <td></td>
               <td colspan="3" class="text-end">總計</td>
-              <td class="text-end">{{ cartList.total }}</td>
+              <td class="text-end">{{ cart.total }}</td>
               </tr>
               <tr>
               <td></td>
               <td colspan="3" class="text-end text-success">折扣價</td>
-              <td class="text-end text-success">{{ cartList.total }}</td>
+              <td class="text-end text-success">{{ cart.final_total }}</td>
               </tr>
           </tfoot>
       </table>
@@ -77,20 +76,24 @@
 import cartStore from '../../stores/cartStore'
 import { mapState, mapActions } from 'pinia'
 
+const CartStore = cartStore()
+
 export default {
   data () {
     return {
       isLoading: false,
       products: [],
-      cart: {},
       loadingItem: ''
     }
   },
   computed: {
-    ...mapState(cartStore, ['cartList'])
+    ...mapState(cartStore, ['cart'])
   },
   methods: {
-    ...mapActions(cartStore, ['removeCartItem', 'setCartQty'])
+    ...mapActions(cartStore, ['deleteCart', 'updateCart', 'getCarts'])
+  },
+  mounted () {
+    CartStore.getCarts()
   }
 }
 </script>
