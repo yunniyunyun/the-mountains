@@ -1,5 +1,6 @@
 <template>
-  <div class="header" style="background-image: url(./src/images/home/products.avif);
+  <div class="header"
+  style="background-image: url(./src/images/home/products.avif);
     background-position: 50% 65% ;background-size: cover; height: 30vh;"></div>
   <div class="container">
     <div class="mt-5"></div>
@@ -23,19 +24,25 @@
         </div>
       </div>
     </div>
+    <div class="text-light">{{ pages }}</div>
+    <pagination :pages="pages" :get-products="getProducts" @change-page="getProducts"></pagination>
   </div>
 </template>
 
 <script>
 import cartStore from '../../stores/cartStore'
+import pagination from '../../components/PaginationVue.vue'
 import productsStore from '../../stores/productsStore'
 import { mapState, mapActions } from 'pinia'
 
 const ProductsStore = productsStore()
 
 export default {
+  components: {
+    pagination
+  },
   computed: {
-    ...mapState(productsStore, ['products'])
+    ...mapState(productsStore, ['products', 'pages'])
   },
   methods: {
     ...mapActions(cartStore, ['addToCart', 'getProducts'])

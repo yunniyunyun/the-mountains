@@ -1,21 +1,28 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default defineStore('productsStore', {
   // data, methods, computed
   // state, actions, getters
   state: () => ({
-    products: []
+    products: [],
+    pages: {}
   }),
   actions: {
-    getProducts () {
-      axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/all`)
+    getProducts (page = 1) {
+      console.log('page', page)
+      axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/?page=${page}`)
         .then((res) => {
           this.products = res.data.products
+          this.pages = res.data.pagination
         })
         .catch((error) => {
-          console.dir(error)
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
         })
     }
   },
