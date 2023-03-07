@@ -78,7 +78,6 @@ import loadingStore from '../../stores/loadingStore'
 import { mapState, mapActions } from 'pinia'
 
 const CartStore = cartStore()
-const LoadingStore = loadingStore()
 
 export default {
   data () {
@@ -95,7 +94,6 @@ export default {
     ...mapActions(cartStore, ['deleteCart', 'updateCart', 'getCarts'])
   },
   mounted () {
-    LoadingStore.loadingTrue()
     CartStore.getCarts()
   }
 }
