@@ -24,7 +24,7 @@
                   <td>
                     <button type="button" class="btn btn-outline-danger btn-sm"
                         :disabled="item.id === loadingItem"
-                        @click="removeCartItem(item)">
+                        @click="removeCartItem(item.id)">
                         <i class="fas fa-spinner fa-pulse"></i>
                         x
                     </button>

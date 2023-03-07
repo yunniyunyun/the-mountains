@@ -1,6 +1,7 @@
 <template>
+  <div class="header" style="background-image: url(./src/images/home/products.avif);
+    background-position: 50% 65% ;background-size: cover; height: 30vh;"></div>
   <div class="container">
-    <hr>
     <div class="mt-5"></div>
     <div class="row row-cols-5 my-3 g-4">
       <div class="col card-group" v-for="product in products" :key="product.id">

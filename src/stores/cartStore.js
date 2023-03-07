@@ -1,5 +1,6 @@
 import productsStore from './productsStore'
 import { defineStore } from 'pinia'
+import Swal from 'sweetalert2'
 
 export default defineStore('cart', {
   state: () => ({
@@ -18,6 +19,16 @@ export default defineStore('cart', {
           qty
         })
       }
+      Swal.fire({
+        background: '#0A603C',
+        // color: '#C2E7D9',
+        color: '#FFFFFF',
+        width: 350,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1000,
+        title: '加入購物車'
+      })
     },
     setCartQty (id, event) {
       const currentCart = this.cart.find((item) => item.id === id)
