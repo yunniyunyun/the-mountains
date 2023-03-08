@@ -1,6 +1,6 @@
 <template>
     <loadingVue v-model:active="isLoading"/>
-    <div class="header" style="background-image: url(./src/images/home/carts2.avif); background-position: 50% 23% ;background-size: cover; height: 30vh;"></div>
+    <div class="header"></div>
     <div class="container">
       <h2 class="mt-5 text-light text-center">購物車</h2>
       <div class="text-end">
@@ -98,3 +98,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.header{
+  background-image: url(@/images/home/carts2.avif);
+  background-position: 50% 23% ;
+  background-size: cover;
+  height: 30vh;
+}
+</style>

@@ -1,7 +1,6 @@
 <template>
   <loadingVue v-model:active="isLoading"/>
-  <div class="header"
-  style="background-image: url(./src/images/home/products.avif);background-position: 50% 65% ;background-size: cover; height: 30vh;"></div>
+  <div class="header"></div>
   <div class="container">
     <div class="mt-5"></div>
     <div class="row row-cols-5 my-3 g-4">
@@ -54,3 +53,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.header{
+  background-image: url(@/images/home/products.avif);
+  background-position: 50% 65% ;
+  background-size: cover;
+  height: 30vh;
+}
+</style>
