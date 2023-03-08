@@ -1,1 +1,0 @@
-import{_ as e,o,c as s}from"./index-797c25d8.js";const c={components:{}},n={class:"header",style:{"background-image":"url(./src/images/home/banner1@3x.png)","background-size":"cover",height:"100vh"}};function r(t,a,i,_,p,d){return o(),s("div",n)}const h=e(c,[["render",r]]);export{h as default};
