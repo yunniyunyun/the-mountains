@@ -28,11 +28,32 @@ export default defineStore('productsStore', {
           })
           loadingFalse()
         })
+    },
+    getAllProducts () {
+      loadingTrue()
+      axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/all`)
+        .then((res) => {
+          this.products = res.data.products
+          loadingFalse()
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
+          loadingFalse()
+        })
     }
   },
   getters: {
     sortProducts: ({ products }) => {
       return products.sort((a, b) => a.price - b.price)
+    },
+    hotProducts: ({ products }) => {
+      return products.filter(item => item?.is_hot === 1)
+    },
+    latestProducts: ({ products }) => {
+      return products.sort((a, b) => a.create_at - b.create_at).slice(0, 5)
     }
   }
 })

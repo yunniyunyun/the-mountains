@@ -15,9 +15,9 @@
                         <div class="navbar-nav fs-5">
                             <RouterLink to="/"
                             class="nav-link link-white me-4" href="#">首頁</RouterLink>
-                            <RouterLink to="/products"
+                            <RouterLink to="/latestEvents"
                             class="nav-link link-white me-4" href="#">最新活動</RouterLink>
-                            <RouterLink to="/products"
+                            <RouterLink to="/hots"
                             class="nav-link link-white me-4" href="#">熱門活動</RouterLink>
                             <RouterLink to="/products"
                             class="nav-link link-white me-4">全部行程</RouterLink>

@@ -24,6 +24,14 @@ const routes = [
         component: () => import('../views/front/ProductView.vue')
       },
       {
+        path: 'hots',
+        component: () => import('../views/front/ProductsHotComponent.vue')
+      },
+      {
+        path: 'latestEvents',
+        component: () => import('../views/front/ProductsLatestComponent.vue')
+      },
+      {
         path: 'cart',
         component: () => import('../views/front/CartComponent.vue')
       },
