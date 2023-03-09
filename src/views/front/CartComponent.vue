@@ -45,7 +45,12 @@
                         <select name="" id="" class="form-select" v-model="item.qty"
                         :disabled="item.id === loadingItem"
                         @change="(e) => updateCart(item)">
-                        <option :value="i" v-for="i in 10" :key="`${i}qty`">{{ i }}</option>
+                        <template v-if="item.qty <= 10">
+                          <option :value="i" v-for="i in 10" :key="`${i}qty`">{{ i }}</option>
+                        </template>
+                        <template v-else>
+                          <option :value="i" v-for="i in item.qty" :key="i + 'qty'">{{ i }}</option>
+                        </template>
                         </select>
                     </div>
                   </td>

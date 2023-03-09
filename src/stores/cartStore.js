@@ -43,7 +43,7 @@ export default defineStore('cartStore', {
     updateCart (item) {
       loadingTrue()
       const data = {
-        product_id: item.id,
+        product_id: item.product_id,
         qty: item.qty
       }
       this.loadingItem = item.id
