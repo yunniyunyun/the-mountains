@@ -1,8 +1,22 @@
 <template>
     <loadingVue v-model:active="isLoading"/>
     <div class="header"></div>
-    <div class="container">
-      <h2 class="mt-5 text-light text-center">購物車</h2>
+    <div class="container mb-5">
+      <div class="d-flex justify-content-center text-secondary" style="margin-top: 60px;">
+        <div class="position-relative m-4" style="width: 60%;">
+          <div class="progress" style="height: 4px;">
+            <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;">1</button>
+          <h5 class="position-absolute" style="top: -26px; left: 10%; color: #1FBA82;">確認內容</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 33%;">2</button>
+          <h5 class="position-absolute" style="top: -26px; left: 45%;">填寫資料</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 66%;">3</button>
+          <h5 class="position-absolute" style="top: -26px; left: 80%;">完成</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem ; height:2rem; left: 99%;"></button>
+        </div>
+      </div>
+      <h2 class="mt-5 text-light text-center mb-3">購物車內容</h2>
       <div class="text-end">
           <!-- <button class="btn btn-outline-danger" type="button"
                   @click="deleteCarts">清空購物車</button> -->
@@ -74,6 +88,10 @@
               </tr>
           </tfoot>
       </table>
+      <div class="d-flex justify-content-end mt-4">
+        <RouterLink to="/products" class="btn btn-outline-primary me-2">繼續購物</RouterLink>
+        <div class="btn btn-primary">下一步|填寫資料</div>
+      </div>
     </div>
 </template>
 
