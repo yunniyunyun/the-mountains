@@ -12,7 +12,7 @@
           <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 33%;">2</button>
           <h5 class="position-absolute" style="top: -26px; left: 45%;">填寫資料</h5>
           <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 66%;">3</button>
-          <h5 class="position-absolute" style="top: -26px; left: 80%;">完成</h5>
+          <h5 class="position-absolute" style="top: -26px; left: 78%;">訂單完成</h5>
           <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem ; height:2rem; left: 99%;"></button>
         </div>
       </div>
@@ -47,7 +47,7 @@
                         :src="item.product.imageUrl"
                         class="table-image me-3"
                         :alt="item.product.title"
-                        style="height: 100px; object-fit: contain; width: 150px;"
+                        style="height: 100px; object-fit: cover; width: 150px;"
                       />
                     {{ item.product.title }}
                   </td>
@@ -90,7 +90,7 @@
       </table>
       <div class="d-flex justify-content-end mt-4">
         <RouterLink to="/products" class="btn btn-outline-primary me-2">繼續購物</RouterLink>
-        <div class="btn btn-primary">下一步|填寫資料</div>
+        <RouterLink to="/checkout" class="btn btn-primary">下一步 | 填寫資料</RouterLink>
       </div>
     </div>
 </template>

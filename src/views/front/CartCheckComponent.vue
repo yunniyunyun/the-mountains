@@ -1,0 +1,180 @@
+<template>
+    <loadingVue v-model:active="isLoading"/>
+    <div class="header"></div>
+    <div class="container mb-5">
+      <div class="d-flex justify-content-center text-secondary" style="margin-top: 60px;">
+        <div class="position-relative m-4" style="width: 60%;">
+          <div class="progress" style="height: 4px;">
+            <div class="progress-bar" role="progressbar" style="width: 66%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;">1</button>
+          <h5 class="position-absolute" style="top: -26px; left: 10%; color: #1FBA82;">確認內容</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem; left: 33%;">2</button>
+          <h5 class="position-absolute" style="top: -26px; left: 45%; color: #1FBA82;">填寫資料</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 66%;">3</button>
+          <h5 class="position-absolute" style="top: -26px; left: 78%;">訂單完成</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem ; height:2rem; left: 99%;"></button>
+        </div>
+      </div>
+      <h2 class="mt-5 text-light text-center mb-4">訂單資料</h2>
+      <div class="row text-light">
+        <div class="col-1"></div>
+        <VForm ref="form" class="col-md-5" v-slot="{ errors }" @submit="createOrder">
+          <div class="mb-3 row">
+            <label for="email" class="form-label col-3">Email</label>
+            <v-field id="email" name="Email" type="email" class="form-control col"
+                      rules="email|required"
+                      v-model="order.user.email"
+                      :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入 Email"
+                      style="margin-right: 12px;"
+                    ></v-field>
+            <error-message name="Email" class="invalid-feedback"></error-message>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="name" class="form-label col-3">收件人姓名</label>
+            <v-field id="name" name="姓名" type="text" class="form-control col" :class="{ 'is-invalid': errors['姓名'] }"
+            v-model="order.user.name"
+                      placeholder="請輸入姓名" rules="required" style="margin-right: 12px;"></v-field>
+            <error-message name="姓名" class="invalid-feedback"></error-message>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="tel" class="form-label col-3">收件人電話</label>
+            <v-field id="tel" name="電話" type="text" class="form-control col" :class="{ 'is-invalid': errors['電話'] }"
+            :rules="isPhone"
+            v-model="order.user.tel"
+                      placeholder="請輸入電話" style="margin-right: 12px;"></v-field>
+            <error-message name="電話" class="invalid-feedback"></error-message>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="address" class="form-label col-3">收件人地址</label>
+            <v-field id="address" name="地址" type="text" class="form-control col" :class="{ 'is-invalid': errors['地址'] }"
+            v-model="order.user.address" style="margin-right: 12px;"
+                      placeholder="請輸入地址" rules="required" ></v-field>
+            <error-message name="地址" class="invalid-feedback"></error-message>
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label">留言</label>
+            <textarea id="message" class="form-control" cols="30" rows="5" v-model="order.message"></textarea>
+          </div>
+          <div class="text-end">
+            <div class="d-flex justify-content-end mt-4">
+            <RouterLink to="/cart" class="btn btn-outline-primary me-2">上一步</RouterLink>
+            <RouterLink to="/pay" type="submit" class="btn btn-primary" @click="createOrder">下一步 | 確認訂單</RouterLink>
+          </div>
+          </div>
+        </VForm>
+        <div class="col-1"></div>
+        <div class="col-4">
+          <table class="table align-middle text-light sticky-top" style="top: 80px; z-index: -5;">
+            <tbody>
+                <template v-if="cart.carts">
+                <tr v-for="item in cart.carts" :key="item.id">
+                    <td>
+                      <div class="position-relative" style="height: 80px; width: 120px;">
+                      <img
+                          :src="item.product.imageUrl"
+                          class="table-image me-3"
+                          :alt="item.product.title"
+                          style="height: 80px; object-fit: cover; width: 120px;"
+                        /><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">{{ item.qty }}</span>
+                      </div>
+                    </td>
+                    <td>{{ item.product.title }}</td>
+                    <td class="text-end">
+                      {{ item.final_total }}
+                    </td>
+                </tr>
+                </template>
+            </tbody>
+            <tfoot>
+                <tr>
+                <td colspan="2" class="text-end text-success">結帳金額</td>
+                <td class="text-end text-success">{{ cart.final_total }}</td>
+                </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+</template>
+
+<script>
+import Swal from 'sweetalert2'
+import cartStore from '../../stores/cartStore'
+import loadingStore from '../../stores/loadingStore'
+import { mapState, mapActions } from 'pinia'
+
+const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
+const CartStore = cartStore()
+
+export default {
+  data () {
+    return {
+      products: [],
+      order: {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
+        },
+        message: ''
+      }
+    }
+  },
+  computed: {
+    ...mapState(cartStore, ['cart']),
+    ...mapState(loadingStore, ['isLoading'])
+  },
+  methods: {
+    ...mapActions(cartStore, ['getCarts']),
+    isPhone (value) {
+      if (!value) {
+        return '電話 為必填'
+      } else {
+        const phoneNumber = /^(09)[0-9]{8}$/
+        return phoneNumber.test(value) ? true : '需要正確的電話號碼'
+      }
+    },
+    createOrder () {
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order`
+      this.$http.post(url, { data: this.order })
+        .then((response) => {
+          this.$refs.form.resetForm()
+          this.order = {
+            user: {
+              name: '',
+              email: '',
+              tel: '',
+              address: ''
+            },
+            message: ''
+          }
+          CartStore.getCarts()
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
+        })
+    }
+  },
+  mounted () {
+    CartStore.getCarts()
+  }
+}
+</script>
+
+<style scoped>
+.header{
+  background-image: url(@/images/home/carts2.avif);
+  background-position: 50% 23% ;
+  background-size: cover;
+  height: 30vh;
+}
+</style>
