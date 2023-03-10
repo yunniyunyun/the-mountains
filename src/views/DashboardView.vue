@@ -2,7 +2,7 @@
   <loadingVue v-model:active="isLoading"/>
   <div class="container">
       <div v-if="isLogin">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,3 +82,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.navbar-custom .active{
+  text-decoration: underline !important;
+}
+</style>
