@@ -18,20 +18,28 @@
       </div>
       <h2 class="mt-5 text-light text-center mb-3">訂單完成</h2>
       <div class="text-light text-center">
-        <h5> 訂單編號: </h5>
+        <hr>
+        <h5>訂單編號: {{ order_id_data.id }}</h5>
+        <h4>訂單狀態:
+          <span class="text-success" v-if="order_id_data.is_paid"> 已付款</span>
+          <span class="text-danger" v-else style="line-height: 40px;">未付款
+            <button type="button" class="btn btn-primary ms-3" @click="payOrder(order_data.data.orderId)">付款</button>
+          </span>
+        </h4>
+        <img src="https://images.unsplash.com/photo-1543522933-b4894203e509?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="deer-success" style="width: 50vw;">
         <div class="d-flex justify-content-center mt-4">
-          <button type="button" class="btn btn-primary" @click="payOrder">付款</button>
+          <RouterLink to="/products" class="btn btn-outline-secondary" href="#">繼續逛逛</RouterLink>
         </div>
       </div>
     </div>
 </template>
 
 <script>
-import Swal from 'sweetalert2'
 import loadingStore from '../../stores/loadingStore'
-import { mapState } from 'pinia'
+import orderStore from '../../stores/orderStore'
+import { mapState, mapActions } from 'pinia'
 
-const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
+const LoadingStore = loadingStore()
 
 export default {
   data () {
@@ -39,27 +47,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(loadingStore, ['isLoading'])
+    ...mapState(loadingStore, ['isLoading']),
+    ...mapState(orderStore, ['order_data', 'order_id_data'])
   },
   methods: {
-    payOrder (order) {
-      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/pay/${order.id}`
-      this.$http.post(url)
-        .then((response) => {
-          Swal.fire({
-            icon: 'success',
-            title: '付款成功'
-          })
-        })
-        .catch((error) => {
-          Swal.fire({
-            icon: 'error',
-            title: error.response.data.message
-          })
-        })
-    }
+    ...mapActions(orderStore, ['payOrder'])
   },
   mounted () {
+    LoadingStore.loadingTrue()
   }
 }
 </script>

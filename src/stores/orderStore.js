@@ -1,0 +1,86 @@
+import { defineStore } from 'pinia'
+import Swal from 'sweetalert2'
+import axios from 'axios'
+import loadingStore from './loadingStore.js'
+import CartStore from './CartStore.js'
+const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
+const { loadingTrue, loadingFalse } = loadingStore()
+const { getCarts } = CartStore()
+
+export default defineStore('orderStore', {
+  state: () => ({
+    order: {
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        address: ''
+      },
+      message: ''
+    },
+    order_data: {},
+    order_id_data: {}
+  }),
+  actions: {
+    payOrder (orderId) {
+      loadingTrue()
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/pay/${orderId}`
+      axios.post(url)
+        .then((response) => {
+          this.getOrder(this.order_id_data.id)
+          Swal.fire({
+            icon: 'success',
+            title: '付款成功'
+          })
+          loadingFalse()
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
+        })
+    },
+    createOrder () {
+      loadingTrue()
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order`
+      axios.post(url, { data: this.order })
+        .then((response) => {
+          this.order_data = response
+          this.order = {
+            user: {
+              name: '',
+              email: '',
+              tel: '',
+              address: ''
+            },
+            message: ''
+          }
+          this.getOrder(this.order_data.data?.orderId)
+          getCarts()
+          loadingFalse()
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: error.response
+          })
+        })
+    },
+    getOrder (id) {
+      loadingTrue()
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order/${id}`
+      axios.get(url)
+        .then((response) => {
+          this.order_id_data = response.data.order
+          loadingFalse()
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
+        })
+    }
+  }
+})

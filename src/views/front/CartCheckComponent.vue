@@ -63,7 +63,7 @@
           <div class="text-end">
             <div class="d-flex justify-content-end mt-4">
             <RouterLink to="/cart" class="btn btn-outline-primary me-2">上一步</RouterLink>
-            <RouterLink to="/pay" type="submit" class="btn btn-primary" @click="createOrder">下一步 | 確認訂單</RouterLink>
+            <RouterLink to="/order" type="submit" class="btn btn-primary" @click="createOrder">下一步 | 確認訂單</RouterLink>
           </div>
           </div>
         </VForm>
@@ -103,35 +103,26 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2'
 import cartStore from '../../stores/cartStore'
 import loadingStore from '../../stores/loadingStore'
+import orderStore from '../../stores/orderStore'
 import { mapState, mapActions } from 'pinia'
 
-const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 const CartStore = cartStore()
 
 export default {
   data () {
     return {
-      products: [],
-      order: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: ''
-        },
-        message: ''
-      }
     }
   },
   computed: {
     ...mapState(cartStore, ['cart']),
-    ...mapState(loadingStore, ['isLoading'])
+    ...mapState(loadingStore, ['isLoading']),
+    ...mapState(orderStore, ['order'])
   },
   methods: {
     ...mapActions(cartStore, ['getCarts']),
+    ...mapActions(orderStore, ['createOrder']),
     isPhone (value) {
       if (!value) {
         return '電話 為必填'
@@ -139,29 +130,6 @@ export default {
         const phoneNumber = /^(09)[0-9]{8}$/
         return phoneNumber.test(value) ? true : '需要正確的電話號碼'
       }
-    },
-    createOrder () {
-      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order`
-      this.$http.post(url, { data: this.order })
-        .then((response) => {
-          this.$refs.form.resetForm()
-          this.order = {
-            user: {
-              name: '',
-              email: '',
-              tel: '',
-              address: ''
-            },
-            message: ''
-          }
-          CartStore.getCarts()
-        })
-        .catch((error) => {
-          Swal.fire({
-            icon: 'error',
-            title: error.response.data.message
-          })
-        })
     }
   },
   mounted () {
