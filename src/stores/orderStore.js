@@ -19,7 +19,8 @@ export default defineStore('orderStore', {
       message: ''
     },
     order_data: {},
-    order_id_data: {}
+    order_id_data: {},
+    clean: true
   }),
   actions: {
     payOrder (orderId) {
@@ -68,19 +69,29 @@ export default defineStore('orderStore', {
         })
     },
     getOrder (id) {
+      this.clean = false
       loadingTrue()
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order/${id}`
       axios.get(url)
         .then((response) => {
           this.order_id_data = response.data.order
           loadingFalse()
+          if (!this.order_id_data) {
+            Swal.fire({
+              icon: 'error',
+              title: '訂單不存在'
+            })
+          }
         })
         .catch((error) => {
           Swal.fire({
             icon: 'error',
-            title: error.response.data.message
+            title: error.response
           })
         })
+    },
+    cleanOrder () {
+      this.clean = true
     }
   }
 })

@@ -28,7 +28,9 @@
                 <div class="d-none d-lg-inline">
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-search.svg"></a>
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-hearts.svg"></a>
-                    <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-orders.svg"></a>
+                    <RouterLink to="/orders" class="p-2 me-2 d-inline-block">
+                            <img  src="./../images/icon/icon-orders.svg">
+                    </RouterLink>
                     <RouterLink to="/cart" class="p-2 d-inline-block">
                         <span class="position-relative">
                             <img  src="./../images/icon/icon-carts.svg">
