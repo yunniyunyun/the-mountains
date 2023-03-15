@@ -62,6 +62,7 @@ export default defineStore('orderStore', {
           loadingFalse()
         })
         .catch((error) => {
+          loadingFalse()
           Swal.fire({
             icon: 'error',
             title: error.response
@@ -84,6 +85,7 @@ export default defineStore('orderStore', {
           }
         })
         .catch((error) => {
+          loadingFalse()
           Swal.fire({
             icon: 'error',
             title: error.response

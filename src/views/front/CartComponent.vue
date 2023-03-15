@@ -90,7 +90,9 @@
       </table>
       <div class="d-flex justify-content-end mt-4">
         <RouterLink to="/products" class="btn btn-outline-primary me-2">繼續購物</RouterLink>
-        <RouterLink to="/checkout" class="btn btn-primary">下一步 | 填寫資料</RouterLink>
+        <template v-if="cart.carts.length !== 0">
+          <RouterLink to="/checkout" class="btn btn-primary">下一步 | 填寫資料</RouterLink>
+        </template>
       </div>
     </div>
 </template>
