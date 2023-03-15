@@ -34,17 +34,18 @@ export default {
   },
   methods: {
     getArticle () {
+      this.isLoading = true
       const { id } = this.$route.params
       this.$http.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/article/${id}`)
         .then((res) => {
           this.article = res.data.article
+          this.isLoading = false
         })
     }
   },
   mounted () {
     this.isLoading = true
     this.getArticle()
-    this.isLoading = false
   }
 }
 </script>
