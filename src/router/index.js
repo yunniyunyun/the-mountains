@@ -16,6 +16,14 @@ const routes = [
         component: () => import('../views/front/AboutView.vue')
       },
       {
+        path: 'hots',
+        component: () => import('../views/front/ProductsHotComponent.vue')
+      },
+      {
+        path: 'latestEvents',
+        component: () => import('../views/front/ProductsLatestComponent.vue')
+      },
+      {
         path: 'products',
         component: () => import('../views/front/ProductsComponent.vue')
       },
