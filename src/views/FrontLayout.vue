@@ -14,14 +14,15 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav fs-5">
                             <RouterLink to="/"
-                            class="nav-link link-white me-4" href="#">首頁</RouterLink>
+                            class="nav-link link-white me-4">首頁</RouterLink>
                             <RouterLink to="/products"
-                            class="nav-link link-white me-4" href="#">最新活動</RouterLink>
+                            class="nav-link link-white me-4">最新活動</RouterLink>
                             <RouterLink to="/products"
-                            class="nav-link link-white me-4" href="#">熱門活動</RouterLink>
+                            class="nav-link link-white me-4">熱門活動</RouterLink>
                             <RouterLink to="/products"
                             class="nav-link link-white me-4">全部行程</RouterLink>
-                            <a class="nav-link link-white" href="#">文章分享</a>
+                            <RouterLink to="/articles"
+                            class="nav-link link-white">文章分享</RouterLink>
                         </div>
                     </div>
                 </div>

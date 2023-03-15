@@ -42,6 +42,14 @@ const routes = [
       {
         path: 'login',
         component: () => import('../views/front/LoginView.vue')
+      },
+      {
+        path: 'articles',
+        component: () => import('../views/front/ArticlesView.vue')
+      },
+      {
+        path: 'article/:id',
+        component: () => import('../views/front/ArticleView.vue')
       }
     ]
   },
