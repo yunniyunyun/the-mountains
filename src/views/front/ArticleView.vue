@@ -2,10 +2,22 @@
   <loadingVue v-model:active="isLoading"/>
   <div class="header"></div>
   <div class="container">
-    <div class="mt-5"></div>
-    <div class="row row-cols-5 my-3 g-4">
-      <h1>{{ article.title }}</h1>
-      <img :src="article.imageUrl" width="200" class="img-fluid" alt="">
+    <div class="mt-5 mb-3 d-flex flex-column justify-content-center align-items-center text-light" style="border: 2px solid #373737; box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.16); background: #373737;">
+      <img :src="article.imageUrl" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">
+      <div class="mt-3">
+        <span class="badge bg-primary me-1" style="font-size: 14px;"
+            v-for="(label, key) in article.tag"
+                        :key="key+'tag'">
+                        {{ label }}
+        </span>
+      </div>
+      <h1 class="mt-3 mb-4">{{ article.title }}</h1>
+      <span class="mb-3">{{ article.description }}</span>
+      <p style="color: #438f73;">{{ $filters.date(article.create_at) }}</p>
+      <p v-html="article.content" class="p-5 container" style="word-break: break-all;"></p>
+    </div>
+    <div class="d-flex justify-content-center mb-5">
+          <RouterLink to="/articles" class="btn btn-outline-secondary" href="#">回文章分享</RouterLink>
     </div>
   </div>
 </template>

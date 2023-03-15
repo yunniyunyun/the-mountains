@@ -14,9 +14,19 @@
             style="height: 150px;"
           /></RouterLink>
           <div class="card-body d-flex flex-column">
-            <h6 class="card-title mb-auto">
+            <h5 class="card-title mb-auto">
               {{article.title}}
-            </h6>
+            </h5>
+            <div class="mt-1">
+              <span class="badge bg-primary me-1"
+                  v-for="(label, key) in article.tag"
+                              :key="key+'tag'">
+                              {{ label }}
+              </span>
+            </div>
+            <p class="mt-2 mb-2" style="font-size: 14px;">
+              {{article.description}}
+            </p>
           </div>
         </div>
       </div>
