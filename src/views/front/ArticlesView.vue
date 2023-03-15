@@ -5,14 +5,16 @@
     <div class="mt-5"></div>
     <div class="row row-cols-5 my-3 g-4">
       <div class="col card-group" v-for="article in articles" :key="article.id">
-        <div class="card">
-          <RouterLink :to="`/article/${article.id}`">
+        <div class="card position-relative">
+          <RouterLink :to="`/article/${article.id}`" class="more position-absolute" style="width: 100%; height: 100%;">
+            <h4 class="text-center text-light" style="margin-top: 60px;">查看更多</h4>
+          </RouterLink>
           <img
-            :src="article.imageUrl"
-            class="card-img-top"
-            alt="..."
-            style="height: 150px;"
-          /></RouterLink>
+          :src="article.imageUrl"
+          class="card-img-top"
+          alt="..."
+          style="height: 150px;"
+          />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title mb-auto">
               {{article.title}}
@@ -79,5 +81,15 @@ export default {
   background-position: 50% 45% ;
   background-size: cover;
   height: 30vh;
+}
+.more h4{
+  display: none;
+}
+.more:hover h4{
+  display: block;
+}
+.more:hover{
+  border-radius: 5px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 </style>
