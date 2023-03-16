@@ -33,8 +33,17 @@
         </div>
       </div>
     </div>
-    <div class="text-light">
-      <span class="mb-3">{{ product.description }}</span>
+    <div class="text-light p-5 bg-dark my-4">
+      <h3>注意事項</h3>
+      <ol class="mb-0 h5" style="line-height: 2em;">
+        <li>本產品包含申請入山入園證，請提供正確的個人資料</li>
+        <li>如有特殊病史，請備妥個人藥物</li>
+        <li>互相照顧，謝絕獨行俠</li>
+      </ol>
+    </div>
+    <div class="text-light p-3">
+      <h3 class="mb-3">活動介紹</h3>
+      <span class="mb-3 h6">{{ product.description }}</span>
     </div>
     <div class="d-flex justify-content-center my-5">
           <RouterLink to="/products" class="btn btn-outline-secondary" href="#">查看其他行程</RouterLink>
