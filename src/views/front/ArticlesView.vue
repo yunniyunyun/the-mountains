@@ -6,7 +6,7 @@
     <div class="row row-cols-5 my-3 g-4">
       <div class="col card-group" v-for="article in articles" :key="article.id">
         <div class="card position-relative">
-          <RouterLink :to="`/article/${article.id}`" class="more position-absolute" style="width: 100%; height: 100%;">
+          <RouterLink :to="`/article/${article.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit;">
             <h4 class="text-center text-light" style="margin-top: 60px;">查看更多</h4>
           </RouterLink>
           <img

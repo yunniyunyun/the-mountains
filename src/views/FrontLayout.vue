@@ -13,7 +13,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav fs-5">
-                            <RouterLink to="/"
+                            <RouterLink to="/home"
                             class="nav-link link-white me-4">首頁</RouterLink>
                             <RouterLink to="/latestEvents"
                             class="nav-link link-white me-4">最新活動</RouterLink>
@@ -86,3 +86,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.navbar-nav .active{
+  /* text-decoration: underline !important; */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+
+}
+</style>
