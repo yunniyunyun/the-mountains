@@ -52,6 +52,9 @@ export default defineStore('productsStore', {
     hotProducts: ({ products }) => {
       return products.filter(item => item?.is_hot === 1)
     },
+    hotHomeProducts: ({ products }) => {
+      return products.filter(item => item?.is_hot === 1).slice(0, 4)
+    },
     latestProducts: ({ products }) => {
       return products.sort((a, b) => a.create_at - b.create_at).slice(0, 5)
     }
