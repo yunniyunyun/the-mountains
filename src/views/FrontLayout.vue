@@ -45,6 +45,11 @@
   </header>
     <!-- <RouterLink to="/cart">購物車</RouterLink> | -->
   <RouterView></RouterView>
+  <!-- 回到頂端 -->
+  <a href="#" class="p-2 d-flex flex-column align-items-center" style="text-decoration: none; border: 1px solid #1FBA82; position: fixed; z-index: 6; bottom: 50px; right: 50px;"  @click.prevent="scrollToTop">
+    <img class="d-block" src="./../images/icon/top.svg" style="width: 16px;">
+    <span style="color: #1FBA82; ">TOP</span>
+  </a>
   <!-- 表尾 -->
   <footer class="bg-gray2">
       <div class="container text-center text-secondary pt-4 pb-3 pt-sm-5 pb-sm-4">
@@ -80,6 +85,11 @@ export default {
   },
   computed: {
     ...mapState(cartStore, ['cart'])
+  },
+  methods: {
+    scrollToTop () {
+      window.scrollTo(0, 0)
+    }
   },
   mounted () {
     CartStore.getCarts()

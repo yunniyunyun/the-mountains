@@ -26,7 +26,7 @@
             </div>
             <div class="d-flex justify-content-between" style="width: 100%; margin-top: 20px;">
               <h5 class="d-block"
-                style="padding: 8px 16px; background: rgba(10, 96, 60, 0.8); z-index:4">
+                style="padding: 8px 16px; background: rgba(10, 96, 60, 0.8); z-index:3">
               即將額滿</h5>
               <a href="#" class="d-block favorite"
               style="height: 36.33px; width: 33.33px; margin-right: 22px; z-index:4;">
