@@ -9,7 +9,7 @@
     <!-- 中間輪播 -->
     <!-- Swiper -->
     <div>
-        <swiper :modules="modules" class="swiper"
+        <swiper :modules="modules" class="swiper"  :autoplay="{ delay: 50000, disableOnInteraction: false }"
         :pagination="{ dynamicBullets: true, clickable: true }" style="position: relative; height: 480px;">
           <swiper-slide class="swiper-slide swiper-slide-1">
               <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
@@ -34,7 +34,7 @@
 
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Pagination } from 'swiper'
+import { Navigation, Pagination, Autoplay } from 'swiper'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -43,7 +43,7 @@ import 'swiper/css/pagination'
 export default {
   data () {
     return {
-      modules: [Navigation, Pagination]
+      modules: [Navigation, Pagination, Autoplay]
     }
   },
   components: {
