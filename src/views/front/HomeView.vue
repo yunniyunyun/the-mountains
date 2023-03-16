@@ -6,6 +6,29 @@
       <!-- <div>搜尋</div> -->
     </div>
   </div>
+  <div class="hotlist text-light">
+  <div class="container content"  style="padding-top: 80px;">
+      <h2 style="margin-bottom: 40px;">熱門活動</h2>
+      <div class="row row-cols-4">
+        <div class="col hot-1 d-flex align-items-start flex-column p-0 position-relative"
+              style="height: 320px;">
+          <div class="hot position-absolute d-flex justify-content-center align-items-center text-light"
+              style="width: 100%; height: 320px;">
+            <h5 class="more px-4 py-3" style="border: 2px solid #0A603C;">了解更多</h5>
+          </div>
+          <div class="d-flex justify-content-between" style="width: 100%; margin-top: 20px;">
+            <h5 class="d-block"
+              style="padding: 8px 16px; background: rgba(10, 96, 60, 0.6);">
+            即將額滿</h5>
+            <a href="#" class="d-block favorite"
+            style="height: 36.33px; width: 33.33px; margin-right: 22px; z-index:4;">
+            </a>
+          </div>
+          <h4 class="mt-auto mb-0" style="padding: 20px 20px">搭車比登山累—郡大山</h4>
+        </div>
+      </div>
+    </div>
+  </div>
     <!-- 中間輪播 -->
     <!-- Swiper -->
     <div>
@@ -74,5 +97,45 @@ export default {
 }
 .swiper-slide-3{
   background-image: url(@/images/home/與自我對話.jpg)
+}
+.hotlist{
+  position: relative;
+  background-image: url(@/images/home/BG-HOT@3x.png);
+  background-size: cover;
+  height: 559px;
+}
+.hotlist::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.hotlist .content{
+  position: relative;
+}
+.hot:hover{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.16);
+}
+.hot .more{
+  display: none;
+}
+.hot:hover .more{
+  display: block;
+}
+.hot-1{
+  background-image: url(@/images/home/熱門活動01@3x.png);
+  background-size: cover;
+}
+.favorite{
+  background-image: url(@/images/icon/favorite.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.favorite:hover{
+  background-image: url(@/images/icon/favorite-hover.svg);
 }
 </style>
