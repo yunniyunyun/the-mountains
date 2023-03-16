@@ -43,12 +43,12 @@
                     </button>
                   </td>
                   <td>
-                    <img
+                    <RouterLink :to="`/product/${item.product.id}`"><img
                         :src="item.product.imageUrl"
                         class="table-image me-3"
                         :alt="item.product.title"
                         style="height: 100px; object-fit: cover; width: 150px;"
-                      />
+                      /></RouterLink>
                     {{ item.product.title }}
                   </td>
                   <td>
