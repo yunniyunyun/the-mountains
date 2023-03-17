@@ -81,11 +81,19 @@
                           v-model="create_at">
                     </div>
                     <div class="mb-3">
-                    <div class="mb-3">
-                        <label for="imageUrl" class="form-label">主要圖片</label>
-                        <input type="text" v-model="tempProduct.imageUrl" class="form-control"
-                                placeholder="請輸入圖片連結">
-                    </div>
+                      <div class="mb-2">
+                        <form enctype="multipart/form-data"  method="post" class="row me-1" onSubmit="uploadImage">
+                          <input type="file" name="file-to-upload" class="col-8" @change="uploadFile" ref="file" >
+                          <input type="submit" value="Upload" @click.prevent="uploadImage" class="btn btn-outline-primary col-4">
+                        </form>
+                        <input type="text" v-model="uploalImageUrl" class="form-control"
+                                  placeholder="圖片連結">
+                      </div>
+                      <div class="mb-3">
+                          <label for="imageUrl" class="form-label">主要圖片</label>
+                          <input type="text" v-model="tempProduct.imageUrl" class="form-control"
+                                  placeholder="請輸入圖片連結">
+                      </div>
                     <img class="img-fluid" :src="tempProduct.imageUrl" alt="">
                     </div>
                     <h3 class="mb-3">多圖新增</h3>
@@ -262,6 +270,7 @@ const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 export default {
   data () {
     return {
+      uploalImageUrl: '',
       isLoading: false,
       isNew: false,
       products: [],
@@ -284,7 +293,8 @@ export default {
         }
       },
       // custom
-      create_at: new Date().getTime() / 1000
+      create_at: new Date().getTime() / 1000,
+      Images: ''
     }
   },
   methods: {
@@ -409,6 +419,31 @@ export default {
         this.isNew = false
         this.delProductModal.show()
       }
+    },
+    uploadFile () {
+      this.Images = this.$refs.file.files[0]
+    },
+    uploadImage () {
+      this.isLoading = true
+      const formData = new FormData()
+      formData.append('file', this.Images)
+      const headers = { 'Content-Type': 'multipart/form-data' }
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/admin/upload`
+      this.$http.post(url, formData, { headers })
+        .then((response) => {
+          console.log(response.data)
+          this.uploalImageUrl = response.data.imageUrl
+          this.isLoading = false
+          this.$refs.form.resetForm()
+        })
+        .catch((error) => {
+          this.isLoading = false
+          Swal.fire({
+            icon: 'error',
+            title: error.data.message
+          })
+          this.$refs.form.resetForm()
+        })
     }
   },
   watch: {
