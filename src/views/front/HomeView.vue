@@ -63,6 +63,24 @@
           </swiper-slide>
         </swiper>
     </div>
+    <ul class="home-products text-light container mt-5" style="list-style-type: none;">
+      <li v-for="product in homeProducts" :key="product.id" class="mb-5">
+        <div class="home-product position-relative row d-flex">
+          <img class="col-7" :src="product.imageUrl" alt="">
+          <div class="home-product-content position-absolute top-50 end-0 translate-middle-y col-6 p-4"
+          style="background: rgba(55, 55, 55, 0.4); backdrop-filter: blur(6px);">
+            <h5 class="d-inline-block mb-3"
+                style="padding: 8px 12px; background: rgba(10, 96, 60, 0.8); z-index:3">
+              {{ product.tag[0] }}</h5>
+            <h5 class="d-inline-block ms-3" style="color: #1FBA82;">{{ product.category }}</h5>
+            <h2>{{ product.title }}</h2>
+            <p>{{ product.description }}</p>
+            <RouterLink :to="`/product/${product.id}`" style="text-decoration: none; color: inherit;">
+              <button type="button" class="btn btn-outline-primary link-light">查看更多</button></RouterLink>
+          </div>
+        </div>
+      </li>
+    </ul>
 </template>
 
 <script>
@@ -84,7 +102,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(productsStore, ['hotHomeProducts'])
+    ...mapState(productsStore, ['hotHomeProducts', 'homeProducts'])
   },
   components: {
     Swiper,
@@ -153,5 +171,11 @@ export default {
 }
 .favorite:hover{
   background-image: url(@/images/icon/favorite-hover.svg);
+}
+.home-products li:nth-child(even) .home-product{
+  flex-direction: row-reverse !important;
+}
+.home-products li:nth-child(even) .home-product-content{
+  left: 0 !important;
 }
 </style>

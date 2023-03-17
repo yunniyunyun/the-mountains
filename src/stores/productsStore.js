@@ -49,6 +49,9 @@ export default defineStore('productsStore', {
     sortProducts: ({ products }) => {
       return products.sort((a, b) => a.price - b.price)
     },
+    homeProducts: ({ products }) => {
+      return products.filter(item => item?.is_home === 1)
+    },
     hotProducts: ({ products }) => {
       return products.filter(item => item?.is_hot === 1)
     },
