@@ -15,7 +15,7 @@
        <h2 class="d-inline-block" style=" z-index: 1;">熱門活動</h2>
        <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
     </div>
-      <div class="row row-cols-4">
+      <div class="row row-cols-2 row-cols-md-4">
         <div v-for="product in hotHomeProducts" :key="product.id">
           <RouterLink :to="`/product/${product.id}`" style="text-decoration: none; color: inherit;">
             <div class="col d-flex align-items-start flex-column p-0 position-relative"
