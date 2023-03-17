@@ -222,6 +222,13 @@
                           <label class="form-check-label"
                           for="is_hot">熱門活動</label>
                       </div>
+                      <div class="form-check">
+                          <input id="is_home"
+                          v-model="tempProduct.is_home" class="form-check-input" type="checkbox"
+                                  :true-value="1" :false-value="0">
+                          <label class="form-check-label"
+                          for="is_home">首頁推薦</label>
+                      </div>
                     </div>
                     </div>
                     <hr>
