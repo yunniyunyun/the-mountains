@@ -11,7 +11,7 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue']
     })
   ],
-  base: '/vue-hw-7/',
+  base: '/the-mountains/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
