@@ -46,19 +46,19 @@
         :pagination="{ dynamicBullets: true, clickable: true }" style="position: relative; height: 480px;">
           <swiper-slide class="swiper-slide swiper-slide-1">
               <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
-                  <h3>自然之美</h3>
-                  <h3>。</h3>
-                  <h3>森呼吸</h3>
+                  <h2>自然之美</h2>
+                  <h2>。</h2>
+                  <h2>森呼吸</h2>
               </div>
           </swiper-slide>
           <swiper-slide class="swiper-slide swiper-slide-2" style="background-position: 50% 50%;">
               <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
-                  <h3>寧靜 美好</h3>
+                  <h2>寧靜 美好</h2>
               </div>
           </swiper-slide>
           <swiper-slide class="swiper-slide swiper-slide-3" style="background-position: 50% 30%;">
               <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
-                  <h3>自我對話</h3>
+                  <h2>自我對話</h2>
               </div>
           </swiper-slide>
         </swiper>
@@ -102,8 +102,8 @@
     <ul class="home-products text-light container mt-5" style="list-style-type: none;">
       <li v-for="product in homeProducts" :key="product.id" class="mb-5">
         <div class="home-product position-relative row d-flex">
-          <img class="col-7" :src="product.imageUrl" alt="">
-          <div class="home-product-content position-absolute top-50 end-0 translate-middle-y col-6 p-4"
+          <img class="col-md-7" :src="product.imageUrl" alt="">
+          <div class="home-product-content top-50 end-0 col-11 col-md-6 p-4"
           style="background: rgba(55, 55, 55, 0.4); backdrop-filter: blur(6px);">
             <h5 class="d-inline-block mb-3"
                 style="padding: 8px 12px; background: rgba(10, 96, 60, 0.8); z-index:3">
@@ -163,6 +163,11 @@ export default {
   padding: 80px;
   background-size: cover;
 }
+@media(max-width: 768px) {
+    .swiper-slide{
+    padding: 32px;
+  }
+}
 .swiper-slide-1{
   background-image: url(@/images/home/森呼吸@3x.png)
 }
@@ -213,6 +218,22 @@ export default {
 }
 .home-products li:nth-child(even) .home-product-content{
   left: 0 !important;
+}
+.home-products .home-product-content{
+  position: absolute;
+  transform: translateY(-50%)
+}
+@media(max-width: 768px) {
+  .home-products .home-product-content{
+  position: relative;
+  transform: translateY(0%)
+  }
+  .home-product img{
+    margin: -16px 0px;
+  }
+  .home-product{
+    justify-content: center
+  }
 }
 .swiper-slide { height:auto}
 

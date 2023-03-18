@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="container fixed-top" style="z-index: 5;">
+    <div class="container fixed-top" style="z-index: 10;">
         <!-- FIXME: 移動出現底色 -->
         <nav class="navbar navbar-expand-lg navbar-dark p-3">
             <div class="container-fluid">
