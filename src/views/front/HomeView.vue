@@ -7,21 +7,20 @@
     </div>
   </div>
   <div class="hotlist text-light">
-    <div class="container content"  style="padding-top: 80px;">
-      <div class="d-flex justify-content-between align-items-center position-relative"
-      style="margin-bottom: 40px;">
-        <img src="../../images/icon/hot.svg" class="position-absolute top-0 start-0 translate-middle"
-        style="width: 60px; height: 80px; z-index: 0;">
-        <h2 class="d-inline-block" style=" z-index: 1;">熱門活動</h2>
+    <div class="container content">
+      <div class="home-title d-flex justify-content-between align-items-center position-relative">
+        <img src="../../images/icon/hot.svg" class="home-icon position-absolute top-0 start-0 translate-middle"
+        style="z-index: 0;">
+        <h2 class="d-inline-block" style=" z-index: 1; min-width: 120px;">熱門活動</h2>
         <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
       </div>
       <div class="row row-cols-2 row-cols-md-4">
-        <div v-for="product in hotHomeProducts" :key="product.id">
+        <div v-for="product in hotHomeProducts" :key="product.id" class="mb-3 m-lg-0 gx-3 gx-lg-4">
           <RouterLink :to="`/product/${product.id}`" style="text-decoration: none; color: inherit;">
-            <div class="col d-flex align-items-start flex-column p-0 position-relative"
-                style="height: 320px; background-size: cover;"  v-bind:style="{ backgroundImage: 'url(' + product.imageUrl + ')' }">
-            <div class="hot position-absolute d-flex justify-content-center align-items-center text-light"
-                style="width: 100%; height: 320px;">
+            <div class="hot-img col d-flex align-items-start flex-column p-0 position-relative"
+                style="background-size: cover;"  v-bind:style="{ backgroundImage: 'url(' + product.imageUrl + ')' }">
+            <div class="hot-img hot position-absolute d-flex justify-content-center align-items-center text-light"
+                style="width: 100%;">
               <h5 class="more px-4 py-3" style="border: 2px solid #0A603C;">了解更多</h5>
             </div>
             <div class="d-flex justify-content-between" style="width: 100%; margin-top: 20px;">
@@ -63,12 +62,11 @@
           </swiper-slide>
         </swiper>
     </div>
-    <div class="container content text-light"  style="padding-top: 80px; padding-bottom: 80px;">
-      <div class="d-flex justify-content-between align-items-center position-relative"
-      style="margin-bottom: 40px;">
-        <img src="../../images/icon/new.svg" class="position-absolute top-0 start-0 translate-middle"
-        style="width: 60px; height: 80px; z-index: 0;">
-        <h2 class="d-inline-block" style=" z-index: 1;">最新活動</h2>
+    <div class="container content text-light">
+      <div class="home-title d-flex justify-content-between align-items-center position-relative">
+        <img src="../../images/icon/new.svg" class="home-icon position-absolute top-0 start-0 translate-middle"
+        style="z-index: 0;">
+        <h2 class="d-inline-block" style=" z-index: 1; min-width: 120px;">最新活動</h2>
         <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
       </div>
       <swiper
@@ -177,6 +175,30 @@ export default {
 .swiper-slide-3{
   background-image: url(@/images/home/與自我對話.jpg)
 }
+.home-title{
+  margin-bottom: 40px;
+}
+.hot-img{
+  height: 320px;
+}
+.home-icon{
+  width: 60px;
+  height: 80px;
+}
+@media(max-width: 768px) {
+  .home-title{
+      margin-bottom: 20px;
+  }
+  .hot-img{
+    height: 178px;
+  }
+  .home-icon{
+    width: 36px;
+    height: 38px;
+    top: 10px !important;
+  }
+}
+
 .hotlist{
   position: relative;
   background-image: url(@/images/home/BG-HOT@3x.png);
@@ -192,8 +214,28 @@ export default {
   right: 0;
   background-color: rgba(0, 0, 0, 0.7);
 }
-.hotlist .content{
+.content{
   position: relative;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+@media(max-width: 768px) {
+  .content{
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+  .content h2{
+    font-size: 24px !important;
+  }
+  .content h4{
+    font-size: 20px !important;
+  }
+  .content h5{
+    font-size: 16px !important;
+  }
+  .hotlist{
+    height: 496px;
+  }
 }
 .hot:hover{
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
