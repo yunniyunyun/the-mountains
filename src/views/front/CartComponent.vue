@@ -8,11 +8,11 @@
             <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
           <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;">1</button>
-          <h5 class="position-absolute" style="top: -26px; left: 10%; color: #1FBA82;">確認內容</h5>
+          <h5 class="position-absolute" style="top: -26px; left: calc((33% - 5rem)/2); color: #1FBA82;">確認內容</h5>
           <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 33%;">2</button>
-          <h5 class="position-absolute" style="top: -26px; left: 45%;">填寫資料</h5>
+          <h5 class="position-absolute" style="top: -26px; left: calc(32% + (33% - 5rem)/2)">填寫資料</h5>
           <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 66%;">3</button>
-          <h5 class="position-absolute" style="top: -26px; left: 78%;">訂單完成</h5>
+          <h5 class="position-absolute" style="top: -26px; left: calc(65% + (33% - 5rem)/2)">訂單完成</h5>
           <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem ; height:2rem; left: 99%;"></button>
         </div>
       </div>
