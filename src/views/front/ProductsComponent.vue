@@ -9,14 +9,12 @@
           <RouterLink :to="`/product/${product.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit;">
             <h4 class="text-center text-light" style="margin-top: 60px; z-index: 1;">查看更多</h4>
           </RouterLink>
-          <!-- <RouterLink :to="`/product/${product.id}`"> -->
           <img
             :src="product.imageUrl"
             class="card-img-top"
             alt="..."
             style="height: 150px;"
           />
-        <!-- </RouterLink> -->
           <div class="card-body d-flex flex-column">
             <h6 class="card-title mb-auto">
               {{product.title}}

@@ -7,14 +7,14 @@
     </div>
   </div>
   <div class="hotlist text-light">
-  <div class="container content"  style="padding-top: 80px;">
-    <div class="d-flex justify-content-between align-items-center position-relative"
-    style="margin-bottom: 40px;">
-       <img src="../../images/icon/hot.svg" class="position-absolute top-0 start-0 translate-middle"
-       style="width: 60px; height: 80px; z-index: 0;">
-       <h2 class="d-inline-block" style=" z-index: 1;">熱門活動</h2>
-       <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
-    </div>
+    <div class="container content"  style="padding-top: 80px;">
+      <div class="d-flex justify-content-between align-items-center position-relative"
+      style="margin-bottom: 40px;">
+        <img src="../../images/icon/hot.svg" class="position-absolute top-0 start-0 translate-middle"
+        style="width: 60px; height: 80px; z-index: 0;">
+        <h2 class="d-inline-block" style=" z-index: 1;">熱門活動</h2>
+        <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
+      </div>
       <div class="row row-cols-2 row-cols-md-4">
         <div v-for="product in hotHomeProducts" :key="product.id">
           <RouterLink :to="`/product/${product.id}`" style="text-decoration: none; color: inherit;">
@@ -63,6 +63,42 @@
           </swiper-slide>
         </swiper>
     </div>
+    <div class="container content text-light"  style="padding-top: 80px; padding-bottom: 80px;">
+      <div class="d-flex justify-content-between align-items-center position-relative"
+      style="margin-bottom: 40px;">
+        <img src="../../images/icon/new.svg" class="position-absolute top-0 start-0 translate-middle"
+        style="width: 60px; height: 80px; z-index: 0;">
+        <h2 class="d-inline-block" style=" z-index: 1;">最新活動</h2>
+        <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
+      </div>
+      <swiper
+        :slidesPerView="4"
+        :spaceBetween="40"
+        :modules="modules"
+        class="Swiper2"
+      >
+        <swiper-slide v-for="product in latestProducts" :key="product.id" style="padding: 0px;">
+            <img
+            :src="product.imageUrl"
+            class="card-img-top"
+            alt="..."
+            style="height: 200px;"
+            />
+            <div class="p-3 d-flex flex-column justify-content-between">
+              <h4 class="card-title mb-auto">
+                {{product.title}}
+              </h4>
+              <ul class="product-tag mt-3 d-flex ps-0" v-if="product.tag" style="list-style-type: none;">
+                <li class="px-2 h5" style="color: #1FBA82;"
+                    v-for="(label, key) in product.tag"
+                                :key="key+'tag'">
+                                {{ label }}
+                </li>
+              </ul>
+            </div>
+        </swiper-slide>
+      </swiper>
+    </div>
     <ul class="home-products text-light container mt-5" style="list-style-type: none;">
       <li v-for="product in homeProducts" :key="product.id" class="mb-5">
         <div class="home-product position-relative row d-flex">
@@ -102,7 +138,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(productsStore, ['hotHomeProducts', 'homeProducts'])
+    ...mapState(productsStore, ['hotHomeProducts', 'homeProducts', 'latestProducts'])
   },
   components: {
     Swiper,
@@ -177,5 +213,14 @@ export default {
 }
 .home-products li:nth-child(even) .home-product-content{
   left: 0 !important;
+}
+.swiper-slide { height:auto}
+
+.product-tag li{
+  border-left: 1px solid #1FBA82;
+}
+.product-tag li:first-child{
+  border-left: 0px solid #1FBA82;
+  padding-left: 0px !important;
 }
 </style>
