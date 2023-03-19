@@ -70,8 +70,28 @@
         <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
       </div>
       <swiper
-        :slidesPerView="4"
-        :spaceBetween="40"
+        :breakpoints="{
+                '1': {
+                    slidesPerView: 1,
+                    spaceBetween: 24
+                },
+                '375': {
+                    slidesPerView: 1.4,
+                    spaceBetween: 24
+                },
+                '768': {
+                    slidesPerView: 2,
+                    spaceBetween: 24
+                },
+                '992': {
+                    slidesPerView: 3,
+                    spaceBetween: 32
+                },
+                '1200': {
+                    slidesPerView: 4,
+                    spaceBetween: 40
+                }
+            }"
         :modules="modules"
         class="Swiper2"
       >
@@ -218,6 +238,12 @@ export default {
   position: relative;
   padding-top: 80px;
   padding-bottom: 80px;
+}
+@media(max-width: 1200px) {
+  .content{
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
 }
 @media(max-width: 768px) {
   .content{
