@@ -96,24 +96,28 @@
         class="Swiper2"
       >
         <swiper-slide v-for="product in latestProducts" :key="product.id" style="padding: 0px;">
-            <img
-            :src="product.imageUrl"
-            class="card-img-top"
-            alt="..."
-            style="height: 200px;"
-            />
-            <div class="p-3 d-flex flex-column justify-content-between">
-              <h4 class="card-title mb-auto">
-                {{product.title}}
-              </h4>
-              <ul class="product-tag mt-3 d-flex ps-0" v-if="product.tag" style="list-style-type: none;">
-                <li class="px-2 h5" style="color: #1FBA82;"
-                    v-for="(label, key) in product.tag"
-                                :key="key+'tag'">
-                                {{ label }}
-                </li>
-              </ul>
+          <RouterLink :to="`/product/${product.id}`" style="text-decoration: none; color: inherit;">
+            <div class="last-product" style="border: 3px solid rgba(10, 96, 60, 0); height: 100%;">
+              <img
+                :src="product.imageUrl"
+                class="card-img-top"
+                alt="..."
+                style="height: 200px;"
+                />
+              <div class="p-3 d-flex flex-column justify-content-between" style="height: calc(100% - 200px);">
+                <h4 class="card-title mb-auto">
+                  {{product.title}}
+                </h4>
+                <ul class="product-tag mt-3 d-flex ps-0 mb-0" v-if="product.tag" style="list-style-type: none;">
+                  <li class="px-2 h5 mb-0" style="color: #1FBA82;"
+                      v-for="(label, key) in product.tag"
+                                  :key="key+'tag'">
+                                  {{ label }}
+                  </li>
+                </ul>
+              </div>
             </div>
+          </RouterLink>
         </swiper-slide>
       </swiper>
     </div>
@@ -311,5 +315,9 @@ export default {
 .product-tag li:first-child{
   border-left: 0px solid #1FBA82;
   padding-left: 0px !important;
+}
+.last-product:hover{
+  border: 3px solid #0A603C !important;
+  filter: drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.16));
 }
 </style>
