@@ -7,7 +7,12 @@
                 <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink>
                 <!-- .navbar-toggler 漢堡式選單按鈕 -->
                 <div>
-                    <RouterLink to="/cart" class="d-lg-none p-3"><img src="./../images/icon/icon-carts.svg"></RouterLink>
+                    <RouterLink to="/cart" class="d-lg-none p-3">
+                        <span class="position-relative">
+                            <img  src="./../images/icon/icon-carts.svg">
+                            <span v-if="cart.carts?.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.carts?.length}}</span>
+                        </span>
+                    </RouterLink>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
