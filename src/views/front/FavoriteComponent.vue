@@ -4,7 +4,8 @@
   <div class="container">
     <div class="mt-5"></div>
     <h1 class="text-light text-center mb-5">收藏項目</h1>
-    <div class="mb-5">
+    <div class="mb-5" v-if="favoriteList?.favoriteList.length > 0">
+      <div v-if="favoriteList.favoriteList[0]?.product?.imageUrl">
       <div class="row py-4 text-light" v-for="product in favoriteList.favoriteList" :key="product.id"
          style="border-bottom: 1px solid #FFFFFF;">
         <div class="col-md-3">
@@ -27,18 +28,26 @@
           <button type="button" class="ms-2 btn btn-primary" style="width: 100%;"
               @click="addToCart(product.product.id)">加入購物車</button>
           <button type="button" class="ms-2 btn btn-outline-danger mt-3" style="width: 100%;"
-              @click="removeCartItem(product.id)">移除收藏</button>
+              @click="removeFavoriteItem(product.id)">移除收藏</button>
         </div>
       </div>
+    </div>
+    </div>
+    <div v-else class="text-center text-light">
+      <p>目前無收藏項目</p>
     </div>
   </div>
 </template>
 
 <script>
+import productsStore from '../../stores/productsStore'
 import cartStore from '../../stores/cartStore'
 import loadingStore from '../../stores/loadingStore'
 import favoriteStore from '../../stores/favoriteStore'
 import { mapState, mapActions } from 'pinia'
+
+const ProductsStore = productsStore()
+
 export default {
   computed: {
     ...mapState(loadingStore, ['isLoading']),
@@ -46,7 +55,10 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['addToCart']),
-    ...mapActions(favoriteStore, ['removeCartItem'])
+    ...mapActions(favoriteStore, ['removeFavoriteItem'])
+  },
+  mounted () {
+    ProductsStore.getAllProducts()
   }
 }
 </script>
