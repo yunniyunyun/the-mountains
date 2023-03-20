@@ -49,6 +49,15 @@ export default defineStore('favoriteStore', {
       if (getData) {
         this.favorite = JSON.parse(getData)
       }
+      Swal.fire({
+        background: '#b47978',
+        color: '#FFFFFF',
+        width: 350,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1000,
+        title: '已移除收藏'
+      })
     }
   },
   getters: {
@@ -70,6 +79,22 @@ export default defineStore('favoriteStore', {
 
       return {
         favoriteList
+      }
+    },
+    favoriteIDs: ({ favorite }) => {
+      const getData = localStorage.getItem('favorite')
+      if (getData) {
+        favorite = JSON.parse(getData)
+      }
+      const IDList = favorite.map((item) => {
+        return item.productId
+      })
+      const favoriteIDList = favorite.map((item) => {
+        return item.id
+      })
+      return {
+        product: IDList,
+        favorite: favoriteIDList
       }
     }
   }

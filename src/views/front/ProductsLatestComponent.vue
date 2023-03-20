@@ -3,7 +3,8 @@
   <div class="header"></div>
   <div class="container">
     <div class="mt-5"></div>
-    <h1 class="text-light text-center mb-5">最新活動</h1>
+    <h1 class="text-light text-center mb-5 d-none">最新活動</h1>
+    <p class="text-center"><img src="../../images/title/latest-title.png" class="title-img" alt="logo"></p>
     <div class="mb-5">
       <div class="row py-4 text-light" v-for="product in latestProducts" :key="product.id"
          style="border-bottom: 1px solid #FFFFFF;">
@@ -49,6 +50,19 @@ export default {
   background-position: 50% 65% ;
   background-size: cover;
   height: 30vh;
+}
+.title-img{
+  height: 140px;
+}
+@media(max-width: 768px) {
+  .title-img{
+    height: 120px;
+  }
+}
+@media(max-width: 576px) {
+  .title-img{
+    height: 100px;
+  }
 }
 .product-description{
   width: 100%;

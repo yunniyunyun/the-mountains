@@ -32,7 +32,10 @@
               @click="addToCart(product.id, qty)">加入購物車</button>
         </div>
         <div class="d-flex justify-content-end mt-3">
-          <button type="button" class="ms-2 btn btn-outline-cpink"
+          <button v-if="favoriteIDs?.product.includes(product.id)"
+          type="button" class="ms-2 btn btn-cpink"
+          @click="removeFavoriteItem(favoriteIDs?.favorite[favoriteIDs.product.findIndex((item) => item === product.id)])">已收藏</button>
+          <button v-else type="button" class="ms-2 btn btn-outline-cpink"
               @click="addToFavorite(product.id)">收藏此項目</button>
         </div>
       </div>
@@ -71,11 +74,12 @@ export default {
     }
   },
   computed: {
-    ...mapState(loadingStore, ['isLoading'])
+    ...mapState(loadingStore, ['isLoading']),
+    ...mapState(favoriteStore, ['favoriteIDs'])
   },
   methods: {
     ...mapActions(cartStore, ['addToCart']),
-    ...mapActions(favoriteStore, ['addToFavorite']),
+    ...mapActions(favoriteStore, ['addToFavorite', 'removeFavoriteItem']),
     grtProduct () {
       this.loading = true
       const { id } = this.$route.params

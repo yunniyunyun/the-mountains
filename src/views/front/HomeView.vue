@@ -27,7 +27,11 @@
               <h5 class="d-block"
                 style="padding: 8px 16px; background: rgba(10, 96, 60, 0.8); z-index:3">
               即將額滿</h5>
-              <a href="#" class="d-block favorite" @click.prevent="addToFavorite(product.id)"
+              <a href="#" v-if="favoriteIDs?.product.includes(product.id)" class="d-block isFavorite"
+              @click.prevent="removeFavoriteItem(favoriteIDs?.favorite[favoriteIDs.product.findIndex((item) => item === product.id)])"
+              style="height: 36.33px; width: 33.33px; margin-right: 22px; z-index:4;">
+              </a>
+              <a href="#" v-else class="d-block favorite" @click.prevent="addToFavorite(product.id)"
               style="height: 36.33px; width: 33.33px; margin-right: 22px; z-index:4;">
               </a>
             </div>
@@ -161,6 +165,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(favoriteStore, ['favoriteIDs']),
     ...mapState(productsStore, ['hotHomeProducts', 'homeProducts', 'latestProducts'])
   },
   components: {
@@ -168,7 +173,7 @@ export default {
     SwiperSlide
   },
   methods: {
-    ...mapActions(favoriteStore, ['addToFavorite'])
+    ...mapActions(favoriteStore, ['addToFavorite', 'removeFavoriteItem'])
   },
   mounted () {
     ProductsStore.getAllProducts()
@@ -281,12 +286,12 @@ export default {
 .hot:hover .more{
   display: block;
 }
-.favorite{
+.favorite, .isFavorite{
   background-image: url(@/images/icon/favorite.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }
-.favorite:hover{
+.favorite:hover, .isFavorite{
   background-image: url(@/images/icon/favorite-hover.svg);
 }
 .home-products li:nth-child(even) .home-product{

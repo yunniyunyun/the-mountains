@@ -3,31 +3,33 @@
   <div class="header"></div>
   <div class="container">
     <div class="mt-5"></div>
-    <h1 class="text-light text-center mb-5">收藏項目</h1>
+    <h1 class="text-light text-center mb-5 d-none">收藏項目</h1>
+    <p class="text-center"><img src="../../images/title/favorite-title.png" class="title-img" alt="logo"></p>
     <div class="mb-5" v-if="favoriteList?.favoriteList.length > 0">
       <div v-if="favoriteList.favoriteList[0]?.product?.imageUrl">
       <div class="row py-4 text-light" v-for="product in favoriteList.favoriteList" :key="product.id"
          style="border-bottom: 1px solid #FFFFFF;">
         <div class="col-md-3">
           <div class="position-relative">
+            <p class="p-0 mb-0 d-lg-none text-secondary">{{  $filters.date(product.date) }} 收藏</p>
             <img :src="product.product.imageUrl" alt="" style="width: 100%;">
             <RouterLink :to="`/product/${product.productId}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit; left: 0;">
             <h4 class="text-center text-light" style="margin-top: 30%;">了解更多</h4>
           </RouterLink>
           </div>
         </div>
-        <div class="col-md-7 px-4">
+        <div class="col-md-6 col-lg-7 px-4">
           <h4 class="my-3 my-lg-4 text-truncate">{{ product.product.title }}</h4>
           <p class="product-description h5">{{ product.product.description }}</p>
           <div class="d-flex justify-content-end mt-3">
             <p class="h5"> 優惠價: <span class="h4" style="color: #F7B2B7;">{{ product.product.price }}</span> </p>
           </div>
         </div>
-        <div class="col-2">
-          <p class="p-3">{{  $filters.date(product.date) }} 加入收藏</p>
-          <button type="button" class="ms-2 btn btn-primary" style="width: 100%;"
+        <div class="col-md-3 col-lg-2 d-flex d-md-block align-items-center">
+          <p class="p-3 d-none d-lg-block">{{  $filters.date(product.date) }} 加入收藏</p>
+          <button type="button" class="ms-md-2 btn btn-primary" style="width: 160px; height: 38px;"
               @click="addToCart(product.product.id)">加入購物車</button>
-          <button type="button" class="ms-2 btn btn-outline-danger mt-3" style="width: 100%;"
+          <button type="button" class="ms-3 ms-md-2 btn btn-outline-danger mt-md-3 " style="width: 160px; height: 38px;"
               @click="removeFavoriteItem(product.id)">移除收藏</button>
         </div>
       </div>
@@ -69,6 +71,19 @@ export default {
   background-position: 50% 65% ;
   background-size: cover;
   height: 30vh;
+}
+.title-img{
+  height: 140px;
+}
+@media(max-width: 768px) {
+  .title-img{
+    height: 120px;
+  }
+}
+@media(max-width: 576px) {
+  .title-img{
+    height: 100px;
+  }
 }
 .product-description{
   width: 100%;
