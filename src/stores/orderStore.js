@@ -3,6 +3,8 @@ import Swal from 'sweetalert2'
 import axios from 'axios'
 import loadingStore from './loadingStore.js'
 import CartStore from './CartStore.js'
+import router from '@/router'
+
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 const { loadingTrue, loadingFalse } = loadingStore()
 const { getCarts } = CartStore()
@@ -59,13 +61,14 @@ export default defineStore('orderStore', {
           }
           this.getOrder(this.order_data.data?.orderId)
           getCarts()
+          router.push({ path: 'order' })
           loadingFalse()
         })
         .catch((error) => {
           loadingFalse()
           Swal.fire({
             icon: 'error',
-            title: error.response
+            title: error.response.data.message
           })
         })
     },

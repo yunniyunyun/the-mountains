@@ -63,7 +63,7 @@
           <div class="text-end">
             <div class="d-flex justify-content-end mt-4">
             <RouterLink to="/cart" class="btn btn-outline-primary me-2">上一步</RouterLink>
-            <RouterLink to="/order" type="submit" class="btn btn-primary" @click="createOrder">下一步 | 確認訂單</RouterLink>
+            <a href="#" type="submit" class="btn btn-primary" @click.prevent="createOrder">下一步 | 確認訂單</a>
           </div>
           </div>
         </VForm>
