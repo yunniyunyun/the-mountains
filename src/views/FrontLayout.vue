@@ -4,7 +4,7 @@
         <!-- FIXME: 移動出現底色 -->
         <nav class="navbar navbar-expand-lg navbar-dark p-3">
             <div class="container-fluid">
-                <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" alt="logo" style="height: 44px;"></RouterLink>
+                <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink>
                 <!-- .navbar-toggler 漢堡式選單按鈕 -->
                 <div>
                     <RouterLink to="/cart" class="d-lg-none p-3"><img src="./../images/icon/icon-carts.svg"></RouterLink>
@@ -55,7 +55,7 @@
   <!-- 表尾 -->
   <footer class="bg-gray2">
       <div class="container text-center text-secondary pt-4 pb-3 pt-sm-5 pb-sm-4">
-          <a href="#"><img src="../images/logo/山岳。山悅.png" alt="logo"></a>
+          <a href="#"><img class="footer-logo" src="../images/logo/山岳。山悅.png" alt="logo"></a>
           <div class="mt-4">
               <a href="#" class="me-2 link-secondary text-decoration-none">關於山悅</a> |
               <a href="#" class="ms-2 link-secondary text-decoration-none">客服信箱</a>
@@ -104,5 +104,21 @@ export default {
   /* text-decoration: underline !important; */
   border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 
+}
+.nav-logo{
+  height: 44px;
+}
+@media(max-width: 768px) {
+  .nav-logo{
+    height: 25px;
+  }
+}
+.footer-logo{
+  height: 44px;
+}
+@media(max-width: 768px) {
+  .footer-logo{
+    height: 37px;
+  }
 }
 </style>

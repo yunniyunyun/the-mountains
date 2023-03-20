@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="container text-center">
-      <div><img src="../../images/logo/logo2@3x.png" alt="logo" style="margin-top:20vh; height: 164px;"></div>
+      <div><img src="../../images/logo/logo2@3x.png" class="header-logo" alt="logo"></div>
       <h2 class="text-white mt-5">來一場不一樣的山旅吧</h2>
       <!-- <div>搜尋</div> -->
     </div>
@@ -189,6 +189,16 @@ export default {
   background-image: url(@/images/home/banner1@3x.png);
   background-size: cover;
   height: 100vh;
+}
+.header-logo{
+  margin-top:20vh;
+  height: 164px;
+}
+@media(max-width: 768px) {
+  .header-logo{
+    margin-top:20vh;
+    height: 94px;
+  }
 }
 .swiper-slide{
   padding: 80px;

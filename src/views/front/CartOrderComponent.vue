@@ -2,7 +2,7 @@
     <loadingVue v-model:active="isLoading"/>
     <div class="header"></div>
     <div class="container mb-5">
-      <div class="d-flex justify-content-center text-secondary" style="margin-top: 60px;">
+      <div class="d-none d-md-flex justify-content-center text-secondary" style="margin-top: 60px;">
         <div class="position-relative m-4" style="width: 60%;">
           <div class="progress" style="height: 4px;">
             <div class="progress-bar" role="progressbar" style="width: 99%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

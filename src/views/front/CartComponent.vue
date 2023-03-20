@@ -2,7 +2,7 @@
     <loadingVue v-model:active="isLoading"/>
     <div class="header"></div>
     <div class="container mb-5">
-      <div class="d-flex justify-content-center text-secondary" style="margin-top: 60px;">
+      <div class="d-none d-md-flex justify-content-center text-secondary" style="margin-top: 60px;">
         <div class="position-relative m-4" style="width: 60%;">
           <div class="progress" style="height: 4px;">
             <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -27,7 +27,7 @@
               <th></th>
               <th>品名</th>
               <th>單價</th>
-              <th style="width: 150px">數量/單位</th>
+              <th style="width: 150px">數量</th>
               <th></th>
               </tr>
           </thead>
@@ -47,7 +47,6 @@
                         :src="item.product.imageUrl"
                         class="table-image me-3"
                         :alt="item.product.title"
-                        style="height: 100px; object-fit: cover; width: 150px;"
                       /></RouterLink>
                     {{ item.product.title }}
                   </td>
@@ -130,5 +129,16 @@ export default {
   background-position: 50% 23% ;
   background-size: cover;
   height: 30vh;
+}
+.table-image{
+  height: 100px;
+  object-fit: cover;
+  width: 150px;
+}
+@media(max-width: 576px) {
+  .table-image{
+  height: 60px;
+  width: 80px;
+}
 }
 </style>
