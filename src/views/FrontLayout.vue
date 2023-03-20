@@ -28,7 +28,9 @@
                 </div>
                 <div class="d-none d-lg-inline">
                     <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-search.svg"></a>
-                    <a href="#" class="p-2 me-2 d-xl-inline-block d-none"><img src="./../images/icon/icon-hearts.svg"></a>
+                    <RouterLink to="/favorite" class="p-2 me-2 d-xl-inline-block d-none">
+                            <img  src="./../images/icon/icon-hearts.svg">
+                    </RouterLink>
                     <RouterLink to="/orders" class="p-2 me-2 d-inline-block">
                             <img  src="./../images/icon/icon-orders.svg">
                     </RouterLink>

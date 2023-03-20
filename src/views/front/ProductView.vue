@@ -31,6 +31,10 @@
           <button type="button" class="ms-2 btn btn-primary"
               @click="addToCart(product.id, qty)">加入購物車</button>
         </div>
+        <div class="d-flex justify-content-end mt-3">
+          <button type="button" class="ms-2 btn btn-outline-cpink"
+              @click="addToFavorite(product.id)">收藏此項目</button>
+        </div>
       </div>
     </div>
     <div class="text-light p-5 bg-dark my-4">
@@ -46,7 +50,7 @@
       <span class="mb-3 h6">{{ product.description }}</span>
     </div>
     <div class="d-flex justify-content-center my-5">
-          <RouterLink to="/products" class="btn btn-outline-secondary" href="#">查看其他行程</RouterLink>
+          <RouterLink to="/products" class="btn btn-outline-secondary">查看其他行程</RouterLink>
     </div>
   </div>
 </template>
@@ -54,6 +58,7 @@
 <script>
 import cartStore from '../../stores/cartStore'
 import loadingStore from '../../stores/loadingStore'
+import favoriteStore from '../../stores/favoriteStore'
 import { mapState, mapActions } from 'pinia'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
@@ -70,6 +75,7 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['addToCart']),
+    ...mapActions(favoriteStore, ['addToFavorite']),
     grtProduct () {
       this.loading = true
       const { id } = this.$route.params

@@ -27,7 +27,7 @@
               <h5 class="d-block"
                 style="padding: 8px 16px; background: rgba(10, 96, 60, 0.8); z-index:3">
               即將額滿</h5>
-              <a href="#" class="d-block favorite"
+              <a href="#" class="d-block favorite" @click.prevent="addToFavorite(product.id)"
               style="height: 36.33px; width: 33.33px; margin-right: 22px; z-index:4;">
               </a>
             </div>
@@ -143,7 +143,8 @@
 
 <script>
 import productsStore from '../../stores/productsStore'
-import { mapState } from 'pinia'
+import favoriteStore from '../../stores/favoriteStore'
+import { mapState, mapActions } from 'pinia'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper'
 // Import Swiper styles
@@ -165,6 +166,9 @@ export default {
   components: {
     Swiper,
     SwiperSlide
+  },
+  methods: {
+    ...mapActions(favoriteStore, ['addToFavorite'])
   },
   mounted () {
     ProductsStore.getAllProducts()

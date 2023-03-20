@@ -62,6 +62,10 @@ const routes = [
       {
         path: 'article/:id',
         component: () => import('../views/front/ArticleView.vue')
+      },
+      {
+        path: 'favorite',
+        component: () => import('../views/front/FavoriteComponent.vue')
       }
     ]
   },
