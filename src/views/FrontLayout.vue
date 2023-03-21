@@ -7,16 +7,47 @@
                 <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink>
                 <!-- .navbar-toggler 漢堡式選單按鈕 -->
                 <div>
-                    <RouterLink to="/cart" class="d-lg-none p-3">
+                    <RouterLink to="/cart" class="d-lg-none p-3 me-2">
                         <span class="position-relative">
-                            <img  src="./../images/icon/icon-carts.svg">
+                            <img  src="./../images/icon/icon-carts.svg" style="width: 24px;">
                             <span v-if="cart.carts?.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.carts?.length}}</span>
                         </span>
                     </RouterLink>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="../images/icon/icon-navbar-toggler.svg" alt="navbar-toggler" ></button>
+
+                    <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="background: #1C1E1D;">
+                      <div class="offcanvas-header">
+                        <h5 id="offcanvasRightLabel"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></h5>
+                        <div>
+                          <RouterLink to="/cart" class="d-lg-none p-2">
+                            <span class="position-relative">
+                                <img  src="./../images/icon/icon-carts.svg" style="width: 24px;">
+                                <span v-if="cart.carts?.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.carts?.length}}</span>
+                            </span>
+                          </RouterLink>
+                          <button type="button" class="btn text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><img src="../images/icon/icon-close.svg" class="nav-logo" alt="logo" style="max-width: 24px;"></button>
+                        </div>
+                      </div>
+                      <div class="offcanvas-body p-4">
+                        <div class="navbar-nav fs-5">
+                            <RouterLink to="/home"
+                            class="nav-link link-white me-4">首頁</RouterLink>
+                            <RouterLink to="/latestEvents"
+                            class="nav-link link-white me-4">最新活動</RouterLink>
+                            <RouterLink to="/hots"
+                            class="nav-link link-white me-4">熱門活動</RouterLink>
+                            <RouterLink to="/products"
+                            class="nav-link link-white me-4">全部行程</RouterLink>
+                            <RouterLink to="/articles"
+                            class="nav-link link-white">文章分享</RouterLink>
+                            <RouterLink to="/favorite"
+                            class="nav-link link-white">我的收藏</RouterLink>
+                            <RouterLink to="/orders"
+                            class="nav-link link-white">訂單查詢</RouterLink>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="collapse navbar-collapse">
                         <div class="navbar-nav fs-5">
                             <RouterLink to="/home"
                             class="nav-link link-white me-4">首頁</RouterLink>
@@ -120,10 +151,19 @@ export default {
 }
 .footer-logo{
   height: 44px;
+  max-width: 193px;
+  object-fit: cover;
 }
 @media(max-width: 768px) {
   .footer-logo{
     height: 37px;
+    max-width: 162px;
+  }
+}
+@media(max-width: 275px) {
+  .footer-logo{
+    height: auto;
+    width: 100%;
   }
 }
 </style>

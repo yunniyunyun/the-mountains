@@ -193,11 +193,18 @@ export default {
 .header-logo{
   margin-top:20vh;
   height: 164px;
+  object-fit: cover;
 }
 @media(max-width: 768px) {
   .header-logo{
     margin-top:20vh;
     height: 94px;
+  }
+}
+@media(max-width: 275px) {
+  .header-logo{
+    height: auto;
+    width: 100%;
   }
 }
 .swiper-slide{
