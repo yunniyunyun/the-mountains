@@ -91,6 +91,12 @@ export default {
     height: 100px;
   }
 }
+@media(max-width: 370px) {
+  .title-img{
+    width: 100%;
+    height: auto;
+  }
+}
 .product-description{
   width: 100%;
   display: -webkit-box;
