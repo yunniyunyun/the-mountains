@@ -143,4 +143,9 @@ export default {
   width: 80px;
 }
 }
+@media(max-width: 370px) {
+  .table-image{
+    display: none;
+  }
+}
 </style>
