@@ -26,10 +26,10 @@
           </div>
         </div>
         <div class="col-md-3 col-lg-2 d-flex d-md-block align-items-center">
-          <p class="p-3 d-none d-lg-block">{{  $filters.date(product.date) }} 加入收藏</p>
-          <button type="button" class="ms-md-2 btn btn-primary" style="width: 160px; height: 38px;"
+          <p class="py-3 d-none d-lg-block">{{  $filters.date(product.date) }} 加入收藏</p>
+          <button type="button" class="ms-md-2 btn btn-primary" style="width: 140px; height: 38px;"
               @click="addToCart(product.product.id)">加入購物車</button>
-          <button type="button" class="ms-3 ms-md-2 btn btn-outline-danger mt-md-3 " style="width: 160px; height: 38px;"
+          <button type="button" class="ms-3 ms-md-2 btn btn-outline-danger mt-md-3 " style="width: 140px; height: 38px;"
               @click="removeFavoriteItem(product.id)">移除收藏</button>
         </div>
       </div>

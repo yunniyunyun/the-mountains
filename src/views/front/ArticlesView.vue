@@ -3,7 +3,7 @@
   <div class="header"></div>
   <div class="container">
     <div class="mt-5"></div>
-    <div class="row row-cols-md-3 row-cols-lg-5 my-3 g-4">
+    <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-5 my-3 g-4">
       <div class="col card-group" v-for="article in articles" :key="article.id">
         <div class="card position-relative">
           <RouterLink :to="`/article/${article.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit;">

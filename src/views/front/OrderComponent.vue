@@ -35,9 +35,9 @@
                     <td>
                       <img
                           :src="item.product.imageUrl"
-                          class="table-image me-3"
+                          class="table-image me-3 d-none d-sm-inline"
                           :alt="item.product.title"
-                          style="height: 100px; object-fit: cover; width: 150px;"
+                          style="height: 100px; object-fit: cover; max-width: 150px;"
                         />
                       {{ item.product.title }}
                     </td>
@@ -68,10 +68,10 @@
           </div>
         </div>
         <div v-else>
-          <div class="mb-3 d-flex justify-content-center align-items-center">
+          <div class="mb-3 d-md-flex justify-content-center align-items-center">
               <label for="origin_price" class="form-label" style="width: 120px;">輸入訂單編號</label>
-              <input id="origin_price" v-model="orederID" type="text" class="form-control" placeholder="請輸入訂單編號" style="width: 280px;">
-              <button type="button" class="btn btn-outline-secondary ms-3" @click="getOrder(orederID)">查詢</button>
+              <input id="origin_price" v-model="orederID" type="text" class="form-control" placeholder="請輸入訂單編號" style="max-width: 280px;">
+              <button type="button" class="btn btn-outline-secondary ms-md-3 mt-4 mt-md-0" @click="getOrder(orederID)">查詢</button>
           </div>
         </div>
       </div>
