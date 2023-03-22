@@ -12757,4 +12757,25 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  content: url(/src/images/icon/swiper-button.svg) !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  top: 0;
+}
+
+.swiper-button-prev {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  left: auto;
+  right: 40px;
+}
+
+.swiper-button-next {
+  right: 0;
+}
 /*# sourceMappingURL=all.css.map */

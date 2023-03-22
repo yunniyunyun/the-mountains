@@ -71,7 +71,15 @@
         <img src="../../images/icon/new.svg" class="home-icon position-absolute top-0 start-0 translate-middle"
         style="z-index: 0;">
         <h2 class="d-inline-block" style=" z-index: 1; min-width: 120px;">最新活動</h2>
-        <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
+        <div style="width: 75%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
+        <div>
+          <button class="btn swiper-prev" style="border: 0px solid rgba(10, 96, 60, 0);">
+            <img src="../../images/icon/swiper-button.svg" alt="" style="transform: scaleX(-1);">
+          </button>
+          <button class="btn swiper-next" style="border: 0px solid rgba(10, 96, 60, 0);">
+            <img src="../../images/icon/swiper-button.svg" alt="">
+          </button>
+        </div>
       </div>
       <swiper
         :breakpoints="{
@@ -97,6 +105,7 @@
                 }
             }"
         :modules="modules"
+        :navigation="latestOptions.navigation"
         class="Swiper2"
       >
         <swiper-slide v-for="product in latestProducts" :key="product.id" style="padding: 0px;">
@@ -161,7 +170,13 @@ const ProductsStore = productsStore()
 export default {
   data () {
     return {
-      modules: [Navigation, Pagination, Autoplay]
+      modules: [Navigation, Pagination, Autoplay],
+      latestOptions: {
+        navigation: {
+          nextEl: '.swiper-next',
+          prevEl: '.swiper-prev'
+        }
+      }
     }
   },
   computed: {
