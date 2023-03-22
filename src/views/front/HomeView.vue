@@ -2,7 +2,8 @@
   <div class="header">
     <div class="container text-center">
       <div><img src="../../images/logo/logo2@3x.png" class="header-logo" alt="logo"></div>
-      <h2 class="text-white mt-5">來一場不一樣的山旅吧</h2>
+      <!-- <h2 class="text-white mt-5">來一場不一樣的山旅吧</h2> -->
+      <div><img src="../../images/title/home-content.png" alt="" class="header-title"></div>
       <!-- <div>搜尋</div> -->
     </div>
   </div>
@@ -210,10 +211,21 @@ export default {
   height: 164px;
   object-fit: cover;
 }
+.header-title{
+  width: 420px;
+}
 @media(max-width: 768px) {
   .header-logo{
     margin-top:20vh;
     height: 94px;
+  }
+  .header-title{
+    width: 320px;
+  }
+}
+@media(max-width: 380px) {
+  .header-title{
+    width: 100%;
   }
 }
 @media(max-width: 275px) {
