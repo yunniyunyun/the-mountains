@@ -71,8 +71,8 @@
         <img src="../../images/icon/new.svg" class="home-icon position-absolute top-0 start-0 translate-middle"
         style="z-index: 0;">
         <h2 class="d-inline-block" style=" z-index: 1; min-width: 120px;">最新活動</h2>
-        <div style="width: 75%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
-        <div>
+        <div class="new-line" style="border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
+        <div class="d-none d-lg-block">
           <button class="btn swiper-prev" style="border: 0px solid rgba(10, 96, 60, 0);">
             <img src="../../images/icon/swiper-button.svg" alt="" style="transform: scaleX(-1);">
           </button>
@@ -261,6 +261,19 @@ export default {
     width: 36px;
     height: 38px;
     top: 10px !important;
+  }
+}
+.new-line{
+  width: 77%;
+}
+@media(max-width: 1200px){
+  .new-line{
+    width: 70%;
+  }
+}
+@media(max-width: 768px){
+  .new-line{
+    width: 80%;
   }
 }
 
