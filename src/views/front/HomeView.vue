@@ -293,6 +293,7 @@ export default {
   position: relative;
   background-image: url(@/images/home/BG-HOT@3x.png);
   background-size: cover;
+  background-attachment: fixed;
   height: 559px;
 }
 .hotlist::before {
