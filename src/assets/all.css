@@ -12778,4 +12778,24 @@ fieldset:disabled .btn {
 .swiper-button-next {
   right: 0;
 }
+
+.swiper-pagination-bullet {
+  width: 20px !important;
+  height: 4px !important;
+  border-radius: 0px !important;
+  opacity: 0.8 !important;
+  background: #BAB8B8 !important;
+}
+
+@media (max-width: 576px) {
+  .swiper-pagination-bullet {
+    display: none !important;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  width: 40px !important;
+  height: 4px !important;
+  background: #1FBA82 !important;
+}
 /*# sourceMappingURL=all.css.map */

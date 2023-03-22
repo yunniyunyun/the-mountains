@@ -46,7 +46,7 @@
     <!-- Swiper -->
     <div>
         <swiper :modules="modules" class="swiper"  :autoplay="{ delay: 50000, disableOnInteraction: false }"
-        :pagination="{ dynamicBullets: true, clickable: true }" style="position: relative; height: 480px;">
+        :pagination="{ clickable: true }" style="position: relative; height: 480px;">
           <swiper-slide class="swiper-slide swiper-slide-1">
               <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
                   <h2>自然之美</h2>
