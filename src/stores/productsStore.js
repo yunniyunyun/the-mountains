@@ -10,9 +10,31 @@ export default defineStore('productsStore', {
   // state, actions, getters
   state: () => ({
     products: [],
-    pages: {}
+    pages: {},
+    categories: [],
+    tempCatrgory: '全部行程'
   }),
   actions: {
+    getCategories () {
+      axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/all`)
+        .then((res) => {
+          const products = res.data.products
+          const categories = products.map((item) => {
+            return item.category
+          })
+          const categoriesList = [...new Set(categories)]
+          this.categories = ['全部行程', ...categoriesList]
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
+        })
+    },
+    changeCategory (category) {
+      this.tempCatrgory = category
+    },
     getProducts (page = 1) {
       loadingTrue()
       axios.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/?page=${page}`)
@@ -60,6 +82,13 @@ export default defineStore('productsStore', {
     },
     latestProducts: ({ products }) => {
       return products.sort((a, b) => a.create_at - b.create_at).slice(0, 5)
+    },
+    changeProducts: ({ tempCatrgory, products }) => {
+      if (tempCatrgory === '全部行程') {
+        return products
+      } else {
+        return products.filter(product => product.category === tempCatrgory)
+      }
     }
   }
 })
