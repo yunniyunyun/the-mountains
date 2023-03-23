@@ -4,7 +4,7 @@
   <div class="container">
     <div class="my-5 row gx-5">
     <div class="col-md-3 col-lg-2 mb-2">
-      <ul class="list-group sticky-md-top" style="top: 12%">
+      <ul class="list-group sticky-md-top" style="top: 20vh; z-index: 0;">
         <li
           class="list-group-item text-light"
           style="cursor: pointer"
@@ -48,7 +48,7 @@
 
 <script>
 import cartStore from '../../stores/cartStore'
-import pagination from '../../components/PaginationVue.vue'
+import pagination from '../../components/FrontPaginationVue.vue'
 import productsStore from '../../stores/productsStore'
 import loadingStore from '../../stores/loadingStore'
 import { mapState, mapActions } from 'pinia'

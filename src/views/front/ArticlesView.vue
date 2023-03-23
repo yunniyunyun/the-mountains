@@ -39,7 +39,7 @@
 
 <script>
 import { RouterLink } from 'vue-router'
-import pagination from '../../components/PaginationVue.vue'
+import pagination from '../../components/FrontPaginationVue.vue'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {
