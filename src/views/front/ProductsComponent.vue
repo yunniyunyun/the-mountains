@@ -2,7 +2,7 @@
   <loadingVue v-model:active="isLoading"/>
   <div class="header"></div>
   <div class="container">
-    <div class="my-5 row gx-5">
+    <div class="my-5 row gx-md-4">
     <div class="col-md-3 col-lg-2 mb-2">
       <ul class="list-group sticky-md-top" style="top: 20vh; z-index: 0;">
         <li
