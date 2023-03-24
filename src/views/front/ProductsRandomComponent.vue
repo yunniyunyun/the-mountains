@@ -4,13 +4,13 @@
   <div class="container">
     <div class="mt-5"></div>
     <h1 class="text-light text-center mb-5 d-none">最新活動</h1>
-    <p class="text-center"><img src="../../images/title/latest-title.png" class="title-img" alt="logo"></p>
+    <p class="text-center"><img src="../../images/title/random-title.png" class="title-img" alt="logo"></p>
     <div class="mb-5">
-      <div class="row py-4 text-light" v-for="product in latestProducts" :key="product.id"
-         style="border-bottom: 1px solid #FFFFFF;">
+      <div class="product-card row py-4 text-light mb-3 shadow position-relative p-0" v-for="product in randomProducts" :key="product.id"
+         style="border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px;">
         <div class="col-md-4">
           <div class="position-relative">
-            <img :src="product.imageUrl" alt="" style="width: 100%;">
+            <img :src="product.imageUrl" alt="" style="width: 100%; max-height: 300px; Object-fit: cover">
             <RouterLink :to="`/product/${product.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit; left: 0;">
             <h4 class="text-center text-light" style="margin-top: 30%;">了解更多</h4>
           </RouterLink>
@@ -35,7 +35,7 @@ import { mapState } from 'pinia'
 const ProductsStore = productsStore()
 export default {
   computed: {
-    ...mapState(productsStore, ['latestProducts', 'pages']),
+    ...mapState(productsStore, ['randomProducts', 'pages']),
     ...mapState(loadingStore, ['isLoading'])
   },
   mounted () {
@@ -96,5 +96,8 @@ export default {
 }
 .more:hover{
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+}
+.product-card:hover{
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.75) !important;
 }
 </style>

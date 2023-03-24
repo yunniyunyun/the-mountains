@@ -24,8 +24,8 @@ const routes = [
         component: () => import('../views/front/ProductsHotComponent.vue')
       },
       {
-        path: 'latestEvents',
-        component: () => import('../views/front/ProductsLatestComponent.vue')
+        path: 'random',
+        component: () => import('../views/front/ProductsRandomComponent.vue')
       },
       {
         path: 'products',

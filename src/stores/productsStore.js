@@ -81,7 +81,10 @@ export default defineStore('productsStore', {
       return products.filter(item => item?.is_hot === 1).slice(0, 4)
     },
     latestProducts: ({ products }) => {
-      return products.sort((a, b) => a.create_at - b.create_at).slice(0, 5)
+      return products.sort((a, b) => a.create_at - b.create_at)
+    },
+    randomProducts: ({ products }) => {
+      return products.sort(() => 0.5 - Math.random()).slice(0, 3)
     },
     changeProducts: ({ tempCatrgory, products }) => {
       if (tempCatrgory === '全部行程') {

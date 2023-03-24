@@ -51,8 +51,8 @@
                         <div class="navbar-nav fs-5">
                             <RouterLink to="/home"
                             class="nav-link link-white me-4">首頁</RouterLink>
-                            <RouterLink to="/latestEvents"
-                            class="nav-link link-white me-4">最新活動</RouterLink>
+                            <RouterLink to="/random"
+                            class="nav-link link-white me-4">找樂趣</RouterLink>
                             <RouterLink to="/hots"
                             class="nav-link link-white me-4">熱門活動</RouterLink>
                             <RouterLink to="/products"
