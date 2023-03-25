@@ -7,13 +7,18 @@
           <div class="progress" style="height: 4px;">
             <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;">1</button>
-          <h5 class="position-absolute" style="top: -26px; left: calc((33% - 5rem)/2); color: #1FBA82;">確認內容</h5>
-          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 33%;">2</button>
-          <h5 class="position-absolute" style="top: -26px; left: calc(32% + (33% - 5rem)/2)">填寫資料</h5>
-          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 66%;">3</button>
-          <h5 class="position-absolute" style="top: -26px; left: calc(65% + (33% - 5rem)/2)">訂單完成</h5>
-          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem ; height:2rem; left: 99%;"></button>
+          <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+          </button>
+          <h5 class="position-absolute" style="top: -26px; left: calc((33% - 5rem)/2); color: #1FBA82;">1.確認內容</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 33%; pointer-events:none">
+          </button>
+          <h5 class="position-absolute" style="top: -26px; left: calc(32% + (33% - 5rem)/2)">2.填寫資料</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem; left: 66%; pointer-events:none"></button>
+          <h5 class="position-absolute" style="top: -26px; left: calc(65% + (33% - 5rem)/2)">3.訂單完成</h5>
+          <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem ; height:2rem; left: 99%; pointer-events:none"></button>
         </div>
       </div>
       <template v-if="Array.isArray(cart.carts) && cart.carts.length">

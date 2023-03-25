@@ -64,12 +64,8 @@ export default defineStore('orderStore', {
           router.push({ path: 'order' })
           loadingFalse()
         })
-        .catch((error) => {
+        .catch(() => {
           loadingFalse()
-          Swal.fire({
-            icon: 'error',
-            title: error.response.data.message
-          })
         })
     },
     getOrder (id) {
