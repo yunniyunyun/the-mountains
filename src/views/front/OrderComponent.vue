@@ -5,10 +5,15 @@
       <div class="text-light" style="width: 60vw;">
         <h2 class="mt-5 text-light text-center mb-3">訂單查詢</h2>
         <hr>
-        <div v-if="!clean">
+        <div v-if="order_id_data.id">
           <h5 class="mb-3">訂單編號: {{ order_id_data.id }}</h5>
           <h5 class="mb-3">訂單狀態:
-            <span class="text-success" v-if="order_id_data.is_paid"> 已付款</span>
+            <span class="text-success" v-if="order_id_data.is_paid">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+            已付款
+          </span>
             <span class="text-danger" v-else style="line-height: 40px;">未付款
               <button type="button" class="btn btn-primary ms-3" @click="payOrder(order_id_data.id)">付款</button>
             </span>
@@ -63,7 +68,7 @@
             </tfoot>
           </table>
           <div class="d-flex justify-content-center mt-4">
-            <button type="button" class="btn btn-outline-secondary me-3" @click="cleanOrder">再查一筆</button>
+            <button type="button" class="btn btn-outline-secondary me-3" @click="order_id_data={}, orederID=''">再查一筆</button>
             <RouterLink to="/products" class="btn btn-outline-secondary" href="#">繼續逛逛</RouterLink>
           </div>
         </div>
@@ -79,28 +84,63 @@
 </template>
 
 <script>
-import loadingStore from '../../stores/loadingStore'
-import orderStore from '../../stores/orderStore'
-import { mapState, mapActions } from 'pinia'
-
-const LoadingStore = loadingStore()
+import Swal from 'sweetalert2'
+const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {
   data () {
     return {
-      orederID: ''
+      isLoading: false,
+      orederID: '',
+      order_id_data: {}
     }
   },
-  computed: {
-    ...mapState(loadingStore, ['isLoading']),
-    ...mapState(orderStore, ['order_id_data', 'clean'])
-  },
   methods: {
-    ...mapActions(orderStore, ['payOrder', 'getOrder', 'cleanOrder'])
+    getOrder (id) {
+      this.isLoading = true
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order/${id}`
+      this.$http.get(url)
+        .then((response) => {
+          this.isLoading = false
+          this.order_id_data = response.data.order
+          if (!this.order_id_data) {
+            Swal.fire({
+              icon: 'error',
+              title: '訂單不存在'
+            })
+          }
+        })
+        .catch((error) => {
+          this.isLoading = false
+          Swal.fire({
+            icon: 'error',
+            title: error.response
+          })
+        })
+    },
+    payOrder (orderId) {
+      this.isLoading = true
+      const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/pay/${orderId}`
+      this.$http.post(url)
+        .then((response) => {
+          this.getOrder(this.order_id_data.id)
+          Swal.fire({
+            icon: 'success',
+            title: '付款成功'
+          })
+          this.isLoading = false
+        })
+        .catch((error) => {
+          this.isLoading = false
+          Swal.fire({
+            icon: 'error',
+            title: error.response.data.message
+          })
+        })
+    }
   },
   mounted () {
-    LoadingStore.loadingTrue()
-    LoadingStore.loadingFalse()
+
   }
 }
 </script>

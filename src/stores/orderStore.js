@@ -21,8 +21,7 @@ export default defineStore('orderStore', {
       message: ''
     },
     order_data: {},
-    order_id_data: {},
-    clean: true
+    order_id_data: {}
   }),
   actions: {
     payOrder (orderId) {
@@ -69,7 +68,6 @@ export default defineStore('orderStore', {
         })
     },
     getOrder (id) {
-      this.clean = false
       loadingTrue()
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order/${id}`
       axios.get(url)
@@ -90,9 +88,6 @@ export default defineStore('orderStore', {
             title: error.response
           })
         })
-    },
-    cleanOrder () {
-      this.clean = true
     }
   }
 })
