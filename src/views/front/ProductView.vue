@@ -16,6 +16,12 @@
                           {{ label }}
           </span>
         </div>
+        <h5 class="text-secondary mb-3" v-if="product.start_time != product.end_time">
+          {{ $filters.date(product.start_time) }} - {{ $filters.date(product.end_time) }}
+        </h5>
+        <h5 class="text-secondary mb-3" v-else>
+          {{ $filters.date(product.start_time) }}
+        </h5>
         <div class="h5 text-end" v-if="product.price === product.origin_price">{{ product.price }} 元</div>
         <div v-else class="d-flex align-items-end justify-content-end">
           <del class="h6 me-2"> NT$ {{ product.origin_price }} 元</del>
@@ -37,6 +43,8 @@
           @click="removeFavoriteItem(favoriteIDs?.favorite[favoriteIDs.product.findIndex((item) => item === product.id)])">已收藏</button>
           <button v-else type="button" class="ms-2 btn btn-outline-cpink"
               @click="addToFavorite(product.id)">收藏此項目</button>
+          <button type="button" class="ms-2 btn btn-danger"
+              @click="toCartPage(product.id, qty)">直接購買</button>
         </div>
       </div>
     </div>
@@ -78,7 +86,7 @@ export default {
     ...mapState(favoriteStore, ['favoriteIDs'])
   },
   methods: {
-    ...mapActions(cartStore, ['addToCart']),
+    ...mapActions(cartStore, ['addToCart', 'toCartPage']),
     ...mapActions(favoriteStore, ['addToFavorite', 'removeFavoriteItem']),
     grtProduct () {
       this.loading = true

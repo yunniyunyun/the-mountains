@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import loadingStore from './loadingStore.js'
+import router from '@/router'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 const { loadingTrue, loadingFalse } = loadingStore()
 
@@ -28,6 +29,19 @@ export default defineStore('cartStore', {
             timer: 1000,
             title: '加入購物車'
           })
+          loadingFalse()
+        })
+    },
+    toCartPage (id, qty = 1) {
+      loadingTrue()
+      const data = {
+        product_id: id,
+        qty
+      }
+      axios.post(`${VITE_APP_URL}/api/${VITE_APP_PATH}/cart`, { data })
+        .then(() => {
+          this.getCarts()
+          router.push({ path: '/cart' })
           loadingFalse()
         })
     },
