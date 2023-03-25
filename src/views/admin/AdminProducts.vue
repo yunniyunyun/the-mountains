@@ -178,6 +178,18 @@
                       </div>
                     </div>
                     <!-- 標籤結束 -->
+                    <div class="row">
+                      <div class="mb-3 col-md-4">
+                        <label for="start_time" class="form-label">開始日期</label>
+                        <input type="date" class="form-control col" id="start_time"
+                          v-model="start_time">
+                      </div>
+                      <div class="mb-3 col-md-4">
+                        <label for="end_time" class="form-label">結束日期</label>
+                        <input type="date" class="form-control col" id="end_time"
+                          v-model="end_time">
+                      </div>
+                    </div>
 
                     <div class="row">
                     <div class="mb-3 col-md-4">
@@ -283,6 +295,8 @@ export default {
       products: [],
       tempProduct: {
         create_at: new Date().getTime() / 1000,
+        start_time: new Date().getTime() / 1000,
+        end_time: new Date().getTime() / 1000,
         unit: '人',
         tag: []
       },
@@ -301,6 +315,8 @@ export default {
       },
       // custom
       create_at: new Date().getTime() / 1000,
+      start_time: new Date().getTime() / 1000,
+      end_time: new Date().getTime() / 1000,
       Images: ''
     }
   },
@@ -414,6 +430,8 @@ export default {
       if (state === 'new') {
         this.tempProduct = {
           create_at: new Date().getTime() / 1000,
+          start_time: new Date().getTime() / 1000,
+          end_time: new Date().getTime() / 1000,
           unit: '人',
           tag: []
         }
@@ -459,12 +477,32 @@ export default {
       const dateAndTime = new Date(this.tempProduct.create_at * 1000)
         .toISOString().split('T');
       [this.create_at] = dateAndTime
+      if (this.tempProduct.start_time) {
+        const startDateAndTime = new Date(this.tempProduct.start_time * 1000)
+          .toISOString().split('T');
+        [this.start_time] = startDateAndTime
+      } else {
+        [this.start_time] = ''
+      }
+      if (this.tempProduct.end_time) {
+        const endDateAndTime = new Date(this.tempProduct.end_time * 1000)
+          .toISOString().split('T');
+        [this.end_time] = endDateAndTime
+      } else {
+        [this.end_time] = ''
+      }
       if (!this.tempProduct.tag) {
         this.tempProduct.tag = []
       }
     },
     create_at () {
       this.tempProduct.create_at = Math.floor(new Date(this.create_at) / 1000)
+    },
+    start_time () {
+      this.tempProduct.start_time = Math.floor(new Date(this.start_time) / 1000)
+    },
+    end_time () {
+      this.tempProduct.end_time = Math.floor(new Date(this.end_time) / 1000)
     }
   },
   components: {

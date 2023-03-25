@@ -65,6 +65,16 @@ export default defineStore('productsStore', {
           })
           loadingFalse()
         })
+    },
+    sortProduct (isSort = true) {
+      console.log('this.changeProducts', this.changeProducts)
+      if (isSort) {
+        this.changeProducts.sort((a, b) => a.create_at - b.create_at)
+        console.log(this.changeProducts)
+      } else {
+        this.changeProducts.sort((a, b) => b.create_at - a.create_at)
+        console.log(this.changeProducts)
+      }
     }
   },
   getters: {
@@ -81,7 +91,7 @@ export default defineStore('productsStore', {
       return products.filter(item => item?.is_hot === 1).slice(0, 4)
     },
     latestProducts: ({ products }) => {
-      return products.sort((a, b) => a.create_at - b.create_at)
+      return products.sort((a, b) => a.create_at - b.create_at).slice(0, 5)
     },
     randomProducts: ({ products }) => {
       return products.sort(() => 0.5 - Math.random()).slice(0, 3)

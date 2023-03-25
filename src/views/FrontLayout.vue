@@ -1,7 +1,6 @@
 <template>
   <header>
     <div class="container fixed-top" style="z-index: 10;">
-        <!-- FIXME: 移動出現底色 -->
         <nav class="navbar navbar-expand-lg navbar-dark p-3">
             <div class="container-fluid">
                 <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink>

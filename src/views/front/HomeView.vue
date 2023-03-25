@@ -119,6 +119,12 @@
                 style="height: 200px;"
                 />
               <div class="p-3 d-flex flex-column justify-content-between" style="height: calc(100% - 200px);">
+                <h6 class="text-secondary mb-3" v-if="product.start_time != product.end_time">
+                  {{ $filters.date(product.start_time) }} - {{ $filters.date(product.end_time) }}
+                </h6>
+                <h6 class="text-secondary mb-3" v-else>
+                  {{ $filters.date(product.start_time) }}
+                </h6>
                 <h4 class="card-title mb-auto">
                   {{product.title}}
                 </h4>
