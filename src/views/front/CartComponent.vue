@@ -16,12 +16,13 @@
           <button type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem ; height:2rem; left: 99%;"></button>
         </div>
       </div>
-      <h2 class="mt-5 text-light text-center mb-3">購物車內容</h2>
-      <div class="text-end">
-          <!-- <button class="btn btn-outline-danger" type="button"
-                  @click="deleteCarts">清空購物車</button> -->
-            </div>
-          <table class="table align-middle text-light">
+      <template v-if="Array.isArray(cart.carts) && cart.carts.length">
+        <h2 class="mt-5 text-light text-center mb-3">購物車內容</h2>
+        <div class="text-end">
+          <button class="btn btn-outline-danger" type="button"
+                  @click="deleteCarts">清空購物車</button>
+        </div>
+        <table class="table align-middle text-light">
           <thead>
               <tr>
               <th></th>
@@ -86,15 +87,18 @@
               <td class="text-end text-success">{{ cart.final_total }}</td>
               </tr>
           </tfoot>
-      </table>
-      <div class="d-flex justify-content-end mt-4">
-        <RouterLink to="/products" class="btn btn-outline-primary me-2">繼續購物</RouterLink>
-        <template v-if="cart.length !== 0">
-          <template v-if="cart.carts.length !== 0">
-            <RouterLink to="/checkout" class="btn btn-primary">下一步 | 填寫資料</RouterLink>
-          </template>
-        </template>
-      </div>
+        </table>
+        <div class="d-flex justify-content-end mt-4">
+          <RouterLink to="/products" class="btn btn-outline-primary me-2">繼續購物</RouterLink>
+          <RouterLink to="/checkout" class="btn btn-primary">下一步 | 填寫資料</RouterLink>
+        </div>
+      </template>
+      <template v-else>
+        <p class="text-center"><img src="../../images/title/cart-empty-title.png" class="title-img" alt="logo"></p>
+        <div class="d-flex justify-content-center" style="margin-top: -24px;">
+          <RouterLink to="/products" class="btn btn-primary me-2 btn-lg">挑行程</RouterLink>
+        </div>
+      </template>
     </div>
 </template>
 
@@ -117,7 +121,7 @@ export default {
     ...mapState(loadingStore, ['isLoading'])
   },
   methods: {
-    ...mapActions(cartStore, ['deleteCart', 'updateCart', 'getCarts'])
+    ...mapActions(cartStore, ['deleteCart', 'updateCart', 'getCarts', 'deleteCarts'])
   },
   mounted () {
     CartStore.getCarts()
@@ -131,6 +135,25 @@ export default {
   background-position: 50% 23% ;
   background-size: cover;
   height: 30vh;
+}
+.title-img{
+  height: 300px;
+}
+@media(max-width: 768px) {
+  .title-img{
+    height: 250px;
+  }
+}
+@media(max-width: 576px) {
+  .title-img{
+    height: 200px;
+  }
+}
+@media(max-width: 370px) {
+  .title-img{
+    width: 100%;
+    height: auto;
+  }
 }
 .table-image{
   height: 100px;

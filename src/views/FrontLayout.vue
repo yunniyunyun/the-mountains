@@ -86,7 +86,7 @@
     <span style="color: #1FBA82; ">TOP</span>
   </a>
   <!-- 表尾 -->
-  <footer class="bg-gray2">
+  <footer class="bg-gray2 footer">
       <div class="container text-center text-secondary pt-4 pb-3 pt-sm-5 pb-sm-4">
           <a href="#"><img class="footer-logo" src="../images/logo/山岳。山悅.png" alt="logo"></a>
           <div class="mt-4">
