@@ -81,8 +81,8 @@
     <!-- <RouterLink to="/cart">購物車</RouterLink> | -->
   <RouterView></RouterView>
   <!-- 回到頂端 -->
-  <a href="#" class="p-2 d-flex flex-column align-items-center" style="text-decoration: none; border: 1px solid #1FBA82; position: fixed; z-index: 6; bottom: 50px; right: 50px;"  @click.prevent="scrollToTop">
-    <img class="d-block" src="./../images/icon/top.svg" style="width: 16px;">
+  <a href="#" class="top p-2 d-flex flex-column align-items-center" @click.prevent="scrollToTop">
+    <img class="d-block" src="./../images/icon/top.svg">
     <span style="color: #1FBA82; ">TOP</span>
   </a>
   <!-- 表尾 -->
@@ -161,6 +161,27 @@ export default {
   .footer-logo{
     height: auto;
     width: 100%;
+  }
+}
+.top{
+  text-decoration: none;
+  border: 1px solid #1FBA82;
+  position: fixed;
+  z-index: 6;
+  bottom: 50px;
+  right: 50px;
+}
+.top > img{
+  width: 16px;
+}
+@media(max-width: 768px) {
+  .top{
+    right: 24px;
+    bottom: 144px;
+    font-size: 12px
+  }
+  .top > img{
+    width: 12px;
   }
 }
 </style>
