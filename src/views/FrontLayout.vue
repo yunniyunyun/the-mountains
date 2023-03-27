@@ -16,7 +16,7 @@
 
                     <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="background: #1C1E1D;">
                       <div class="offcanvas-header">
-                        <h5 id="offcanvasRightLabel"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></h5>
+                        <h5 id="offcanvasRightLabel"><RouterLink to="/" @click="removeShow"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink></h5>
                         <div>
                           <RouterLink to="/cart" class="d-lg-none p-2">
                             <span class="position-relative">
@@ -29,20 +29,18 @@
                       </div>
                       <div class="offcanvas-body p-4">
                         <div class="navbar-nav fs-5">
-                            <RouterLink to="/home"
-                            class="nav-link link-white me-4">首頁</RouterLink>
-                            <RouterLink to="/latestEvents"
-                            class="nav-link link-white me-4">最新活動</RouterLink>
+                            <RouterLink to="/random"
+                            class="nav-link link-white" @click="removeShow">找樂趣</RouterLink>
                             <RouterLink to="/hots"
-                            class="nav-link link-white me-4">熱門活動</RouterLink>
+                            class="nav-link link-white" @click="removeShow">熱門活動</RouterLink>
                             <RouterLink to="/products"
-                            class="nav-link link-white me-4">全部行程</RouterLink>
+                            class="nav-link link-white" @click="removeShow">全部行程</RouterLink>
                             <RouterLink to="/articles"
-                            class="nav-link link-white">文章分享</RouterLink>
+                            class="nav-link link-white" @click="removeShow">文章分享</RouterLink>
                             <RouterLink to="/favorite"
-                            class="nav-link link-white">我的收藏</RouterLink>
+                            class="nav-link link-white" @click="removeShow">我的收藏</RouterLink>
                             <RouterLink to="/orders"
-                            class="nav-link link-white">訂單查詢</RouterLink>
+                            class="nav-link link-white" @click="removeShow">訂單查詢</RouterLink>
                         </div>
                       </div>
                     </div>
@@ -124,6 +122,15 @@ export default {
   methods: {
     scrollToTop () {
       window.scrollTo(0, 0)
+    },
+    removeShow () {
+      let classVal = document.getElementById('offcanvasRight').getAttribute('class')
+      classVal = classVal.replace('show', '')
+      document.getElementById('offcanvasRight').setAttribute('class', classVal)
+      // offcanvas-backdrop
+      let classVal2 = document.getElementsByClassName('offcanvas-backdrop')[0].getAttribute('class')
+      classVal2 = classVal2.replace('show', '')
+      document.getElementsByClassName('offcanvas-backdrop')[0].setAttribute('class', classVal2)
     }
   },
   mounted () {
