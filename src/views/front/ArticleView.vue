@@ -16,6 +16,17 @@
       <p style="color: #438f73;">{{ $filters.date(article.create_at) }}</p>
       <p v-html="article.content" class="p-5 container" style="word-break: break-all;"></p>
     </div>
+    <div class="d-flex justify-content-between mb-3">
+      <template v-if="preArticle.id">
+        <a href="#" class="btn btn-outline-secondary" @click.prevent="changePage(preArticle.id)">前一篇</a>
+      </template>
+      <template v-else>
+        <div></div>
+      </template>
+      <template v-if="nextArticle.id">
+        <a href="#" class="btn btn-outline-secondary" @click.prevent="changePage(nextArticle.id)">後一篇</a>
+      </template>
+    </div>
     <div class="d-flex justify-content-center mb-5">
           <RouterLink to="/articles" class="btn btn-outline-secondary" href="#">回文章分享</RouterLink>
     </div>
@@ -29,7 +40,9 @@ export default {
   data () {
     return {
       isLoading: false,
-      article: []
+      article: {},
+      preArticle: {},
+      nextArticle: {}
     }
   },
   methods: {
@@ -39,9 +52,36 @@ export default {
       this.$http.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/article/${id}`)
         .then((res) => {
           this.article = res.data.article
+          this.getArticles()
           this.isLoading = false
         })
+    },
+    getArticles () {
+      this.$http.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/articles`)
+        .then((res) => {
+          const articlesList = res.data.articles
+          const index = articlesList.findIndex((item) => item.id === this.article.id)
+          if (articlesList[index - 1]) {
+            this.preArticle = articlesList[index - 1]
+          } else {
+            this.preArticle = {}
+          }
+          if (articlesList[index + 1]) {
+            this.nextArticle = articlesList[index + 1]
+          } else {
+            this.nextArticle = {}
+          }
+        })
+        .catch((error) => {
+          console.dir(error)
+        })
+    },
+    changePage (id) {
+      this.$router.push(`/article/${id}`)
     }
+  },
+  watch: {
+    $route: 'getArticle'
   },
   mounted () {
     this.isLoading = true
