@@ -4,10 +4,10 @@
   <div class="header"></div>
   <div class="container">
     <div class="row mt-5 ">
-      <div class="col-5">
+      <div class="col-md-5 mb-3 mb-md-0">
         <img :src="product.imageUrl" class="img-fluid" alt="" style="width: 100%; height: 280px; object-fit: cover;">
       </div>
-      <div class="col-7 text-light">
+      <div class="col-md-7 text-light">
         <h1 class="mb-2">{{ product.title }}</h1>
         <div class="mb-3" v-if="product.tag">
           <span class="badge bg-primary me-2" style="font-size: 14px;"

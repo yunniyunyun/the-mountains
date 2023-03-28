@@ -18,7 +18,7 @@
                       <div class="offcanvas-header">
                         <h5 id="offcanvasRightLabel"><RouterLink to="/" @click="removeShow"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink></h5>
                         <div>
-                          <RouterLink to="/cart" class="d-lg-none p-2">
+                          <RouterLink to="/cart" class="d-lg-none p-2"  @click="removeShow">
                             <span class="position-relative">
                                 <img  src="./../images/icon/icon-carts.svg" style="width: 24px;">
                                 <span v-if="cart.carts?.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.carts?.length}}</span>
