@@ -43,6 +43,9 @@
         </svg>
       </div>
       <p class="h5">目前無收藏項目</p>
+      <div class="d-flex justify-content-center">
+          <RouterLink to="/products" class="btn btn-primary btn-lg">找行程</RouterLink>
+      </div>
     </div>
   </div>
 </template>
