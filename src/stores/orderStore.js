@@ -41,6 +41,7 @@ export default defineStore('orderStore', {
             icon: 'error',
             title: error.response.data.message
           })
+          loadingFalse()
         })
     },
     createOrder () {

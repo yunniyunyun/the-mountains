@@ -26,7 +26,7 @@
             <div>地址: {{ order_id_data.user.address }}</div>
           </div>
           <h5>訂單內容: </h5>
-          <table class="table align-middle text-light">
+          <table class="table align-middle text-light d-none d-md-block">
             <thead>
                 <tr>
                 <th>品名</th>
@@ -38,13 +38,15 @@
             <tbody>
                 <tr v-for="item in order_id_data.products" :key="item.id">
                     <td>
-                      <img
-                          :src="item.product.imageUrl"
-                          class="table-image me-3 d-none d-sm-inline"
-                          :alt="item.product.title"
-                          style="height: 100px; object-fit: cover; max-width: 150px;"
-                        />
-                      {{ item.product.title }}
+                      <div class="row row-cols-1 row-cols-lg-2">
+                        <img
+                            :src="item.product.imageUrl"
+                            class="table-image d-none d-sm-inline col pe-0"
+                            :alt="item.product.title"
+                            style="height: 100px; object-fit: cover; max-width: 150px;"
+                          />
+                        <p class="col mt-1 mt-lg-0">{{ item.product.title }}</p>
+                      </div>
                     </td>
                     <td>
                       {{ item.product.price }}
@@ -67,6 +69,27 @@
                 </tr>
             </tfoot>
           </table>
+          <div class="d-md-none">
+            <div class="d-flex justify-content-center align-items-center mb-3" v-for="item in order_id_data.products" :key="item.id">
+              <div class="bg-dark text-light" style="width: 100%;">
+                  <div class="position-relative"><img
+                  :src="item.product.imageUrl"
+                  alt="..."
+                  style="width: 100%; height: 160px; object-fit:cover"
+                  /><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white" style="font-size: 16px;">{{ item.qty }}</span>
+                </div>
+                <div class="d-flex flex-column p-3 justify-content-center">
+                  <h5 class="mb-2">
+                    {{ item.product.title }}
+                  </h5>
+                  <p class="mb-2 text-end">
+                    {{ item.final_total }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <h5 class="mt-3 text-end">總計: {{ order_id_data.total }}</h5>
+          </div>
           <div class="d-flex justify-content-center mt-4">
             <button type="button" class="btn btn-outline-secondary me-3" @click="order_id_data={}, orederID=''">再查一筆</button>
             <RouterLink to="/products" class="btn btn-outline-secondary" href="#">繼續逛逛</RouterLink>
@@ -101,14 +124,15 @@ export default {
       const url = `${VITE_APP_URL}/api/${VITE_APP_PATH}/order/${id}`
       this.$http.get(url)
         .then((response) => {
-          this.isLoading = false
           this.order_id_data = response.data.order
           if (!this.order_id_data) {
+            this.isLoading = false
             Swal.fire({
               icon: 'error',
               title: '訂單不存在'
             })
           }
+          this.isLoading = false
         })
         .catch((error) => {
           this.isLoading = false

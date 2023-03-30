@@ -27,6 +27,7 @@
           <button class="btn btn-outline-danger" type="button"
                   @click="deleteCarts">清空購物車</button>
         </div>
+        <div class="d-none d-sm-block">
         <table class="table align-middle text-light">
           <thead>
               <tr>
@@ -49,12 +50,14 @@
                     </button>
                   </td>
                   <td>
-                    <RouterLink :to="`/product/${item.product.id}`"><img
-                        :src="item.product.imageUrl"
-                        class="table-image me-3"
-                        :alt="item.product.title"
-                      /></RouterLink>
-                    {{ item.product.title }}
+                    <div class="d-md-flex">
+                      <RouterLink :to="`/product/${item.product.id}`"><img
+                          :src="item.product.imageUrl"
+                          class="table-image me-3"
+                          :alt="item.product.title"
+                        /></RouterLink>
+                      <p>{{ item.product.title }}</p>
+                    </div>
                   </td>
                   <td>
                     {{ item.product.price }}
@@ -93,6 +96,42 @@
               </tr>
           </tfoot>
         </table>
+        </div>
+        <div class="d-sm-none text-light p-3">
+            <div class="d-flex justify-content-center align-items-center mb-3" v-for="item in cart.carts" :key="item.id">
+              <div class="bg-dark text-light" style="width: 100%;">
+                  <div><img
+                  :src="item.product.imageUrl"
+                  alt="..."
+                  style="width: 100%; height: 160px; object-fit:cover"
+                  />
+                  </div>
+                <div class="d-flex flex-column p-3 justify-content-center">
+                  <h5 class="mb-2">
+                    {{ item.product.title }}
+                  </h5>
+                  <p>單價: {{ item.product.price }}</p>
+                  <div class="mb-2 text-end d-flex justify-content-between align-items-star">
+                    <div class="input-group input-group-sm" style="width: 120px;">
+                        <select name="" id="" class="form-select" v-model="item.qty"
+                        :disabled="item.id === loadingItem"
+                        @change="(e) => updateCart(item)">
+                        <template v-if="item.qty <= 10">
+                          <option :value="i" v-for="i in 10" :key="`${i}qty`">{{ i }}</option>
+                        </template>
+                        <template v-else>
+                          <option :value="i" v-for="i in item.qty" :key="i + 'qty'">{{ i }}</option>
+                        </template>
+                        </select>
+                    </div>
+                    <p class="mb-0 h5"><small class="text-success ">小計：</small> {{ item.final_total }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h5 class="mt-3 text-end">總計: {{ cart.total }}</h5>
+            <h5 class="mt-3 text-end text-success">折扣價: {{ cart.final_total }}</h5>
+      </div>
         <div class="d-flex justify-content-end mt-4">
           <RouterLink to="/products" class="btn btn-outline-primary me-2">繼續購物</RouterLink>
           <RouterLink to="/checkout" class="btn btn-primary">下一步 | 填寫資料</RouterLink>
