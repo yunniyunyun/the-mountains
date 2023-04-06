@@ -11,7 +11,7 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue']
     })
   ],
-  base: '/the-mountains/',
+  base: process.env.NODE_ENV === 'production' ? '/the-mountains/' : '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
