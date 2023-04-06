@@ -1,1 +1,0 @@
-import{b7 as e,ak as t,m as o}from"./_plugin-vue_export-helper-21b08155.js";const s={};function a(c,n,r,p,_,i){return t(),o("h1",null,"This is About page.")}const f=e(s,[["render",a]]);export{f as default};
