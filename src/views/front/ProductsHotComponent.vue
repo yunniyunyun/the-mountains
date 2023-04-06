@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-4">
           <div class="position-relative">
-            <img :src="product.imageUrl" alt="" style="width: 100%;">
+            <img :src="product.imageUrl" :alt="product.title" style="width: 100%;">
             <RouterLink :to="`/product/${product.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit; left: 0;">
             <h4 class="text-center text-light" style="margin-top: 30%;">了解更多</h4>
           </RouterLink>

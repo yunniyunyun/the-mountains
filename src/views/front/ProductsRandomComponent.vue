@@ -10,7 +10,7 @@
          style="border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px;">
         <div class="col-md-4">
           <div class="position-relative">
-            <img :src="product.imageUrl" alt="" style="width: 100%; max-height: 300px; Object-fit: cover">
+            <img :src="product.imageUrl" :alt="product.title" style="width: 100%; max-height: 300px; Object-fit: cover">
             <RouterLink :to="`/product/${product.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit; left: 0;">
             <h4 class="text-center text-light" style="margin-top: 30%;">了解更多</h4>
           </RouterLink>

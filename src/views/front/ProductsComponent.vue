@@ -27,7 +27,7 @@
             <img
               :src="product.imageUrl"
               class="card-img-top"
-              alt="..."
+              :alt="product.title"
               style="height: 150px;"
             />
             <div class="card-body d-flex flex-column">

@@ -74,7 +74,7 @@
               <div class="bg-dark text-light" style="width: 100%;">
                   <div class="position-relative"><img
                   :src="item.product.imageUrl"
-                  alt="..."
+                  :alt="item.product.title"
                   style="width: 100%; height: 160px; object-fit:cover"
                   /><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white" style="font-size: 16px;">{{ item.qty }}</span>
                 </div>

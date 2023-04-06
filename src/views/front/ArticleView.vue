@@ -3,7 +3,7 @@
   <div class="header"></div>
   <div class="container">
     <div class="mt-5 mb-3 d-flex flex-column justify-content-center align-items-center text-light" style="border: 2px solid #373737; box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.16); background: #373737;">
-      <img :src="article.imageUrl" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">
+      <img :src="article.imageUrl" class="img-fluid" :alt="article.title" style="width: 100%; height: 500px; object-fit: cover;">
       <div class="mt-3">
         <span class="badge bg-primary me-1" style="font-size: 14px;"
             v-for="(label, key) in article.tag"
@@ -29,7 +29,7 @@
           <div class="d-flex bg-dark text-light article-content" style="border-radius: 10px;">
             <img
               :src="preArticle.imageUrl"
-              alt="..."
+              :alt="preArticle.title"
               style="border-radius: 10px 0px 0px 10px;"
               />
             <div class="d-flex flex-column p-3 justify-content-center" style="width: 240px;">
@@ -67,7 +67,7 @@
             </div>
             <img
               :src="nextArticle.imageUrl"
-              alt="..."
+              :alt="nextArticle.title"
               style="border-radius: 0px 10px 10px 0px;"
               />
           </div>

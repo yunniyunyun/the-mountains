@@ -3,15 +3,16 @@
     <div class="container text-center">
       <div><img src="../../images/logo/logo2@3x.png" class="header-logo" alt="logo"></div>
       <!-- <h2 class="text-white mt-5">來一場不一樣的山旅吧</h2> -->
-      <div><img src="../../images/title/home-content.png" alt="" class="header-title"></div>
+      <div><img src="../../images/title/home-content.png" alt="來一場不一樣的山旅吧" class="header-title"></div>
       <!-- <div>搜尋</div> -->
     </div>
   </div>
   <div class="hotlist text-light">
     <div class="container content">
       <div class="home-title d-flex justify-content-between align-items-center position-relative">
-        <img src="../../images/icon/hot.svg" class="home-icon position-absolute top-0 start-0 translate-middle"
-        style="z-index: 0;">
+        <img src="../../images/icon/hot.svg" alt="icon-hot"
+        class="home-icon position-absolute top-0 start-0 translate-middle"
+        style="z-index: 0;" >
         <h2 class="d-inline-block" style=" z-index: 1; min-width: 120px;">熱門活動</h2>
         <div style="width: 88%; border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
       </div>
@@ -69,16 +70,17 @@
     </div>
     <div class="container content text-light">
       <div class="home-title d-flex justify-content-between align-items-center position-relative">
-        <img src="../../images/icon/new.svg" class="home-icon position-absolute top-0 start-0 translate-middle"
+        <img src="../../images/icon/new.svg" alt="icon-new"
+        class="home-icon position-absolute top-0 start-0 translate-middle"
         style="z-index: 0;">
         <h2 class="d-inline-block" style=" z-index: 1; min-width: 120px;">最新活動</h2>
         <div class="new-line" style="border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
         <div class="d-none d-lg-block">
           <button type="button" class="btn swiper-prev" style="border: 0px solid rgba(10, 96, 60, 0);">
-            <img src="../../images/icon/swiper-button.svg" alt="" style="transform: scaleX(-1);">
+            <img src="../../images/icon/swiper-button.svg" alt="button-prev" style="transform: scaleX(-1);">
           </button>
           <button type="button" class="btn swiper-next" style="border: 0px solid rgba(10, 96, 60, 0);">
-            <img src="../../images/icon/swiper-button.svg" alt="">
+            <img src="../../images/icon/swiper-button.svg" alt="button-next">
           </button>
         </div>
       </div>
@@ -115,7 +117,7 @@
               <img
                 :src="product.imageUrl"
                 class="card-img-top"
-                alt="..."
+                :alt="product.title"
                 style="height: 200px;"
                 />
               <div class="p-3 d-flex flex-column justify-content-between" style="height: calc(100% - 200px);">
@@ -144,7 +146,7 @@
     <ul class="home-products text-light container mt-5" style="list-style-type: none;">
       <li v-for="product in homeProducts" :key="product.id" class="mb-5">
         <div class="home-product position-relative row d-flex">
-          <img class="col-md-7" :src="product.imageUrl" alt="">
+          <img class="col-md-7" :src="product.imageUrl" :alt="product.title">
           <div class="home-product-content top-50 end-0 col-11 col-md-6 p-4"
           style="background: rgba(55, 55, 55, 0.4); backdrop-filter: blur(6px);">
             <h5 class="d-inline-block mb-3"

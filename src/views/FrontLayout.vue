@@ -8,7 +8,7 @@
                 <div>
                     <RouterLink to="/cart" class="d-lg-none p-3 me-2">
                         <span class="position-relative">
-                            <img  src="./../images/icon/icon-carts.svg" style="width: 24px;">
+                            <img alt="icon-carts" src="./../images/icon/icon-carts.svg" style="width: 24px;">
                             <span v-if="cart.carts?.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.carts?.length}}</span>
                         </span>
                     </RouterLink>
@@ -20,11 +20,11 @@
                         <div>
                           <RouterLink to="/cart" class="d-lg-none p-2"  @click="removeShow">
                             <span class="position-relative">
-                                <img  src="./../images/icon/icon-carts.svg" style="width: 24px;">
+                                <img alt="icon-carts" src="./../images/icon/icon-carts.svg" style="width: 24px;">
                                 <span v-if="cart.carts?.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.carts?.length}}</span>
                             </span>
                           </RouterLink>
-                          <button type="button" class="btn text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><img src="../images/icon/icon-close.svg" class="nav-logo" alt="logo" style="max-width: 24px;"></button>
+                          <button type="button" class="btn text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><img src="../images/icon/icon-close.svg" class="nav-logo" alt="icon-close" style="max-width: 24px;"></button>
                         </div>
                       </div>
                       <div class="offcanvas-body p-4">
@@ -58,16 +58,18 @@
                     </div>
                 </div>
                 <div class="d-none d-lg-inline">
-                    <a href="#" class="p-2 me-2 d-inline-block"><img src="./../images/icon/icon-search.svg"></a>
+                    <a href="#" class="p-2 me-2 d-inline-block">
+                      <img alt="icon-search" src="./../images/icon/icon-search.svg">
+                    </a>
                     <RouterLink to="/favorite" class="p-2 me-2 d-xl-inline-block d-none">
-                            <img  src="./../images/icon/icon-hearts.svg">
+                            <img alt="icon-hearts" src="./../images/icon/icon-hearts.svg">
                     </RouterLink>
                     <RouterLink to="/orders" class="p-2 me-2 d-inline-block">
-                            <img  src="./../images/icon/icon-orders.svg">
+                            <img alt="icon-orders" src="./../images/icon/icon-orders.svg">
                     </RouterLink>
                     <RouterLink to="/cart" class="p-2 d-inline-block">
                         <span class="position-relative">
-                            <img  src="./../images/icon/icon-carts.svg">
+                            <img alt="icon-carts" src="./../images/icon/icon-carts.svg">
                             <span v-if="cart.carts?.length!=0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{cart.carts?.length}}</span>
                         </span>
                     </RouterLink>
@@ -80,7 +82,7 @@
   <RouterView />
   <!-- 回到頂端 -->
   <a href="#" class="top p-2 d-flex flex-column align-items-center" @click.prevent="scrollToTop">
-    <img class="d-block" src="./../images/icon/top.svg">
+    <img alt="top" class="d-block" src="./../images/icon/top.svg">
     <span style="color: #1FBA82; ">TOP</span>
   </a>
   <!-- 表尾 -->

@@ -12,7 +12,7 @@
         <div class="col-md-3">
           <div class="position-relative">
             <p class="p-0 mb-0 d-lg-none text-secondary">{{  $filters.date(product.date) }} 收藏</p>
-            <img :src="product.product.imageUrl" alt="" style="width: 100%;">
+            <img :src="product.product.imageUrl" :alt="product.product.title" style="width: 100%;">
             <RouterLink :to="`/product/${product.productId}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit; left: 0;">
             <h4 class="text-center text-light" style="margin-top: 30%;">了解更多</h4>
           </RouterLink>

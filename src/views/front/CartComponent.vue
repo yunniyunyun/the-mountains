@@ -102,7 +102,7 @@
               <div class="bg-dark text-light" style="width: 100%;">
                   <div><img
                   :src="item.product.imageUrl"
-                  alt="..."
+                  :alt="item.product.title"
                   style="width: 100%; height: 160px; object-fit:cover"
                   />
                   </div>
