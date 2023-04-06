@@ -74,10 +74,10 @@
         <h2 class="d-inline-block" style=" z-index: 1; min-width: 120px;">最新活動</h2>
         <div class="new-line" style="border: 1px solid rgba(255, 255, 255, 0.8); height: 1px;"></div>
         <div class="d-none d-lg-block">
-          <button class="btn swiper-prev" style="border: 0px solid rgba(10, 96, 60, 0);">
+          <button type="button" class="btn swiper-prev" style="border: 0px solid rgba(10, 96, 60, 0);">
             <img src="../../images/icon/swiper-button.svg" alt="" style="transform: scaleX(-1);">
           </button>
-          <button class="btn swiper-next" style="border: 0px solid rgba(10, 96, 60, 0);">
+          <button type="button" class="btn swiper-next" style="border: 0px solid rgba(10, 96, 60, 0);">
             <img src="../../images/icon/swiper-button.svg" alt="">
           </button>
         </div>

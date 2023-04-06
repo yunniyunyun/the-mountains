@@ -1,5 +1,5 @@
 <template>
-    <loadingVue v-model:active="isLoading"/>
+    <loadingVue :active="isLoading"/>
     <div class="header"></div>
     <div class="container mb-5 d-flex justify-content-center">
       <div class="text-light" style="width: 60vw;">
@@ -18,7 +18,7 @@
               <button type="button" class="btn btn-primary ms-3" @click="payOrder(order_id_data.id)">付款</button>
             </span>
           </h5>
-          <h5>訂夠人資訊</h5>
+          <h5>訂購人資訊</h5>
           <div class="ms-3 mb-3">
             <div>Email: {{ order_id_data.user.email }}</div>
             <div>姓名: {{ order_id_data.user.name }}</div>

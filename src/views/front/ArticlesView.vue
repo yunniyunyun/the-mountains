@@ -1,5 +1,5 @@
 <template>
-  <loadingVue v-model:active="isLoading"/>
+  <loadingVue :active="isLoading"/>
   <div class="header"></div>
   <div class="container">
     <div class="mt-5"></div>

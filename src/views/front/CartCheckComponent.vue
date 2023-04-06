@@ -1,5 +1,5 @@
 <template>
-    <loadingVue v-model:active="isLoading"/>
+    <loadingVue :active="isLoading"/>
     <div class="header"></div>
     <div class="container mb-5">
       <div class="d-none d-md-flex justify-content-center text-secondary" style="margin-top: 60px;">
@@ -70,7 +70,7 @@
           <div class="text-end">
             <div class="d-flex justify-content-end mt-4">
             <RouterLink to="/cart" class="btn btn-outline-primary me-2">上一步</RouterLink>
-            <button  href="#" type="submit" class="btn btn-primary">下一步 | 確認訂單</button>
+            <button type="submit" class="btn btn-primary">下一步 | 確認訂單</button>
           </div>
           </div>
         </VForm>

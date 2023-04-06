@@ -1,5 +1,5 @@
 <template>
-  <loadingVue v-model:active="isLoading"/>
+  <loadingVue :active="isLoading"/>
   <div class="header"></div>
   <div class="container">
     <div class="mt-5 mb-3 d-flex flex-column justify-content-center align-items-center text-light" style="border: 2px solid #373737; box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.16); background: #373737;">

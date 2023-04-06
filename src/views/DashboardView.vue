@@ -31,7 +31,7 @@
           </div>
         </div>
       </nav>
-      <RouterView></RouterView>
+      <RouterView />
     </div>
   </div>
 </template>

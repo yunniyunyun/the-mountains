@@ -77,7 +77,7 @@
     </div>
   </header>
     <!-- <RouterLink to="/cart">購物車</RouterLink> | -->
-  <RouterView></RouterView>
+  <RouterView />
   <!-- 回到頂端 -->
   <a href="#" class="top p-2 d-flex flex-column align-items-center" @click.prevent="scrollToTop">
     <img class="d-block" src="./../images/icon/top.svg">

@@ -1,5 +1,5 @@
 <template>
-    <loadingVue v-model:active="isLoading"/>
+    <loadingVue :active="isLoading"/>
     <div class="header"></div>
     <div class="container mb-5">
       <div class="d-none d-md-flex justify-content-center text-secondary" style="margin-top: 60px;">
