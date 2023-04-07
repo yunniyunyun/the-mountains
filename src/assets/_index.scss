@@ -1,32 +1,19 @@
-//swiper
-.swiper-button-prev:after,
-.swiper-button-next:after {
-    content: url(/src/images/icon/swiper-button.svg) !important;
+.link-none{
+    text-decoration: none;
+    color: inherit;
 }
-.swiper-button-prev,
-.swiper-button-next {
-    top: 0;
+.color-green{
+    color: #438f73;
 }
-.swiper-button-prev {
-    transform: scaleX(-1);
-    left: auto;
-    right: 40px;
+.border-radius-10{
+    border-radius: 10px
 }
-.swiper-button-next {
-    right: 0;
+.mt-60{
+    margin-top: 60px;
 }
-.swiper-pagination-bullet{
-    width: 20px !important;
-    height: 4px !important;
-    border-radius: 0px !important;
-    opacity: 0.8 !important;
-    background: #BAB8B8 !important;
-    @media(max-width: 576px){
-        display: none !important;
-    }
+.h-150{
+    height: 150px;
 }
-.swiper-pagination-bullet-active {
-    width: 40px !important;
-    height: 4px !important;
-    background: #1FBA82 !important;
+.fz-14{
+    font-size: 14px;
 }

@@ -5,12 +5,12 @@
   <div class="container">
     <div class="row mt-5 ">
       <div class="col-md-5 mb-3 mb-md-0">
-        <img :src="product.imageUrl" class="img-fluid" :alt="product.title" style="width: 100%; height: 280px; object-fit: cover;">
+        <img :src="product.imageUrl" class="img-fluid w-100" :alt="product.title" style="height: 280px; object-fit: cover;">
       </div>
       <div class="col-md-7 text-light">
         <h1 class="mb-2">{{ product.title }}</h1>
         <div class="mb-3" v-if="product.tag">
-          <span class="badge bg-primary me-2" style="font-size: 14px;"
+          <span class="badge bg-primary me-2 fz-14"
               v-for="(label, key) in product.tag"
                           :key="key+'tag'">
                           {{ label }}

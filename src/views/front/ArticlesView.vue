@@ -6,14 +6,13 @@
     <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-5 my-3 g-4">
       <div class="col card-group" v-for="article in articles" :key="article.id">
         <div class="card position-relative">
-          <RouterLink :to="`/article/${article.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit;">
-            <h4 class="text-center text-light" style="margin-top: 60px;">查看更多</h4>
+          <RouterLink :to="`/article/${article.id}`" class="more position-absolute w-100 h-100 link-none">
+            <h4 class="text-center text-light mt-60">查看更多</h4>
           </RouterLink>
           <img
           :src="article.imageUrl"
-          class="card-img-top"
+          class="card-img-top h-150"
           alt="card-image"
-          style="height: 150px;"
           />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title mb-auto">
@@ -26,7 +25,7 @@
                               {{ label }}
               </span>
             </div>
-            <p class="mt-2 mb-2" style="font-size: 14px;">
+            <p class="mt-2 mb-2 fz-14">
               {{article.description}}
             </p>
           </div>
