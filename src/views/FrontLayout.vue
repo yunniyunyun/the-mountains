@@ -16,7 +16,7 @@
 
                     <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="background: #1C1E1D;">
                       <div class="offcanvas-header">
-                        <h5 id="offcanvasRightLabel"><RouterLink to="/" @click="removeShow"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink></h5>
+                        <h5 id="offcanvasRightLabel"><RouterLink to="/" @click="removeShow"><img src="../images/logo/logo.png" class="nav-logo" alt="logo"></RouterLink></h5>
                         <div>
                           <RouterLink to="/cart" class="d-lg-none p-2"  @click="removeShow">
                             <span class="position-relative">
