@@ -3,7 +3,7 @@
     <div class="container fixed-top" style="z-index: 10;">
         <nav class="navbar navbar-expand-lg navbar-dark p-3">
             <div class="container-fluid">
-                <RouterLink to="/"><img src="../images/logo/山岳。山悅.png" class="nav-logo" alt="logo"></RouterLink>
+                <RouterLink to="/"><img src="../images/logo/logo.png" class="nav-logo" alt="logo"></RouterLink>
                 <!-- .navbar-toggler 漢堡式選單按鈕 -->
                 <div>
                     <RouterLink to="/cart" class="d-lg-none p-3 me-2">
@@ -88,7 +88,7 @@
   <!-- 表尾 -->
   <footer class="bg-gray2 footer">
       <div class="container text-center text-secondary pt-4 pb-3 pt-sm-5 pb-sm-4">
-          <a href="#"><img class="footer-logo" src="../images/logo/山岳。山悅.png" alt="logo"></a>
+          <a href="#"><img class="footer-logo" src="../images/logo/logo.png" alt="logo"></a>
           <div class="mt-4">
               <a href="#" class="me-2 link-secondary text-decoration-none">關於山悅</a> |
               <a href="#" class="ms-2 link-secondary text-decoration-none">客服信箱</a>

@@ -12,7 +12,7 @@
           <img
           :src="article.imageUrl"
           class="card-img-top"
-          alt="..."
+          alt="card-image"
           style="height: 150px;"
           />
           <div class="card-body d-flex flex-column">

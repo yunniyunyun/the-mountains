@@ -252,13 +252,13 @@ export default {
   }
 }
 .swiper-slide-1{
-  background-image: url(@/images/home/森呼吸@3x.png)
+  background-image: url(@/images/home/swiper-slide-1@3x.png)
 }
 .swiper-slide-2{
-  background-image: url(@/images/home/寧靜美好.jpg)
+  background-image: url(@/images/home/swiper-slide-2.jpg)
 }
 .swiper-slide-3{
-  background-image: url(@/images/home/與自我對話.jpg)
+  background-image: url(@/images/home/swiper-slide-3.jpg)
 }
 .home-title{
   margin-bottom: 40px;
