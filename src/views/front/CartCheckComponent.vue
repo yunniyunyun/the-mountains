@@ -110,9 +110,9 @@
 </template>
 
 <script>
-import cartStore from '../../stores/cartStore'
-import loadingStore from '../../stores/loadingStore'
-import orderStore from '../../stores/orderStore'
+import cartStore from '@/stores/cartStore'
+import loadingStore from '@/stores/loadingStore'
+import orderStore from '@/stores/orderStore'
 import { mapState, mapActions } from 'pinia'
 
 const CartStore = cartStore()

@@ -67,9 +67,9 @@
 </template>
 
 <script>
-import cartStore from '../../stores/cartStore'
-import loadingStore from '../../stores/loadingStore'
-import favoriteStore from '../../stores/favoriteStore'
+import cartStore from '@/stores/cartStore'
+import loadingStore from '@/stores/loadingStore'
+import favoriteStore from '@/stores/favoriteStore'
 import { mapState, mapActions } from 'pinia'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 

@@ -147,8 +147,8 @@
 </template>
 
 <script>
-import cartStore from '../../stores/cartStore'
-import loadingStore from '../../stores/loadingStore'
+import cartStore from '@/stores/cartStore'
+import loadingStore from '@/stores/loadingStore'
 import { mapState, mapActions } from 'pinia'
 
 const CartStore = cartStore()

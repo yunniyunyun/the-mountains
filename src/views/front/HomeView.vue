@@ -164,8 +164,8 @@
 </template>
 
 <script>
-import productsStore from '../../stores/productsStore'
-import favoriteStore from '../../stores/favoriteStore'
+import productsStore from '@/stores/productsStore'
+import favoriteStore from '@/stores/favoriteStore'
 import { mapState, mapActions } from 'pinia'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper'

@@ -33,13 +33,13 @@
         </div>
       </div>
     </div>
-    <pagination :pages="page" :get-products="getArticles" @change-page="getArticles"></pagination>
+    <FrontPaginationVue :pages="page" :get-products="getArticles" @change-page="getArticles"></FrontPaginationVue>
   </div>
 </template>
 
 <script>
 import { RouterLink } from 'vue-router'
-import pagination from '../../components/FrontPaginationVue.vue'
+import FrontPaginationVue from '@/components/FrontPaginationVue.vue'
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 
 export default {
@@ -52,7 +52,7 @@ export default {
   },
   components: {
     RouterLink,
-    pagination
+    FrontPaginationVue
   },
   methods: {
     getArticles (page = 1) {

@@ -110,7 +110,7 @@
 <script>
 import { RouterView } from 'vue-router'
 import { mapState } from 'pinia'
-import cartStore from '../stores/cartStore.js'
+import cartStore from '@/stores/cartStore.js'
 
 const CartStore = cartStore()
 

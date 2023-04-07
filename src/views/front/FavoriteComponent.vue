@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import productsStore from '../../stores/productsStore'
-import cartStore from '../../stores/cartStore'
-import loadingStore from '../../stores/loadingStore'
-import favoriteStore from '../../stores/favoriteStore'
+import productsStore from '@/stores/productsStore'
+import cartStore from '@/stores/cartStore'
+import loadingStore from '@/stores/loadingStore'
+import favoriteStore from '@/stores/favoriteStore'
 import { mapState, mapActions } from 'pinia'
 
 const ProductsStore = productsStore()

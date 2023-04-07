@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import productsStore from '../../stores/productsStore'
-import loadingStore from '../../stores/loadingStore'
+import productsStore from '@/stores/productsStore'
+import loadingStore from '@/stores/loadingStore'
 import { mapState } from 'pinia'
 const ProductsStore = productsStore()
 export default {

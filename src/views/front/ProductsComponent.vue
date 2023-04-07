@@ -40,24 +40,24 @@
           </div>
         </div>
       </div>
-      <pagination v-if="tempCatrgory==='全部行程'" :pages="pages" :get-products="getProducts" @change-page="getProducts"></pagination>
+      <FrontPaginationVue v-if="tempCatrgory==='全部行程'" :pages="pages" :get-products="getProducts" @change-page="getProducts"></FrontPaginationVue>
     </div>
   </div>
   </div>
 </template>
 
 <script>
-import cartStore from '../../stores/cartStore'
-import pagination from '../../components/FrontPaginationVue.vue'
-import productsStore from '../../stores/productsStore'
-import loadingStore from '../../stores/loadingStore'
+import cartStore from '@/stores/cartStore'
+import FrontPaginationVue from '@/components/FrontPaginationVue.vue'
+import productsStore from '@/stores/productsStore'
+import loadingStore from '@/stores/loadingStore'
 import { mapState, mapActions } from 'pinia'
 
 const ProductsStore = productsStore()
 
 export default {
   components: {
-    pagination
+    FrontPaginationVue
   },
   computed: {
     ...mapState(productsStore, ['pages', 'categories', 'tempCatrgory', 'changeProducts']),

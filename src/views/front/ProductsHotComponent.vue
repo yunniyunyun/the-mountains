@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import cartStore from '../../stores/cartStore'
-import productsStore from '../../stores/productsStore'
-import loadingStore from '../../stores/loadingStore'
+import cartStore from '@/stores/cartStore'
+import productsStore from '@/stores/productsStore'
+import loadingStore from '@/stores/loadingStore'
 import { mapState, mapActions } from 'pinia'
 const ProductsStore = productsStore()
 export default {

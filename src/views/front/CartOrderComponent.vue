@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import loadingStore from '../../stores/loadingStore'
-import orderStore from '../../stores/orderStore'
+import loadingStore from '@/stores/loadingStore'
+import orderStore from '@/stores/orderStore'
 import { mapState, mapActions } from 'pinia'
 
 const LoadingStore = loadingStore()
