@@ -96,7 +96,7 @@
       </template>
     </div>
     <div class="d-flex justify-content-center mb-5">
-          <RouterLink to="/articles" class="btn btn-outline-secondary" href="#">回文章分享</RouterLink>
+      <RouterLink to="/articles" class="btn btn-outline-secondary" href="#">回文章分享</RouterLink>
     </div>
   </div>
 </template>

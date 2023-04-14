@@ -50,21 +50,21 @@
         <swiper :modules="modules" class="swiper"  :autoplay="{ delay: 50000, disableOnInteraction: false }"
         :pagination="{ clickable: true }" style="position: relative; height: 480px;">
           <swiper-slide class="swiper-slide swiper-slide-1">
-              <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
-                  <h2>自然之美</h2>
-                  <h2>。</h2>
-                  <h2>森呼吸</h2>
-              </div>
+            <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
+                <h2>自然之美</h2>
+                <h2>。</h2>
+                <h2>森呼吸</h2>
+            </div>
           </swiper-slide>
           <swiper-slide class="swiper-slide swiper-slide-2" style="background-position: 50% 50%;">
-              <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
-                  <h2>寧靜 美好</h2>
-              </div>
+            <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
+                <h2>寧靜 美好</h2>
+            </div>
           </swiper-slide>
           <swiper-slide class="swiper-slide swiper-slide-3" style="background-position: 50% 30%;">
-              <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
-                  <h2>自我對話</h2>
-              </div>
+            <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
+                <h2>自我對話</h2>
+            </div>
           </swiper-slide>
         </swiper>
     </div>

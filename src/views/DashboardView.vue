@@ -1,7 +1,7 @@
 <template>
   <loadingVue v-model:active="isLoading"/>
   <div class="container">
-      <div v-if="isLogin">
+    <div v-if="isLogin">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>

@@ -61,7 +61,7 @@
       <span class="mb-3 h6">{{ product.description }}</span>
     </div>
     <div class="d-flex justify-content-center my-5">
-          <RouterLink to="/products" class="btn btn-outline-secondary">查看其他行程</RouterLink>
+      <RouterLink to="/products" class="btn btn-outline-secondary">查看其他行程</RouterLink>
     </div>
   </div>
 </template>
