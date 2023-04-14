@@ -21,8 +21,8 @@
         <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-3 mb-3">
           <div class="col card-group" v-for="product in changeProducts" :key="product.id">
             <div class="card position-relative bg-dark text-light h-100">
-              <RouterLink :to="`/product/${product.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit;">
-                <h4 class="text-center text-light" style="margin-top: 60px; z-index: 1;">查看更多</h4>
+              <RouterLink :to="`/product/${product.id}`" class="more position-absolute w-100 h-100 link-none">
+                <h4 class="text-center text-light mt-60" style="z-index: 1;">查看更多</h4>
               </RouterLink>
               <img
                 :src="product.imageUrl"

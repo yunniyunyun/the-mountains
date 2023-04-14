@@ -12,8 +12,8 @@
           <div class="col-md-3">
             <div class="position-relative">
               <p class="p-0 mb-0 d-lg-none text-secondary">{{  $filters.date(product.date) }} 收藏</p>
-              <img :src="product.product.imageUrl" :alt="product.product.title" style="width: 100%;">
-              <RouterLink :to="`/product/${product.productId}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit; left: 0;">
+              <img :src="product.product.imageUrl" :alt="product.product.title" class="w-100">
+              <RouterLink :to="`/product/${product.productId}`" class="more position-absolute w-100 h-100 link-none start-0">
               <h4 class="text-center text-light" style="margin-top: 30%;">了解更多</h4>
             </RouterLink>
             </div>
@@ -22,7 +22,7 @@
             <h4 class="my-3 my-lg-4 text-truncate">{{ product.product.title }}</h4>
             <p class="product-description h5">{{ product.product.description }}</p>
             <div class="d-flex justify-content-end mt-3">
-              <p class="h5"> 優惠價: <span class="h4" style="color: #F7B2B7;">{{ product.product.price }}</span> </p>
+              <p class="h5"> 優惠價: <span class="h4 color-pink">{{ product.product.price }}</span> </p>
             </div>
           </div>
           <div class="col-md-3 col-lg-2 d-flex d-md-block align-items-center">

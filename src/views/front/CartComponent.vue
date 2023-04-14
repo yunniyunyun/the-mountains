@@ -99,11 +99,12 @@
       </div>
       <div class="d-sm-none text-light p-3">
         <div class="d-flex justify-content-center align-items-center mb-3" v-for="item in cart.carts" :key="item.id">
-          <div class="bg-dark text-light" style="width: 100%;">
+          <div class="bg-dark text-light w-100">
               <div><img
               :src="item.product.imageUrl"
               :alt="item.product.title"
-              style="width: 100%; height: 160px; object-fit:cover"
+              class="w-100"
+              style="height: 160px; object-fit:cover"
               />
               </div>
             <div class="d-flex flex-column p-3 justify-content-center">

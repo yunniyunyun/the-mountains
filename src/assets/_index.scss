@@ -5,15 +5,33 @@
 .color-green{
     color: #438f73;
 }
+.color-light-green{
+    color: #1FBA82;
+}
+.color-pink{
+    color: #F7B2B7;
+}
 .border-radius-10{
     border-radius: 10px
 }
 .mt-60{
     margin-top: 60px;
 }
+.mt-20{
+    margin-top: 20px;
+}
+.mr-12{
+    margin-right: 12px;
+}
 .h-150{
     height: 150px;
 }
 .fz-14{
     font-size: 14px;
+}
+.fz-16{
+    font-size: 16px;
+}
+.transform-x{
+    transform: scaleX(-1);
 }

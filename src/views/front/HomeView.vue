@@ -25,16 +25,14 @@
                 style="width: 100%;">
               <h5 class="more px-4 py-3" style="border: 2px solid #0A603C;">了解更多</h5>
             </div>
-            <div class="d-flex justify-content-between" style="width: 100%; margin-top: 20px;">
+            <div class="d-flex justify-content-between w-100 mt-20">
               <h5 class="d-block"
                 style="padding: 8px 16px; background: rgba(10, 96, 60, 0.8); z-index:3">
               即將額滿</h5>
               <a href="#" v-if="favoriteIDs?.product.includes(product.id)" class="d-block isFavorite"
-              @click.prevent="removeFavoriteItem(favoriteIDs?.favorite[favoriteIDs.product.findIndex((item) => item === product.id)])"
-              style="height: 36.33px; width: 33.33px; margin-right: 22px; z-index:4;">
+              @click.prevent="removeFavoriteItem(favoriteIDs?.favorite[favoriteIDs.product.findIndex((item) => item === product.id)])">
               </a>
-              <a href="#" v-else class="d-block favorite" @click.prevent="addToFavorite(product.id)"
-              style="height: 36.33px; width: 33.33px; margin-right: 22px; z-index:4;">
+              <a href="#" v-else class="d-block favorite" @click.prevent="addToFavorite(product.id)">
               </a>
             </div>
             <h4 class="mt-auto mb-0" style="padding: 20px 20px">{{ product.title }}</h4>
@@ -50,19 +48,19 @@
         <swiper :modules="modules" class="swiper"  :autoplay="{ delay: 50000, disableOnInteraction: false }"
         :pagination="{ clickable: true }" style="position: relative; height: 480px;">
           <swiper-slide class="swiper-slide swiper-slide-1">
-            <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
+            <div class="d-flex flex-column justify-content-center align-items-center text-white h-100">
                 <h2>自然之美</h2>
                 <h2>。</h2>
                 <h2>森呼吸</h2>
             </div>
           </swiper-slide>
           <swiper-slide class="swiper-slide swiper-slide-2" style="background-position: 50% 50%;">
-            <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
+            <div class="d-flex flex-column justify-content-center align-items-center text-white h-100">
                 <h2>寧靜 美好</h2>
             </div>
           </swiper-slide>
           <swiper-slide class="swiper-slide swiper-slide-3" style="background-position: 50% 30%;">
-            <div class="d-flex flex-column justify-content-center align-items-center text-white" style="height: 100%; border: 1px solid #FFFFFF;">
+            <div class="d-flex flex-column justify-content-center align-items-center text-white h-100">
                 <h2>自我對話</h2>
             </div>
           </swiper-slide>
@@ -131,7 +129,7 @@
                   {{product.title}}
                 </h4>
                 <ul class="product-tag mt-3 d-flex ps-0 mb-0" v-if="product.tag" style="list-style-type: none;">
-                  <li class="px-2 h5 mb-0" style="color: #1FBA82;"
+                  <li class="px-2 h5 mb-0 color-light-green"
                       v-for="(label, key) in product.tag"
                                   :key="key+'tag'">
                                   {{ label }}
@@ -152,10 +150,10 @@
             <h5 class="d-inline-block mb-3"
                 style="padding: 8px 12px; background: rgba(10, 96, 60, 0.8); z-index:3">
               {{ product.tag[0] }}</h5>
-            <h5 class="d-inline-block ms-3" style="color: #1FBA82;">{{ product.category }}</h5>
+            <h5 class="d-inline-block ms-3 color-light-green">{{ product.category }}</h5>
             <h2>{{ product.title }}</h2>
             <p>{{ product.description }}</p>
-            <RouterLink :to="`/product/${product.id}`" style="text-decoration: none; color: inherit;">
+            <RouterLink :to="`/product/${product.id}`" class="link-none">
               <button type="button" class="btn btn-outline-primary link-light">查看更多</button></RouterLink>
           </div>
         </div>
@@ -356,6 +354,10 @@ export default {
   background-image: url(@/images/icon/favorite.svg);
   background-repeat: no-repeat;
   background-position: center center;
+  height: 36.33px;
+  width: 33.33px;
+  margin-right: 22px;
+  z-index:4;
 }
 .favorite:hover, .isFavorite{
   background-image: url(@/images/icon/favorite-hover.svg);
@@ -395,4 +397,7 @@ export default {
   border: 3px solid #0A603C !important;
   filter: drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.16));
 }
+.bd-white{
+  border: 1px solid #FFFFFF;
+  }
 </style>

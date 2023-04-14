@@ -71,12 +71,15 @@
         </table>
         <div class="d-md-none">
           <div class="d-flex justify-content-center align-items-center mb-3" v-for="item in order_id_data.products" :key="item.id">
-            <div class="bg-dark text-light" style="width: 100%;">
-                <div class="position-relative"><img
+            <div class="bg-dark text-light w-100">
+                <div class="position-relative">
+                  <img
                 :src="item.product.imageUrl"
                 :alt="item.product.title"
-                style="width: 100%; height: 160px; object-fit:cover"
-                /><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white" style="font-size: 16px;">{{ item.qty }}</span>
+                class="w-100"
+                style="height: 160px; object-fit:cover"
+                />
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white fz-16">{{ item.qty }}</span>
               </div>
               <div class="d-flex flex-column p-3 justify-content-center">
                 <h5 class="mb-2">

@@ -18,8 +18,8 @@
         </div>
         <div class="col-md-4">
           <div class="position-relative">
-            <img :src="product.imageUrl" :alt="product.title" style="width: 100%;">
-            <RouterLink :to="`/product/${product.id}`" class="more position-absolute" style="width: 100%; height: 100%; text-decoration: none; color: inherit; left: 0;">
+            <img :src="product.imageUrl" :alt="product.title" class="w-100">
+            <RouterLink :to="`/product/${product.id}`" class="more position-absolute w-100 h-100 link-none start-0">
             <h4 class="text-center text-light" style="margin-top: 30%;">了解更多</h4>
           </RouterLink>
           </div>
@@ -27,7 +27,7 @@
         <div class="col-md-7 px-4">
           <h2 class="my-3 mt-lg-4 text-truncate">{{ product.title }}</h2>
           <div class="mb-3" v-if="product.tag">
-            <span class="badge bg-primary me-2" style="font-size: 16px;"
+            <span class="badge bg-primary me-2 fz-16"
                 v-for="(label, key) in product.tag"
                             :key="key+'tag'">
                             {{ label }}
